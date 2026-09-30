@@ -13,12 +13,16 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D enemyBody;
 
-    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    [HideInInspector]
+    public Vector3 startPosition;
 
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
         // get the starting position
+        // capture scene/prefab-instance placement (Goomba is child under Enemies),
+        // so hardcoded Inspector value can't go stale
+        startPosition = transform.position;
         originalX = transform.position.x;
         ComputeVelocity();
     }

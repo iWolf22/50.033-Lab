@@ -12,7 +12,16 @@ public class PlayerMovement : MonoBehaviour
     private bool faceRightState = true;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI finalScoreText;
+
     public GameObject enemies;
+
+    [HideInInspector]
+    public Vector3 startPosition;
+
+    public GameObject gamePlayUI;
+    public GameObject gameOverUI;
+
 
     public JumpOverGoomba jumpOverGoomba;
 
@@ -20,11 +29,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         marioSprite = GetComponent<SpriteRenderer>();
+        startPosition = transform.position;
 
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
 
+        gameOverUI.SetActive(false);
+        gamePlayUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -86,9 +98,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with goomba!");
+            GameOver();
+
             Time.timeScale = 0.0f;
         }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Collided with goomba!");
+
+        gameOverUI.SetActive(true);
+        gamePlayUI.SetActive(false);
+
+        finalScoreText.text = "Score: " + jumpOverGoomba.score;
     }
 
     public void RestartButtonCallback(int input)
@@ -103,19 +126,22 @@ public class PlayerMovement : MonoBehaviour
     private void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-5.49f, -2.29f, 0.0f);
+        marioBody.transform.position = startPosition;
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
         // reset score
         scoreText.text = "Score: 0";
-        // reset Goomba
+        // reset Goomba(s) - Goomba(s) are children under Enemies entity
         foreach (Transform eachChild in enemies.transform)
         {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
+            eachChild.transform.position = eachChild.GetComponent<EnemyMovement>().startPosition;
         }
 
         // reset score
         jumpOverGoomba.score = 0;
+
+        gameOverUI.SetActive(false);
+        gamePlayUI.SetActive(true);
     }
 }
