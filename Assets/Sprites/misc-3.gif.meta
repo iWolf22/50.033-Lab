@@ -373,7 +373,7 @@ TextureImporter:
         width: 11
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -382,6 +382,50 @@ TextureImporter:
       bones: []
       spriteID: 9baa0add2c1be3d4b819a0e6a4fa4c44
       internalID: 834704250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: question-mark-flash
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 1057
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4aed9e520320264794ad2febe388be3
+      internalID: 1421341756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: question-mark-solid
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1171
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 575d56396334a2648b88e8d63211ff1e
+      internalID: -1853020444
       vertices: []
       indices: 
       edges: []
@@ -412,6 +456,8 @@ TextureImporter:
       pipe-mid: -1894366862
       pipe-top: -1817184023
       question-mark: 2022539852
+      question-mark-flash: 1421341756
+      question-mark-solid: -1853020444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
