@@ -351,7 +351,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -360,6 +360,28 @@ TextureImporter:
       bones: []
       spriteID: f6dad3ee9dd56c7449fc9a1bcf5fa9f2
       internalID: 1704909586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 1074
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9baa0add2c1be3d4b819a0e6a4fa4c44
+      internalID: 834704250
       vertices: []
       indices: 
       edges: []
@@ -383,6 +405,7 @@ TextureImporter:
       cloud-big: -403287890
       cloud-medium: -195078478
       cloud-small: -464704589
+      coin: 834704250
       hill-big: 603835519
       hill-small: 921219622
       mushroom: 1704909586
