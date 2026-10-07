@@ -40,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
         gamePlayUI.SetActive(true);
 
         marioAnimator.SetBool("onGround", onGroundState);
+
+        // Jump-over scoring is disabled; stomping scores via event instead
+        if (jumpOverGoomba != null) jumpOverGoomba.enabled = false;
+
+        // Subscribe to each Goomba's stomp event to increase score
+        foreach (Transform eachChild in enemies.transform)
+        {
+            EnemyMovement enemy = eachChild.GetComponent<EnemyMovement>();
+            if (enemy != null) enemy.OnGoombaStomped += OnGoombaStomped;
+        }
     }
 
     // Update is called once per frame
@@ -140,11 +150,34 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
+            EnemyMovement enemy = other.GetComponent<EnemyMovement>();
+            // Stomp: Mario is above the Goomba and falling -> kill Goomba, bounce Mario
+            if (enemy != null && transform.position.y > enemy.transform.position.y + 0.3f
+                && marioBody.linearVelocity.y <= 0.1f)
+            {
+                enemy.Stomp();
+                marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0);
+                marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+                onGroundState = false;
+                marioAnimator.SetBool("onGround", onGroundState);
+                return;
+            }
+
             PlayDeathImpulse();
             marioAnimator.Play("mario-die");
             marioAudio.PlayOneShot(marioDeath);
             alive = false;
         }
+    }
+
+    public AudioSource goombaDeath;
+
+    // Event handler: Goomba stomped -> increase score
+    void OnGoombaStomped()
+    {
+        goombaDeath.PlayOneShot(goombaDeath.clip);
+        jumpOverGoomba.score++;
+        scoreText.text = "Score: " + jumpOverGoomba.score;
     }
 
     private void GameOver()
@@ -178,7 +211,9 @@ public class PlayerMovement : MonoBehaviour
         // reset Goomba(s) - Goomba(s) are children under Enemies entity
         foreach (Transform eachChild in enemies.transform)
         {
-            eachChild.transform.position = eachChild.GetComponent<EnemyMovement>().startPosition;
+            EnemyMovement enemy = eachChild.GetComponent<EnemyMovement>();
+            if (enemy != null) enemy.ResetEnemy();
+            else eachChild.transform.position = startPosition;
         }
 
         // reset score

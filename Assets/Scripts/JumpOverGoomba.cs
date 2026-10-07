@@ -32,6 +32,8 @@ public class JumpOverGoomba : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Jump-over scoring disabled: stomping (EnemyMovement.Stomp event) scores instead.
+        return;
         // mario jumps
         if (Input.GetKeyDown("space") && onGroundCheck())
         {

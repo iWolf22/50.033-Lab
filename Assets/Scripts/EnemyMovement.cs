@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    // Event + delegate for stomping (score is handled by subscriber)
+    public delegate void GoombaStompedHandler();
+    public event GoombaStompedHandler OnGoombaStomped;
+
+    private bool isDead = false;
 
     private float originalX;
     private float maxOffset = 5.0f;
@@ -38,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
     // note that this is Update(), which still works but not ideal. See below.
     void Update()
     {
+        if (isDead) return;
         if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
         {// move goomba
             Movegoomba();
@@ -54,5 +60,21 @@ public class EnemyMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.gameObject.name);
+    }
+
+    // Called when Mario stomps this Goomba: notify subscribers, then disappear
+    public void Stomp()
+    {
+        if (isDead) return;
+        isDead = true;
+        OnGoombaStomped?.Invoke();
+        gameObject.SetActive(false);
+    }
+
+    public void ResetEnemy()
+    {
+        isDead = false;
+        transform.position = startPosition;
+        gameObject.SetActive(true);
     }
 }
