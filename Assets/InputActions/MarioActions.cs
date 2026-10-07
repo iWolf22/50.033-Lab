@@ -182,13 +182,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
-            ""devices"": []
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // gameplay
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
@@ -389,19 +383,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="GameplayActions" /> instance referencing this action map.
     /// </summary>
     public GameplayActions @gameplay => new GameplayActions(this);
-    private int m_KeyboardSchemeIndex = -1;
-    /// <summary>
-    /// Provides access to the input control scheme.
-    /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme KeyboardScheme
-    {
-        get
-        {
-            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
-            return asset.controlSchemes[m_KeyboardSchemeIndex];
-        }
-    }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "gameplay" which allows adding and removing callbacks.
     /// </summary>

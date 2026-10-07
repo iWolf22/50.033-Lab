@@ -7,40 +7,7 @@ public class ActionManager : MonoBehaviour
 {
     public PlayerInput playerInput;
 
-    void Start()
-    {
-        Debug.Log("ActionManager Start");
-        if (playerInput == null)
-            playerInput = GetComponent<PlayerInput>();
-        if (playerInput == null)
-        {
-            Debug.LogError("ActionManager: no PlayerInput found", this);
-            return;
-        }
-        if (playerInput.actions == null)
-        {
-            Debug.LogError("ActionManager: PlayerInput.actions is null", this);
-            return;
-        }
-        var map = playerInput.actions.FindActionMap("gameplay");
-        if (map != null && !map.enabled)
-            map.Enable();
-
-        // Bypass UnityEvents serialization — subscribe directly to the same asset/map.
-        // Names must match MarioActions gameplay map exactly (lowercase).
-        playerInput.actions["move"].started += OnMoveAction;
-        playerInput.actions["move"].performed += OnMoveAction;
-        playerInput.actions["move"].canceled += OnMoveAction;
-
-        playerInput.actions["jump"].started += OnJumpAction;
-        playerInput.actions["jump"].performed += OnJumpAction;
-        playerInput.actions["jump"].canceled += OnJumpAction;
-
-        playerInput.actions["jumphold"].started += OnJumpHoldAction;
-        playerInput.actions["jumphold"].performed += OnJumpHoldAction;
-        playerInput.actions["jumphold"].canceled += OnJumpHoldAction;
-        Debug.Log("ActionManager subscribed to move/jump/jumphold");
-    }
+    void Start() { }
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {

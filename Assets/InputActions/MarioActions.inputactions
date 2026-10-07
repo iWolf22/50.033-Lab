@@ -96,11 +96,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }
