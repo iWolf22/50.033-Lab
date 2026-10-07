@@ -430,6 +430,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: dead-goombas
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 343
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45acd4d141abf74cbfd4abc92f9f8ad
+      internalID: -1690180949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -450,6 +472,7 @@ TextureImporter:
       cloud-medium: -195078478
       cloud-small: -464704589
       coin: 834704250
+      dead-goombas: -1690180949
       hill-big: 603835519
       hill-small: 921219622
       mushroom: 1704909586

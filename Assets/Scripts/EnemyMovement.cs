@@ -17,6 +17,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 velocity;
 
     private Rigidbody2D enemyBody;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D enemyCollider;
+    private Sprite originalSprite;
+    private Vector3 originalScale;
+    public float stompHideDelay = 0.5f;
 
     [HideInInspector]
     public Vector3 startPosition;
@@ -24,6 +29,13 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyCollider = GetComponent<Collider2D>();
+        if (spriteRenderer != null)
+        {
+            originalSprite = spriteRenderer.sprite;
+        }
+        originalScale = transform.localScale;
         // get the starting position
         // capture scene/prefab-instance placement (Goomba is child under Enemies),
         // so hardcoded Inspector value can't go stale
@@ -68,13 +80,35 @@ public class EnemyMovement : MonoBehaviour
         if (isDead) return;
         isDead = true;
         OnGoombaStomped?.Invoke();
+        // Code-only stomp animation: swap to dead-goombas sprite for a split second
+        if (enemyCollider != null) enemyCollider.enabled = false;
+        if (spriteRenderer != null)
+        {
+            Sprite dead = null;
+            foreach (var s in Resources.FindObjectsOfTypeAll<Sprite>())
+            {
+                if (s.name == "dead-goombas") { dead = s; break; }
+            }
+            if (dead != null) spriteRenderer.sprite = dead;
+            else transform.localScale = new Vector3(originalScale.x, originalScale.y * 0.5f, originalScale.z);
+        }
+        StartCoroutine(HideAfterDelay());
+    }
+
+    private IEnumerator HideAfterDelay()
+    {
+        yield return new WaitForSeconds(stompHideDelay);
         gameObject.SetActive(false);
     }
 
     public void ResetEnemy()
     {
+        StopAllCoroutines();
         isDead = false;
         transform.position = startPosition;
+        transform.localScale = originalScale;
+        if (spriteRenderer != null && originalSprite != null) spriteRenderer.sprite = originalSprite;
+        if (enemyCollider != null) enemyCollider.enabled = true;
         gameObject.SetActive(true);
     }
 }
