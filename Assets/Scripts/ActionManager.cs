@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class ActionManager : MonoBehaviour
 {
-    public PlayerInput playerInput;
-
-    void Start() { }
+    public UnityEvent jump;
+    public UnityEvent jumpHold;
+    public UnityEvent<int> moveCheck;
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {
@@ -16,6 +16,8 @@ public class ActionManager : MonoBehaviour
         else if (context.performed)
         {
             Debug.Log("JumpHold was performed");
+            Debug.Log(context.duration);
+            jumpHold.Invoke();
         }
         else if (context.canceled)
             Debug.Log("JumpHold was cancelled");
@@ -24,12 +26,11 @@ public class ActionManager : MonoBehaviour
     // called twice, when pressed and unpressed
     public void OnJumpAction(InputAction.CallbackContext context)
     {
-        Debug.Log("TEST");
-
         if (context.started)
             Debug.Log("Jump was started");
         else if (context.performed)
         {
+            jump.Invoke();
             Debug.Log("Jump was performed");
         }
         else if (context.canceled)
@@ -40,15 +41,18 @@ public class ActionManager : MonoBehaviour
     // called twice, when pressed and unpressed
     public void OnMoveAction(InputAction.CallbackContext context)
     {
+        // Debug.Log("OnMoveAction callback invoked");
         if (context.started)
         {
             Debug.Log("move started");
-            float move = context.ReadValue<float>();
-            Debug.Log($"move value: {move}"); // will return null when not pressed
+            int faceRight = context.ReadValue<float>() > 0 ? 1 : -1;
+            moveCheck.Invoke(faceRight);
         }
         if (context.canceled)
         {
             Debug.Log("move stopped");
+            moveCheck.Invoke(0);
         }
+
     }
 }
