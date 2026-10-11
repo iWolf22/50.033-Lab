@@ -321,7 +321,8 @@ public static class LabLevelBuilder
         {
             controller = AnimatorController.CreateAnimatorControllerAtPath("Assets/Animation/Goomba.controller");
             controller.AddMotion(clip);
-        } root.AddComponent<Animator>().runtimeAnimatorController = controller;
+        }
+        root.AddComponent<Animator>().runtimeAnimatorController = controller;
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, "Assets/Prefabs/Goomba.prefab");
         Object.DestroyImmediate(root);
         return prefab;
@@ -381,10 +382,6 @@ public static class LabLevelBuilder
         col.size = new Vector2(1, 8);
         var flag = Tile("Finish flag", "goal_flag_green", new Vector2(x - 0.5f, 4), parent, 3);
         flag.color = new Color32(255, 222, 90, 255);
-        var goal = pole.gameObject.AddComponent<LevelGoal>(); Set(goal, "session", session);
-        UnityEventTools.AddPersistentListener(session.gameRestart, goal.GameRestart);
-        var audio = Sound("Course clear", pole.transform, "06-level-complete.mp3", "Special Event SFX");
-        Set(goal, "audioSource", audio); Set(goal, "clearSound", audio.clip);
     }
 
     static void LayoutUI(GameObject play, GameObject over, TextMeshProUGUI score, TextMeshProUGUI finalScore)
