@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 09:04:48Z" end-time="2026-10-11 09:05:25Z" duration="36.8236132">
+  <test-suite type="TestSuite" id="1018" name="My project" fullname="My project" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-11 09:04:48Z" end-time="2026-10-11 09:05:25Z" duration="36.823613" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1014" name="Mario.PlayModeTests.dll" fullname="D:/Folder Data Base/University-Of-Waterloo/3B/50.033/Lab-3-Clean-Code/.unity-validation/Library/ScriptAssemblies/Mario.PlayModeTests.dll" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-11 09:04:48Z" end-time="2026-10-11 09:05:25Z" duration="36.813224" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31976" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="CourseTests" fullname="CourseTests" classname="CourseTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-11 09:04:48Z" end-time="2026-10-11 09:05:25Z" duration="36.811345" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1012" name="BouncyCloudReboundsAndCameraStopsAtCourseEnds" fullname="CourseTests.BouncyCloudReboundsAndCameraStopsAtCourseEnds" methodname="BouncyCloudReboundsAndCameraStopsAtCourseEnds" classname="CourseTests" runstate="Runnable" seed="2261686" result="Passed" start-time="2026-10-11 09:04:48Z" end-time="2026-10-11 09:04:50Z" duration="1.814767" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" fullname="CourseTests.BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" methodname="BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" classname="CourseTests" runstate="Runnable" seed="315942574" result="Passed" start-time="2026-10-11 09:04:50Z" end-time="2026-10-11 09:04:53Z" duration="2.470157" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="CourseCanBeCompletedWithKeyboardMovementAndJumps" fullname="CourseTests.CourseCanBeCompletedWithKeyboardMovementAndJumps" methodname="CourseCanBeCompletedWithKeyboardMovementAndJumps" classname="CourseTests" runstate="Runnable" seed="1851949469" result="Passed" start-time="2026-10-11 09:04:53Z" end-time="2026-10-11 09:05:09Z" duration="15.831850" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1008" name="FallEndsGameAndFinishShowsCourseClear" fullname="CourseTests.FallEndsGameAndFinishShowsCourseClear" methodname="FallEndsGameAndFinishShowsCourseClear" classname="CourseTests" runstate="Runnable" seed="797989803" result="Passed" start-time="2026-10-11 09:05:09Z" end-time="2026-10-11 09:05:11Z" duration="2.393145" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="JumpingOverGoombaDoesNotScore" fullname="CourseTests.JumpingOverGoombaDoesNotScore" methodname="JumpingOverGoombaDoesNotScore" classname="CourseTests" runstate="Runnable" seed="1184824026" result="Passed" start-time="2026-10-11 09:05:11Z" end-time="2026-10-11 09:05:12Z" duration="0.844729" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="KeyboardMovesReversesAndStops" fullname="CourseTests.KeyboardMovesReversesAndStops" methodname="KeyboardMovesReversesAndStops" classname="CourseTests" runstate="Runnable" seed="374803056" result="Passed" start-time="2026-10-11 09:05:12Z" end-time="2026-10-11 09:05:13Z" duration="1.612936" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="OneWayPlatformPassesUpwardAndSupportsLanding" fullname="CourseTests.OneWayPlatformPassesUpwardAndSupportsLanding" methodname="OneWayPlatformPassesUpwardAndSupportsLanding" classname="CourseTests" runstate="Runnable" seed="1612223850" result="Passed" start-time="2026-10-11 09:05:13Z" end-time="2026-10-11 09:05:15Z" duration="1.845387" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" fullname="CourseTests.QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" methodname="QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" classname="CourseTests" runstate="Runnable" seed="2079079865" result="Passed" start-time="2026-10-11 09:05:15Z" end-time="2026-10-11 09:05:17Z" duration="1.820511" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="SideHitDiesThenRestartRestoresCourse" fullname="CourseTests.SideHitDiesThenRestartRestoresCourse" methodname="SideHitDiesThenRestartRestoresCourse" classname="CourseTests" runstate="Runnable" seed="63489275" result="Passed" start-time="2026-10-11 09:05:17Z" end-time="2026-10-11 09:05:20Z" duration="2.626010" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="SpringQuestionBlockIsStableOnTopAndLocksAfterReward" fullname="CourseTests.SpringQuestionBlockIsStableOnTopAndLocksAfterReward" methodname="SpringQuestionBlockIsStableOnTopAndLocksAfterReward" classname="CourseTests" runstate="Runnable" seed="151936646" result="Passed" start-time="2026-10-11 09:05:20Z" end-time="2026-10-11 09:05:21Z" duration="1.701468" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="StompAnimatesScoresOnceAndBounces" fullname="CourseTests.StompAnimatesScoresOnceAndBounces" methodname="StompAnimatesScoresOnceAndBounces" classname="CourseTests" runstate="Runnable" seed="1252935326" result="Passed" start-time="2026-10-11 09:05:21Z" end-time="2026-10-11 09:05:23Z" duration="1.377650" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump" fullname="CourseTests.TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump" methodname="TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump" classname="CourseTests" runstate="Runnable" seed="1253995683" result="Passed" start-time="2026-10-11 09:05:23Z" end-time="2026-10-11 09:05:25Z" duration="2.447522" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/joshu/AppData/LocalLow/DefaultCompany/My project\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

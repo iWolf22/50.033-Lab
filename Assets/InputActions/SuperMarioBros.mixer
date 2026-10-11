@@ -64,7 +64,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -2279115951075600399}
-  - {fileID: 4507415035593516518}
+  - {fileID: 88000001}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -98,6 +98,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -7851362323878690274}
+  - {fileID: -297113875127505348}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -217,7 +218,16 @@ AudioMixerController:
     - 58b9e9a68da44a442935a05e8bea9516
     - 33b469f5b6febb348bf766b9ce6c3199
     - 61bb11096339ba74bb03ead1a3bdf029
-    name: View
+    name: All Audio
+  - guids:
+    - 3a5d306c425158242b7dc2d3a6895357
+    - cc4f4a46c89584942990d0811bb61b8b
+    - d289a3c844f28da45a0781b0d083e66d
+    - ca78322bd6859104f83cdb0a964c2b79
+    - 58b9e9a68da44a442935a05e8bea9516
+    - 33b469f5b6febb348bf766b9ce6c3199
+    - 61bb11096339ba74bb03ead1a3bdf029
+    name: SFX Only
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
@@ -269,8 +279,13 @@ AudioMixerSnapshotController:
     ceb84ab159bd230458b8601c942e7c16: 0
     b6d341d3c9f670945ab78ba909a22ce1: 0
     7a5166c4a4e3e204fb2dbae2e997a9ee: 0
-    7d074ef47ee70d3429e95d9ce247d77c: -65
-    2fea82670aff18d4f98f74e9fcb5c759: 5.8
+    7d074ef47ee70d3429e95d9ce247d77c: -30
+    2fea82670aff18d4f98f74e9fcb5c759: 8
+    98c48ed1934639b4586324f270c0a83c: -12
+    3b8cee164a7e14249a3565b93f8c53e0: 20
+    83544065bc14b9243b7a4eee0faec67b: 500
+    456786590ca64d94bf21580df087aaaa: 1600
+    456786590ca64d94bf21580df087aaab: 1
   m_TransitionOverrides: {}
 --- !u!243 &2068061968979810921
 AudioMixerGroupController:
@@ -322,7 +337,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -2615552986371858983}
-  - {fileID: -297113875127505348}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -372,6 +386,24 @@ AudioMixerEffectController:
     m_GUID: 0ea684455ca09c34d8cee044f0c531d6
   - m_ParameterName: Sidechain Mix
     m_GUID: f5b7464cf62b4234abbde91c38494a7c
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &88000001
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 456786590ca64d94bf21580df087aaac
+  m_EffectName: Lowpass
+  m_MixLevel: 456786590ca64d94bf21580df087aaad
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 456786590ca64d94bf21580df087aaaa
+  - m_ParameterName: Resonance
+    m_GUID: 456786590ca64d94bf21580df087aaab
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0

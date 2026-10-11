@@ -1,0 +1,472 @@
+{
+  "unity": "6000.3.24f1",
+  "passed": 13,
+  "failed": 0,
+  "finishedUtc": "2026-10-11 10:33:27Z",
+  "method": "Unity PlayMode checks in isolated copy; generated compact scene and prefabs copied byte-for-byte to the main project",
+  "tests": [
+    "BouncyCloudReboundsAndCameraStopsAtCourseEnds",
+    "BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse",
+    "CourseCanBeCompletedWithKeyboardMovementAndJumps",
+    "FallEndsGameAndFinishShowsCourseClear",
+    "JumpingOverGoombaDoesNotScore",
+    "KeyboardMovesReversesAndStops",
+    "ManagerEventsRestoreSpentBlocksAndInactiveEnemiesWithoutReloading",
+    "OneWayPlatformPassesUpwardAndSupportsLanding",
+    "QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow",
+    "SideHitDiesThenRestartRestoresCourse",
+    "SpringQuestionBlockIsStableOnTopAndLocksAfterReward",
+    "StompAnimatesScoresOnceAndBounces",
+    "TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump"
+  ],
+  "verifiedAssets": [
+    {
+      "path": "Assets/Animation/Block.controller",
+      "sha256": "bc3b27491f0a809d046fdd790bb37e80545ddb048cb1539be9bb2ecd78cef321"
+    },
+    {
+      "path": "Assets/Animation/Goomba.controller",
+      "sha256": "6c81439377dad79e1c6b9c6abb677573a677c2e587ec4af3d41f8a8161578cd3"
+    },
+    {
+      "path": "Assets/Animation/Mario.controller",
+      "sha256": "a10dac39c7125c64224323374241d3999cbd377b6d06298d6923f1fa52d12a3c"
+    },
+    {
+      "path": "Assets/Animation/block-bounce.anim",
+      "sha256": "02eb9f0e79caaff1ab7a42d24756baad3b9c7a5df48b226fcc3db4530cdaf449"
+    },
+    {
+      "path": "Assets/Animation/goomba-walk.anim",
+      "sha256": "3e6428d8cc5a85783a730160128c35e2735c0a2f236f540f26efe8d8e40016ac"
+    },
+    {
+      "path": "Assets/Animation/mario-die.anim",
+      "sha256": "a508ae8ff7e4b7610e8bb639704e9c3780b60192d5a665f3cbb958e76ddb4851"
+    },
+    {
+      "path": "Assets/Animation/mario-idle.anim",
+      "sha256": "5911daa0e71e4cde938ccc3f112cb00e243c11c81319fe870c145965e32405c7"
+    },
+    {
+      "path": "Assets/Animation/mario-jump.anim",
+      "sha256": "c1c690847d502440c3296bd71861ee997afd1875765b532f7ef4d0b6fa850f24"
+    },
+    {
+      "path": "Assets/Animation/mario-run.anim",
+      "sha256": "0eee95b00a04ce99605adc3ac68d4f4c77dcce437382fec1c5c66922a29b7b96"
+    },
+    {
+      "path": "Assets/Animation/mario-skid.anim",
+      "sha256": "37eb2134b8878ca829d8b72e6910cfd4c001a7f9e16cf9b98ae7a30d6756a53c"
+    },
+    {
+      "path": "Assets/Editor/LabLevelBuilder.cs",
+      "sha256": "ed20265ca8297e74d82f0a027b9a76b19a1f752bf5f8e9dc74650390f65aa14b"
+    },
+    {
+      "path": "Assets/Editor/LabLevelPreview.cs",
+      "sha256": "dbb8478f6cf70066f35d2cbed4fb006c9c0cda0f93cb1c9394aaeb0607677352"
+    },
+    {
+      "path": "Assets/InputActions/MarioActions.cs",
+      "sha256": "d6b43175294de30080aae51205f8aa76ca2a7c79e721d704735176eecebcae31"
+    },
+    {
+      "path": "Assets/InputActions/MarioActions.inputactions",
+      "sha256": "d4361ff50ec1b3c3c4b5f7fbdc858cb9fcb14fef2105a4f069c9681506faf49a"
+    },
+    {
+      "path": "Assets/InputActions/SuperMarioBros.mixer",
+      "sha256": "3c698859555c88959b54af2766b506a717aa7aa9784622a461226dcb07cfae05"
+    },
+    {
+      "path": "Assets/InputSystem_Actions.inputactions",
+      "sha256": "1c6cbb519d65ecfe19a29231735b7f54741a20ac1a8ad4f46a18e1bfb28a3c39"
+    },
+    {
+      "path": "Assets/Materials/BouncyCloud.physicsMaterial2D",
+      "sha256": "4866296585d63bded3ce0f0a50a52cb19fe1c5ef6fe3f1cd3d683c20add9d4fa"
+    },
+    {
+      "path": "Assets/Prefabs/BouncyCloud.prefab",
+      "sha256": "f0b00c27c5ce0c62f5cacfecd2f9724dd6b4a6173faab4ac4ab7a90da606107e"
+    },
+    {
+      "path": "Assets/Prefabs/Goomba.prefab",
+      "sha256": "28168d58e70d04b0df15e5c06c86a2ed35016e74cfaabb07b9af3da084acd33e"
+    },
+    {
+      "path": "Assets/Prefabs/SpringQuestionBlock.prefab",
+      "sha256": "386a8ff09adfb79a4ef3da529922d6a27bfc1e6e82a21b59dc589fce4d65f34e"
+    },
+    {
+      "path": "Assets/Prefabs/brown-brick-coin.prefab",
+      "sha256": "4f7982a7aaedc6cc1c69457e6715b31dd82c83390c2cdf8847198f8a512354cf"
+    },
+    {
+      "path": "Assets/Prefabs/brown-brick-no-coin.prefab",
+      "sha256": "20e6dbb79570cc9427ef0ecc59a1bb3e03745c5e36c34125e519abf210b31c6b"
+    },
+    {
+      "path": "Assets/Prefabs/question-mark-wrapper.prefab",
+      "sha256": "3d32a302e4fdcbf137c1732083842af4d1260c80ad373fb5226505a8a4faff99"
+    },
+    {
+      "path": "Assets/Scenes/AnotherScene.unity",
+      "sha256": "e8cff796e6a948322d931741c3ba66229d779d44c4b5c7d64d0eb2b64bdc00dd"
+    },
+    {
+      "path": "Assets/Scenes/SampleScene.unity",
+      "sha256": "ef76c2687e02f8d130dfd97f541e73047b07e78bebd5a3488a8b6160decc0919"
+    },
+    {
+      "path": "Assets/Scripts/ActionManager.cs",
+      "sha256": "70e36a753d3eac890f5f2231cd336762ea18db320bf8f832009d1aba6da6db8f"
+    },
+    {
+      "path": "Assets/Scripts/AnimationEventIntTool.cs",
+      "sha256": "d8f42cd523ac4f31a3a38a21a95646e12b35e3d25ab291c4abc2a207ce9ab3f6"
+    },
+    {
+      "path": "Assets/Scripts/AnimationEventIntTool.cs.meta",
+      "sha256": "eb225c6e5c90308ffe54b8fc7effcb7856b6bec888a7e0cc7fc42ebaae8efff7"
+    },
+    {
+      "path": "Assets/Scripts/BlockBounce.cs",
+      "sha256": "d6fa788470eecbd5b0ae60fa0c4f93a806ea083d629b60303a9d375fd10e6a53"
+    },
+    {
+      "path": "Assets/Scripts/CameraController.cs",
+      "sha256": "2f6ba12a87300e45915453023deb71b3a7404353106533935ce2444853a22584"
+    },
+    {
+      "path": "Assets/Scripts/EnemyManager.cs",
+      "sha256": "e9daa42ace4d2dfee3cea2a256ba84e876edc35d7180d39e95e34dcb480c61a5"
+    },
+    {
+      "path": "Assets/Scripts/EnemyManager.cs.meta",
+      "sha256": "b9e6f379e68b5dcf4730a430021154a8f5f3a6ee40c639b0749ab2abccff5b7e"
+    },
+    {
+      "path": "Assets/Scripts/EnemyMovement.cs",
+      "sha256": "b5d89eafc267d903b49971a17bf1d12570b00317686da85a8fac29913aac3b9d"
+    },
+    {
+      "path": "Assets/Scripts/GameManager.cs",
+      "sha256": "ebabb877858a87607fcf0e9ceb751e5070e29ac4c0460fa52ba7cdc213a3a400"
+    },
+    {
+      "path": "Assets/Scripts/HUDManager.cs",
+      "sha256": "540d5ae9c2fda4f65f504c953f58c0b7d71ebee4769866f6e1b7ea58f82c6ec0"
+    },
+    {
+      "path": "Assets/Scripts/HUDManager.cs.meta",
+      "sha256": "1ac7caabcffee86722e33c59a02844a9ba8610c71f1892e0d5d1726101cf693f"
+    },
+    {
+      "path": "Assets/Scripts/LevelGoal.cs",
+      "sha256": "4f2a7211a24f0a2c668624d3a179d0d3f6526743e586553f9f22dc4cdcd5bdcc"
+    },
+    {
+      "path": "Assets/Scripts/Mario.Gameplay.asmdef",
+      "sha256": "6d926370f86f0c183942e0a645ca656d97fe12cead9b8fea2a1df24604f6368d"
+    },
+    {
+      "path": "Assets/Scripts/PlayerMovement.cs",
+      "sha256": "ca2fb4167d22b6549b6cab38126438836358c5a22490c69e0c09734b5ae7e4e0"
+    },
+    {
+      "path": "Assets/Settings/Scenes/URP2DSceneTemplate.unity",
+      "sha256": "f6fb3e91aaa90417e2920b7f903066833b3b9aea72ddcb5e46b91afa729c2e90"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/CourseTests.cs",
+      "sha256": "694a309fbd425ab33881a030447909a8bef86db42d0fa205d483900fe334d62a"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/Mario.PlayModeTests.asmdef",
+      "sha256": "e07de0dc6ea04e3af76f58fc23c0d9ea9bf0783e4acf138389b55805e0aaf625"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+      "sha256": "8e49a094dd05df0060b49a714668957d3e26867498791edd836475b0b1c36d00"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 1.prefab",
+      "sha256": "3396857b80ee1a4ac5c55e9ef022b65be8ef737699df19892ebc2d00212799f3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 2.prefab",
+      "sha256": "46da6ce5f47a4a5ec4f37e27e509179f41d07d484309e4970c82f4191135deaa"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity",
+      "sha256": "cdb80b42a580232c8d60f04e3c6d2cafbd2d99b57322a8a8b11008a1828d905e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity",
+      "sha256": "317ec754c02a4eb508daf5c4a7f2329e18534ad4b9fd71cc8d6a33f468502685"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity",
+      "sha256": "bd892ffa1a656548b15e5edde17c64c298988dac71336c17c32294554aff9a55"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity",
+      "sha256": "0a01fb45fe50894c66c63c169b92aae766c4472f64cdae6b3eb986a00e7e25f9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+      "sha256": "83da37c6865a7fa31a32c67d73616406768afc72d9aee23b6b2fc6168dbd3887"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+      "sha256": "737bfc9df61a0a0b57edcc55aae53778085e99d534886800f5498096c9f88f2a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity",
+      "sha256": "e4ae928851c690246ce2fdd39464869889f6c4228603a68db2af20f21dbd91b5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+      "sha256": "05c6a6b85b52972b39cbb2eeb7aaee4b51793eeb1e627bdaeb5a21e7ca4802d4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity",
+      "sha256": "ec6ab2d9e38290113e795c1b86735b64fe6d775200a3ef9092e9a745ad6b3bf0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity",
+      "sha256": "d468902d557d03ae822e0b7ff2539b44c1a276c48d487a98163abcf4c5ca88ce"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity",
+      "sha256": "80010ddbda5e6b95f784abf21a58a5e90dfe41b5e525e2ae02c7c9c98cb7f9be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity",
+      "sha256": "bb48a2600e7dfcaf5ad49d79b7fb83adb42451ce4b9f10fa00549b56eeb69231"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity",
+      "sha256": "0fe20354a634ffb2f6cb41ca92cca582ee42079aebf340adb56c15372841a994"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity",
+      "sha256": "be93ce1673df9882b08c46468079bcf5b1b2701c0f30cee8769117a177f2c4cd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity",
+      "sha256": "8893d1091228960c45ecc650a6f1a75a3e691319b3f9052b54126aaf77cd01bc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity",
+      "sha256": "530947500e5ba5c6d173ee7efcf5c0854d7fa1dda030f7bf21a85b43c182364a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity",
+      "sha256": "4246dd769fe6c6fbc5bef742e8e57e0cc906539867cdfa9ae61706cc65486b31"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity",
+      "sha256": "ca97ddbaae007aed4a31083590f6a2c4bb758bbc608f0d84409a9149301b7612"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity",
+      "sha256": "8aa2e52132a0d83bd1fb2a58604334b75700bf51a47b31136212c607cecaf515"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity",
+      "sha256": "349c3c87b99d67c912daab798392404603970eacb87dee2f3cea712cbd7a21b8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity",
+      "sha256": "97a7bfb9ec437c5931e288ba8a635f6838ad12b51ca04447fe8c40481fc7c6a2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/21 - Script Example.unity",
+      "sha256": "237c42e7460f753dad428fc6a52a175c48e85a462acf7eec70e654840c57a46f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity",
+      "sha256": "7a79a85bc46a80489a62838e70a80f7bf90086836f2a5c828b0b7ec47530693a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity",
+      "sha256": "82254ebd51a288a14af09d5b15cdbf7150cdabc1938daead04a1cd4419bd0808"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example URP.unity",
+      "sha256": "b8d7e0f4c3e326d70ccacd8439804047961d5e5f31f0d6843691a3ddf86175c3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity",
+      "sha256": "ab9a5656b3914249c0e806b2ca7f8349f38eb2b51e5910b182148e0effc4376d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity",
+      "sha256": "2d79de75b0f4ffe3e0475337d140c52c24451ba2d7d23b2142daff275e781f4e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity",
+      "sha256": "ee4ae9adad47b9f739e13e939febdb9f7e43b558c2d7227cb17375e410a314e2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/27 - Double Pass Shader Example.unity",
+      "sha256": "101246bb9c509c6a08f4228e4e9ba07496089762fbc3ad0af67a293f84e0a1eb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example.unity",
+      "sha256": "fa4aa2c8b01d52d0fcbe52a6877397782444efdcf682404c835645e7b6322674"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/Benchmark (Floating Text).unity",
+      "sha256": "fcb878e08ccd7df8361b9cb1a0c86fcf9d72547c3904b1d9247bd6bc9d5243d1"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs",
+      "sha256": "998dea76bd30266335175f6abe4130c82adb8a6c4457d180a0ec410d55d4b3d6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
+      "sha256": "0ad01c7d86c6103f9977d859549af2af1379e572d2ec6d58f9471b7b0f1de5a3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs",
+      "sha256": "1c0baed620b2f6c8725f112fa5f2252044eaa95effe99038aebd64de74673963"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs",
+      "sha256": "a56cc95f9203f642d07c72026491043b49f31fab89420cd3a4e34652dfa47a8c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs",
+      "sha256": "d3ede5e806ea23d1bd68b077b0d5c57667f04d630095e12befa20c5d4c758531"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+      "sha256": "907922faeb2a8889662e779b4a3be0044a13d6485a0c49c007c5d6f693f6fd8d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
+      "sha256": "9aff51d0bf3dc3a31a30a738667818f98b18d76683e2544c152dcc73bd0c7ba3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
+      "sha256": "89f7702e409ef6cd795fab824b24bd48b98401e9f74240c13e06a95ccc08158f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
+      "sha256": "5e1a229404d5a5ed0fbe6b7481f0337f2fc1fe8352a1cb70477de2c0af81fffa"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs",
+      "sha256": "8232ee2ec26ad598481e65b616722fcf126aa394fea35cfb5fb2d6574c7f3586"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs",
+      "sha256": "7258b6c0032cbf8294200681873dfb0cc3cdf3077f9413e911f076e98cfaa110"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs",
+      "sha256": "9c933e22d1fda885ab05b43c8732cf66d1a15cfe3cb695e29c62e809f925171a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs",
+      "sha256": "bba0def6229dc39be9abf191e58851cc00bbca046dfd5d2cf112fec3789d3ec2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
+      "sha256": "9c62de4076d80230fa9b37af89c51cc5c1432e0868ce22db50101bbc7c61e520"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
+      "sha256": "4adf8032f66749939a2d1b35758854ca8185f3e045a9172da31e1b3496d6125d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+      "sha256": "408f5639575385ac9c209bd87967f44f8e31f920a6c9afa524331bcc58416e76"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs",
+      "sha256": "f100ed955a203117cfd33c8513e55c0d78cfd04e38e701906701edf08b4230c4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs",
+      "sha256": "adcf5eef17e10547976e9570985e600cea831643e6125b626631582e4e547f3b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
+      "sha256": "3e036670c0141a3ec67f4259698e34f32228ddc96763065da5f8f7bdeebf8546"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+      "sha256": "0617870c1b903820eefeeef09a951dc56d9b16bfd75793fd0643891ee5fdd11d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs",
+      "sha256": "b0da872056634d738957e518bbaeeab7349aed638e6790bb3ef7a93adf082944"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+      "sha256": "90bbb06adceaa66e8123c633326e6682397009156fe997ef17d3a340164fc029"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs",
+      "sha256": "8859e500f2e3ad42d9d453d2162ea73642fabd09f8062e60475c50fa2341e752"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
+      "sha256": "80b7dfd7560715caaaeca1b449634cce4b7487c39c71a58b63e18be4994cf6c8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs",
+      "sha256": "d96105cd1cca75a14cdd95833627ee0c8fed6b9b09cd4037a7571a230076915e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs",
+      "sha256": "391a52b353f2aeff13bf4da77bf07a217b4af0c213f0fdce006b054d13497213"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
+      "sha256": "441b685176c8c6489e236da5a591f26f73492395b3c2a8c2986f97ba434d44ec"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs",
+      "sha256": "b868c62f876e92818c8b6f0a215abf8162059a509661ffaa609f580c23f99211"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs",
+      "sha256": "fd8c8af9f8982cb3507800e70f8497b5a081a70c8391c066d6c6bb3c612f33da"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
+      "sha256": "945ccb91d2eb3042d235ce0c5ce49250cc2a4f70c45fdfdfbbacddb63e4d4f13"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs",
+      "sha256": "e7c100c9a978359968d1e22f192bdf49741fd87c2f3f46195e86f9413998f995"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs",
+      "sha256": "9d884e810c94a4824b78b3da58801df126e748f51bbb906b103f7e60b9e69cb6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
+      "sha256": "9678f251636b802d553192773550b2383b83ae196638a904b7eeec065a9fbd5f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs",
+      "sha256": "89cca285cff0a515721dcf257dcfc9c5c508547724a470e79a1b8828ae7c2f4c"
+    },
+    {
+      "path": "Assets/_Recovery/0.unity",
+      "sha256": "775948ce6bc357ca5a33274a0c94415a1214cd7e30f508b8246715c5650b98b4"
+    },
+    {
+      "path": "ProjectSettings/TagManager.asset",
+      "sha256": "4388076921ca33e0813ed65b2142b0b10e563db96e4edde6158828d430f08177"
+    }
+  ]
+}

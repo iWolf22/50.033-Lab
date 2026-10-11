@@ -1,0 +1,232 @@
+{
+  "recordedTests": 12,
+  "failed": 0,
+  "clips": [
+    {
+      "file": "audio-mixer.mp4",
+      "bytes": 1554760,
+      "trackSeconds": [
+        8.0,
+        8.0
+      ],
+      "audio": {},
+      "sha256": "dd3cf9d9278a297961f148e0f762adb38bb4afce6eba34e011897a734d4eef70"
+    },
+    {
+      "file": "BouncyCloudReboundsAndCameraStopsAtCourseEnds.mp4",
+      "bytes": 125644,
+      "trackSeconds": [
+        0.233325,
+        0.21333333333333335
+      ],
+      "audio": {
+        "frames": 28,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 20480,
+        "seconds": 0.23333333432674408,
+        "rms": 0.05567590519785881,
+        "peak": 0.19420453906059265
+      },
+      "sha256": "8bc8edca1ea0ff908c5df56d3ad7c1ac087c68b4dc6dcab54b96bc4a99db009c"
+    },
+    {
+      "file": "BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse.mp4",
+      "bytes": 112252,
+      "trackSeconds": [
+        1.808325,
+        1.792
+      ],
+      "audio": {
+        "frames": 217,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 172032,
+        "seconds": 1.8083332777023315,
+        "rms": 0.08520088344812393,
+        "peak": 0.37933850288391113
+      },
+      "sha256": "fb5af51f540b310a7cc799da7308a2473f9255064bff7d35c3c0f4c3f13bfee6"
+    },
+    {
+      "file": "course-run.mp4",
+      "bytes": 5972331,
+      "trackSeconds": [
+        20.924908333333335,
+        20.906666666666666
+      ],
+      "audio": {
+        "frames": 2511,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 2007040,
+        "seconds": 20.924999237060547,
+        "rms": 0.039687640964984894,
+        "peak": 0.3007563054561615
+      },
+      "sha256": "6ef4fb6ce28b990cefc85241b77f335db45e1f814fc168d0e6fff05acf12d64c"
+    },
+    {
+      "file": "FallEndsGameAndFinishShowsCourseClear.mp4",
+      "bytes": 181044,
+      "trackSeconds": [
+        1.9249916666666667,
+        1.92
+      ],
+      "audio": {
+        "frames": 231,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 184320,
+        "seconds": 1.9249999523162842,
+        "rms": 0.07675034552812576,
+        "peak": 0.45259708166122437
+      },
+      "sha256": "69f00ec093318aa2ea227d23a5772497f26bfc436164087acd3ffc3f26a0c67a"
+    },
+    {
+      "file": "JumpingOverGoombaDoesNotScore.mp4",
+      "bytes": 46223,
+      "trackSeconds": [
+        0.12499166666666667,
+        0.10666666666666667
+      ],
+      "audio": {
+        "frames": 15,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 10240,
+        "seconds": 0.125,
+        "rms": 7.573064690121713e-29,
+        "peak": 7.573064690121713e-29
+      },
+      "sha256": "d048143447ecdd1289e20e10208bbd656f84ab7d54c7b145138f48daf7a8240c"
+    },
+    {
+      "file": "KeyboardMovesReversesAndStops.mp4",
+      "bytes": 302164,
+      "trackSeconds": [
+        0.9249916666666667,
+        0.9173333333333333
+      ],
+      "audio": {
+        "frames": 111,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 88064,
+        "seconds": 0.925000011920929,
+        "rms": 0.0068891290575265884,
+        "peak": 0.05857830494642258
+      },
+      "sha256": "5351df1af229d222262b5e80245dbaa524fcb80d6f4ea6aa5023b5b86cef94ea"
+    },
+    {
+      "file": "OneWayPlatformPassesUpwardAndSupportsLanding.mp4",
+      "bytes": 81039,
+      "trackSeconds": [
+        1.133325,
+        1.1306666666666667
+      ],
+      "audio": {
+        "frames": 136,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 108544,
+        "seconds": 1.1333333253860474,
+        "rms": 0.041648149490356445,
+        "peak": 0.19661951065063477
+      },
+      "sha256": "a07e553983a23cb3fd193ef3d58f37bafc7a8edab4a874eb761b994f8e655547"
+    },
+    {
+      "file": "QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow.mp4",
+      "bytes": 88449,
+      "trackSeconds": [
+        1.1416583333333334,
+        1.1306666666666667
+      ],
+      "audio": {
+        "frames": 137,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 108544,
+        "seconds": 1.1416666507720947,
+        "rms": 0.07795523852109909,
+        "peak": 0.3219347596168518
+      },
+      "sha256": "b8f27d22d49b0b0644ff44108a5af244a692bf459e15e38150b4813175b084ab"
+    },
+    {
+      "file": "SideHitDiesThenRestartRestoresCourse.mp4",
+      "bytes": 140951,
+      "trackSeconds": [
+        2.14165,
+        2.1333333333333333
+      ],
+      "audio": {
+        "frames": 257,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 204800,
+        "seconds": 2.1416666507720947,
+        "rms": 0.07228128612041473,
+        "peak": 0.45259708166122437
+      },
+      "sha256": "6ec9adf7fc766cd5398ccb37d1c325cb8fc64772370185a307b9e517ac73b07b"
+    },
+    {
+      "file": "SpringQuestionBlockIsStableOnTopAndLocksAfterReward.mp4",
+      "bytes": 82336,
+      "trackSeconds": [
+        1.1166583333333333,
+        1.1093333333333333
+      ],
+      "audio": {
+        "frames": 134,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 106496,
+        "seconds": 1.1166666746139526,
+        "rms": 0.07084321975708008,
+        "peak": 0.3219347596168518
+      },
+      "sha256": "903118f85711d1ed54774b479a0b637bd532dfaacbf0fe5142b210853d71b81c"
+    },
+    {
+      "file": "StompAnimatesScoresOnceAndBounces.mp4",
+      "bytes": 76828,
+      "trackSeconds": [
+        0.708325,
+        0.704
+      ],
+      "audio": {
+        "frames": 85,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 67584,
+        "seconds": 0.7083333134651184,
+        "rms": 0.05688941851258278,
+        "peak": 0.28488975763320923
+      },
+      "sha256": "2c072219a0cb224ebf0b6dbbb4b99d27f256db5506ff8f664f219d8519630c31"
+    },
+    {
+      "file": "TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump.mp4",
+      "bytes": 129518,
+      "trackSeconds": [
+        2.41665,
+        2.4106666666666667
+      ],
+      "audio": {
+        "frames": 290,
+        "sampleRate": 48000,
+        "channels": 2,
+        "samples": 231424,
+        "seconds": 2.4166667461395264,
+        "rms": 0.04139575734734535,
+        "peak": 0.2176259309053421
+      },
+      "sha256": "c9d7a3c2303978f909c0c1f25dfbcf2b81b1537a0de6c37ba7c626a2e7d57719"
+    }
+  ]
+}

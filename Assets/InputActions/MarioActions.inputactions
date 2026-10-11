@@ -8,12 +8,12 @@
             "actions": [
                 {
                     "name": "move",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "97a81244-5232-401d-abb7-9f9953d938af",
-                    "expectedControlType": "",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false,
+                    "initialStateCheck": true,
                     "priority": 0
                 },
                 {
@@ -32,7 +32,7 @@
                     "id": "92af13fa-52fb-4c6c-86e1-63d5e2e76256",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.15)",
                     "initialStateCheck": false,
                     "priority": 0
                 }
@@ -44,7 +44,7 @@
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": true,
                     "isPartOfComposite": false
@@ -55,7 +55,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -66,7 +66,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -77,7 +77,7 @@
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": true,
                     "isPartOfComposite": false
@@ -88,7 +88,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -99,7 +99,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -110,7 +110,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -121,7 +121,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "jumphold",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -129,5 +129,17 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
