@@ -1,0 +1,4 @@
+{
+  "name": "Mario.Gameplay",
+  "references": ["Unity.InputSystem", "Unity.TextMeshPro", "Unity.ugui"]
+}
