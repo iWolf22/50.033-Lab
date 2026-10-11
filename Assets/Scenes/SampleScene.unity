@@ -313,7 +313,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7120944050310697435, guid: 991b60e40ecd2f54f81478cbd327fd76, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c178c3d63d3719145a8e52199540c82d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2556,6 +2556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4388e1095b12b5c4ab08e53bc2a40b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  stompHideDelay: 0.5
   startPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &1382387501
 BoxCollider2D:
