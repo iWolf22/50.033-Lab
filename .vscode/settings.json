@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Lab-3-Clean-Code.slnx"
+    "dotnet.defaultSolution": "My project.slnx"
 }
