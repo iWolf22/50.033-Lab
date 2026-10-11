@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Mario lab evidence</title>
+<style>body{font:18px system-ui;background:#17202b;color:#eee;max-width:1100px;margin:40px auto;padding:20px}video{width:100%;background:#000}img{max-width:100%}h1,h2{font-weight:600}p{line-height:1.6}a{color:#9cd2ff}</style>
+<h1>Mario lab evidence</h1><p><strong>Historical recordings:</strong> These clips show the previous longer course. The saved scene now uses a shorter course, corrected pipes and the original ending screen. See overview.png for the current layout.</p>
+<p>The course run uses keyboard input continuously from start to Course Clear. Audio comes from Unity's main mixer. The smaller clips demonstrate individual test scenarios; their setup can reposition Mario.</p>
+<h2>Full course run</h2><video controls src="course-run.mp4"></video>
+<h2>AudioMixer and stomp effect</h2>
+<p>The Enemies Lowpass uses a 1600 Hz cutoff and resonance 1 to make stomps sound like dull impacts. Jump and coin sounds keep their brighter tone on separate groups. Terminal sounds send to Background Music's Duck Volume effect.</p>
+<video id="mixer-video" controls src="audio-mixer.mp4"></video>
+<h2>Enemies Inspector</h2><img src="enemies-inspector.png" alt="Native Unity Enemies mixer group Inspector">
+<div id="clips"></div>
+<script>
+const mixerVideo = document.getElementById('mixer-video');
+const purpose = mixerVideo.addTextTrack('captions','Effect purpose','en');
+purpose.addCue(new VTTCue(0,8,'Enemies Lowpass: 1600 Hz, resonance 1. Stomps become dull impacts; jump and coin cues stay bright on separate groups.'));
+purpose.mode = 'showing';
+const clips = [
+['KeyboardMovesReversesAndStops','Walk, reverse, skid and stop'],
+['TapAndHoldJumpHaveDifferentHeightsWithoutDoubleJump','Tap and held jump'],
+['QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow','Question block: top contact, underside reward and spent state'],
+['BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse','Plain and coin bricks'],
+['StompAnimatesScoresOnceAndBounces','Goomba stomp, flattened sprite and score'],
+['JumpingOverGoombaDoesNotScore','Jump-over without a score reward'],
+['SideHitDiesThenRestartRestoresCourse','Death, Game Over and restart'],
+['OneWayPlatformPassesUpwardAndSupportsLanding','One-way platform'],
+['SpringQuestionBlockIsStableOnTopAndLocksAfterReward','Spring question block'],
+['BouncyCloudReboundsAndCameraStopsAtCourseEnds','Cloud bounce and camera bounds']];
+for(const [file,title] of clips){const h=document.createElement('h2');h.textContent=title;const v=document.createElement('video');v.controls=true;v.preload='none';v.src=file+'.mp4';document.getElementById('clips').append(h,v);}
+</script>
+</html>
