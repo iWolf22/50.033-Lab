@@ -125,8 +125,26 @@ public static class LabLevelBuilder
         Tile("Castle right", "castle_small_right", new Vector2(24.25f, -0.5f), scenery, 0);
         foreach (var button in playUI.transform.parent.GetComponentsInChildren<Button>(true))
         {
+            if (button.TryGetComponent<PauseButtonController>(out _)) continue;
             button.onClick = new Button.ButtonClickedEvent();
-            UnityEventTools.AddPersistentListener(button.onClick, button.gameObject.AddComponent<ButtonController>().ButtonClick);
+            var restart = button.GetComponent<RestartButtonController>() ?? button.gameObject.AddComponent<RestartButtonController>();
+            UnityEventTools.AddPersistentListener(button.onClick, restart.ButtonClick);
+        }
+        if (playUI.GetComponentInChildren<PauseButtonController>(true) == null)
+        {
+            var restart = playUI.GetComponentInChildren<RestartButtonController>(true);
+            var pauseObject = Object.Instantiate(restart.gameObject, restart.transform.parent);
+            pauseObject.name = "PauseButton";
+            Object.DestroyImmediate(pauseObject.GetComponent<RestartButtonController>());
+            var pause = pauseObject.AddComponent<PauseButtonController>();
+            var pauseIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/pause-button.png");
+            Set(pause, "pauseIcon", pauseIcon);
+            Set(pause, "playIcon", AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/play-button.png"));
+            pauseObject.GetComponent<Image>().sprite = pauseIcon;
+            pauseObject.GetComponent<RectTransform>().anchoredPosition += Vector2.left * 70;
+            var button = pauseObject.GetComponent<Button>();
+            button.onClick = new Button.ButtonClickedEvent();
+            UnityEventTools.AddPersistentListener(button.onClick, pause.ButtonClick);
         }
         LayoutUI(playUI, overUI, score, finalScore);
         var eventSystem = Object.FindFirstObjectByType<EventSystem>();

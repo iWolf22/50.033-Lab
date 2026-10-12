@@ -40,13 +40,17 @@ Optional mouse-position diagnostics and standalone event demonstrations are omit
 | Additional meaningful mixer effect | Enemies Lowpass: 1600 Hz, resonance 1; softens Goomba impact while coin/jump cues stay bright | Mixer asset has Enemies Lowpass at 1600 Hz / resonance 1; mixed audio captured in the review clips |
 | Nice semi-full level with fewer slopes | Course layout described above | Previews inspected; CourseCanBeCompletedWithKeyboardMovementAndJumps — passed without teleporting |
 
-## Children: C# Static Variable
+## Children: static instance and interactive buttons
 
 Only `GameManager : Singleton<GameManager>` persists. Scene components subscribe/unsubscribe to its UnityEvents in OnEnable/OnDisable; rewards and restart buttons use `GameManager.instance`. Scene changes restore gameplay UI and publish the carried score. Scene audio stays outside the persistent manager.
 
 The short World-1-2 demo has flat ground, one Goomba, clouds, a hill, bushes and a decorative castle with no outgoing transition. Open `Assets/Scenes/World-1-2.unity` directly or enter the castle in World-1-1.
 
 **10 selected Unity PlayMode tests passed, 0 failed**: castle transition and score carryover, World-1-2 standalone scoring, World-1-2 restart including inactive Goomba/music, and seven movement/jump/stomp/coin/death regressions. Tests ran in `.unity-validation/` using the final script sources and the same demo scene installed in this project. The broader historical course tests were not rerun. [Results](Artifacts/static-playmode-results.xml), [demo preview](Artifacts/world-1-2-demo.png).
+
+`IInteractiveButton` defines `ButtonClick`; restart controllers retain their original script GUID and pause controllers switch between matching pause/play sprites. Both scenes place pause beside restart. Restart clears pause state and the icon; hidden pause controls cannot resume Game Over.
+
+**4 Unity PlayMode tests passed, 0 failed** after the button change: pause/resume and restart in both worlds, castle score carryover, World-1-2 restart/scoring and standalone World-1-2. [Results](Artifacts/buttons-playmode-results.xml). Icons adapt Colorosse’s [CC0 Sandbox Menu Icons](https://colorosse.com/assets/2d/ui/sandbox-menu-icons-16); SVG sources and provenance are in `Artifacts/AssetSources/ButtonIcons/`.
 
 ## Historical verification state
 

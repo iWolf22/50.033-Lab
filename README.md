@@ -23,6 +23,6 @@ Gameplay stays in small components:
 
 See [CHECKOFF.md](CHECKOFF.md) for lab coverage and verification status. Automated gameplay checks are in `Assets/Tests/PlayMode` and run through Unity's Test Runner.
 
-The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `ButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. Interfaces, powerups and ScriptableObjects remain outside this scope.
+The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `RestartButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. `RestartButtonController` and `PauseButtonController` implement `IInteractiveButton`; the yellow pause button beside restart switches to play while paused. Powerups and ScriptableObjects remain outside this scope.
 
 Historical demonstrations of the previous longer layout with game audio: [review page](Artifacts/review.html).

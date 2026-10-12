@@ -1,5 +1,12 @@
 # Mario lab workflow
 
+## User preferences
+
+- Keep replies, progress updates and questions concise and direct.
+- Make minimal, clean changes using Unity best practices; follow the requested tutorial section and skip temporary work that later sections remove.
+- Update authorized scenes without routine save confirmations; preserve user layouts and make backups before replacements.
+- Add new preferences and reusable Unity development/testing/debugging insights here as they arise. Use short bullets, merge duplicates and remove stale guidance to save tokens.
+
 ## Scope
 
 - This is a 50.033 lab project. Keep changes minimal and understandable for the student.
@@ -9,7 +16,7 @@
 ## Runtime contracts
 
 - `GameManager` owns score and `gameStart`, `gameRestart`, `scoreChange`, `gameOver`. Inspect scene UnityEvent bindings to `HUDManager` and reset methods when behavior is disconnected.
-- Restart resets Mario/input/animation, camera, inactive enemies, spent blocks/coins, finish trigger and music in place. Include new gameplay state in this reset.
+- Restart resets Mario/input/animation, camera, inactive enemies, spent blocks/coins, finish trigger, music and pause UI in place. Include new gameplay state in this reset.
 - `EnemyManager` observes the C# event `EnemyMovement.OnGoombaStomped`, subscribes/unsubscribes in OnEnable/OnDisable, awards one point and plays stomp audio. Retain inactive enemies for restart.
 - `BlockBounce` invokes `AnimationEventIntTool.useInt` after its coin-pop coroutine. Scene instances bind it to `GameManager.IncreaseScore`; rewards are single-use until restart.
 - `ActionManager` bridges `PlayerInput` to UnityEvents. Preserve stopping/reversing and tap/held jump. Regenerate `MarioActions.cs` from `.inputactions` when changing actions.
@@ -17,7 +24,7 @@
 
 ## Protect the user's scene
 
-- `Assets/Scenes/SampleScene.unity` is the working scene. User edits to object positions, UI and Inspector settings take priority over the builder's layout.
+- `Assets/Scenes/World-1-1.unity` and `World-1-2.unity` are the working scenes. User edits to object positions, UI and Inspector settings take priority over the builder's layout.
 - Before replacing scenes or prefabs, make a dated backup of the current files.
 - Prefer targeted edits. Never copy a generated validation scene over the working scene merely to apply script changes.
 - `Tools → Lab → Rebuild Mario Course` / `LabLevelBuilder.Build` replaces the layout. Run it only when that replacement is explicitly requested.
@@ -36,6 +43,8 @@
 - Inspect the working tree first and preserve unrelated edits.
 - Unity is **6000.3.24f1**, URP 2D. On this machine the Windows editor is under `C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe`.
 - If the main project is open, validate in ignored `.unity-validation/`. Refresh relevant assets/sources first; the copy may contain stale files or temporary tools.
+- Only GameManager persists; pair scene event subscriptions with unsubscriptions.
+- Unity's test runner also creates persistent objects; persistence tests should count gameplay objects rather than every DontDestroyOnLoad root.
 - Gameplay tests live in `Assets/Tests/PlayMode`. Run Unity with `-batchmode -projectPath <copy> -runTests -testPlatform PlayMode -testResults <xml> -logFile <log>`; omit `-quit` for the test runner.
 - Editor utilities use `-batchmode -quit -projectPath <copy> -executeMethod <method> -logFile <log>`. Run `LabLevelPreview.Capture` in the copy because it manipulates the scene to export images.
 - Run checks appropriate to the change; documentation-only edits need no Unity run. Report actual results. Existing recordings in `Artifacts/` demonstrate an older layout.

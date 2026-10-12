@@ -33,6 +33,48 @@ public class ScenePersistenceTests
         .Single(text => text.name == "ScoreText");
 
     [UnityTest]
+    public IEnumerator PauseResumeAndRestartWorkInBothWorlds()
+    {
+        foreach (string world in new[] { "World-1-1", "World-1-2" })
+        {
+            yield return SceneManager.LoadSceneAsync(world);
+            yield return new WaitForSeconds(0.1f);
+            var pause = Object.FindFirstObjectByType<PauseButtonController>();
+            var button = pause.GetComponent<Button>();
+            var image = pause.GetComponent<Image>();
+            var pauseIcon = image.sprite;
+            Assert.IsInstanceOf<IInteractiveButton>(pause);
+            var restart = Object.FindObjectsByType<RestartButtonController>(FindObjectsSortMode.None)
+                .Single(controller => controller.name == "RestartButton");
+            Assert.IsInstanceOf<IInteractiveButton>(restart);
+            button.onClick.Invoke();
+            Assert.AreEqual(0, Time.timeScale);
+            Assert.AreNotSame(pauseIcon, image.sprite);
+            var enemy = Object.FindFirstObjectByType<EnemyMovement>();
+            Vector3 position = enemy.transform.position;
+            yield return new WaitForSecondsRealtime(0.15f);
+            Assert.AreEqual(position, enemy.transform.position);
+            button.onClick.Invoke();
+            Assert.AreEqual(1, Time.timeScale);
+            Assert.AreSame(pauseIcon, image.sprite);
+            yield return new WaitForSeconds(0.1f);
+            Assert.AreNotEqual(position, enemy.transform.position);
+            GameManager.instance.IncreaseScore(2);
+            button.onClick.Invoke();
+            restart.GetComponent<Button>().onClick.Invoke();
+            Assert.AreEqual(1, Time.timeScale);
+            Assert.AreEqual(0, GameManager.instance.Score);
+            Assert.AreSame(pauseIcon, image.sprite);
+            button.onClick.Invoke();
+            Assert.AreEqual(0, Time.timeScale);
+            button.onClick.Invoke();
+            GameManager.instance.GameOver();
+            button.onClick.Invoke();
+            Assert.AreEqual(0, Time.timeScale, "Hidden pause button must not resume a finished game.");
+        }
+    }
+
+    [UnityTest]
     public IEnumerator CastleTransitionPreservesOnlyManagerAndScore()
     {
         var manager = GameManager.instance;

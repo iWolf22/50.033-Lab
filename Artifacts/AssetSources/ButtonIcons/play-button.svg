@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <title>Play button</title>
+  <defs><clipPath id="button"><path d="M5 0H11V1H13V2H14V3H15V5H16V11H15V13H14V14H13V15H11V16H5V15H3V14H2V13H1V11H0V5H1V3H2V2H3V1H5Z"/></clipPath></defs>
+  <path d="M5 0H11V1H13V2H14V3H15V5H16V11H15V13H14V14H13V15H11V16H5V15H3V14H2V13H1V11H0V5H1V3H2V2H3V1H5Z" fill="#c3e619"/>
+  <rect x="9" width="7" height="16" fill="#b3cf2a" clip-path="url(#button)"/>
+  <path d="M4 2h1v1H4z M3 3h1v1H3z M2 4h1v1H2z" fill="#ebff8a"/>
+  <g transform="translate(2 2) scale(0.5)"><path d="M7 4.5 L19.5 12 L7 19.5 Z" fill="#000000" fill-rule="evenodd"/></g>
+</svg>
