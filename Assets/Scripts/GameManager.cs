@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+[DefaultExecutionOrder(-100)]
+public class GameManager : Singleton<GameManager>
 {
     public UnityEvent gameStart = new();
     public UnityEvent gameRestart = new();
