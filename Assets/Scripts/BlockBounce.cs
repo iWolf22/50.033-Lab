@@ -21,6 +21,19 @@ public class BlockBounce : MonoBehaviour
     bool busy;
     bool spent;
 
+    void OnEnable()
+    {
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+        coinReward.useInt.AddListener(GameManager.instance.IncreaseScore);
+    }
+
+    void OnDisable()
+    {
+        if (GameManager.instance == null) return;
+        GameManager.instance.gameRestart.RemoveListener(GameRestart);
+        coinReward.useInt.RemoveListener(GameManager.instance.IncreaseScore);
+    }
+
     void Awake()
     {
         startPosition = transform.position;

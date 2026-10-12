@@ -10,6 +10,14 @@ public class CameraController : MonoBehaviour
     float offset;
     Camera view;
 
+    void OnEnable() => GameManager.instance.gameRestart.AddListener(GameRestart);
+
+    void OnDisable()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
+    }
+
     void Start()
     {
         view = GetComponent<Camera>();

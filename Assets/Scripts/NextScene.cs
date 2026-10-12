@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
     public string nextSceneName;
+    bool loading;
 
     private void Awake()
     {
@@ -15,8 +14,9 @@ public class NextScene : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (!loading && other.CompareTag("Player"))
         {
+            loading = true;
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
         }
     }

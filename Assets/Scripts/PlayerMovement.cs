@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioSource deathAudio;
     public AudioClip marioDeath;
-    [SerializeField] GameManager session;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] float fallLimit = -12;
     Rigidbody2D body;
@@ -42,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
         if (!alive || value == 0) return;
         if (body.linearVelocity.x * value < -0.1f) marioAnimator.SetTrigger("onSkid");
         visual.flipX = value < 0;
+    }
+
+    void OnEnable() => GameManager.instance.gameRestart.AddListener(GameRestart);
+
+    void OnDisable()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
     }
 
     public void Jump() => jumpQueued = alive;
@@ -111,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (alive && body.linearVelocity.y > 0) marioAudio.PlayOneShot(marioAudio.clip);
     }
     void PlayDeathImpulse() => body.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
-    void GameOverScene() => session.GameOver();
+    void GameOverScene() => GameManager.instance.GameOver();
     public void GameRestart()
     {
         alive = true;

@@ -18,7 +18,7 @@
 ## Protect the user's scene
 
 - `Assets/Scenes/SampleScene.unity` is the working scene. User edits to object positions, UI and Inspector settings take priority over the builder's layout.
-- Before replacing scenes or prefabs, coordinate saving any open-editor edits and make a dated backup of the current files. Ctrl+S does not preserve earlier file versions.
+- Before replacing scenes or prefabs, make a dated backup of the current files.
 - Prefer targeted edits. Never copy a generated validation scene over the working scene merely to apply script changes.
 - `Tools → Lab → Rebuild Mario Course` / `LabLevelBuilder.Build` replaces the layout. Run it only when that replacement is explicitly requested.
 - Never close the user's Unity editor, kill its process or delete its lock files to run validation.

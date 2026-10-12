@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
     [SerializeField] AudioSource stompAudio;
     EnemyMovement[] goombas;
 
@@ -10,17 +9,20 @@ public class EnemyManager : MonoBehaviour
 
     void OnEnable()
     {
+        GameManager.instance.gameRestart.AddListener(GameRestart);
         foreach (var goomba in goombas) goomba.OnGoombaStomped += OnStomp;
     }
 
     void OnDisable()
     {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
         foreach (var goomba in goombas) goomba.OnGoombaStomped -= OnStomp;
     }
 
     void OnStomp()
     {
-        gameManager.IncreaseScore(1);
+        GameManager.instance.IncreaseScore(1);
         stompAudio.PlayOneShot(stompAudio.clip);
     }
 

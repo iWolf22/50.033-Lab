@@ -22,7 +22,7 @@ public static class LabLevelBuilder
     [MenuItem("Tools/Lab/Rebuild Mario Course")]
     public static void Build()
     {
-        EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
+        EditorSceneManager.OpenScene("Assets/Scenes/World-1-1.unity");
         Directory.CreateDirectory("Assets/Materials");
         AssetDatabase.Refresh();
         var cloudImporter = (TextureImporter)AssetImporter.GetAtPath("Assets/Sprites/lakitus-cloud.png");
@@ -53,22 +53,16 @@ public static class LabLevelBuilder
         var hud = playUI.transform.parent.GetComponent<HUDManager>();
         if (hud == null) hud = playUI.transform.parent.gameObject.AddComponent<HUDManager>();
         var enemyManager = enemies.gameObject.AddComponent<EnemyManager>();
-        var stomp = Sound("Goomba Stomp", session.transform, "smb_stomp.wav", "Enemies");
-        var death = Sound("Player Dies", session.transform, "smb_death.mp3", "Special Event SFX");
-        var music = Sound("Background Music", session.transform, "01-main-theme-overworld.mp3", "Background Music");
+        var sounds = Group("Scene Audio", course);
+        var stomp = Sound("Goomba Stomp", sounds, "smb_stomp.wav", "Enemies");
+        var death = Sound("Player Dies", sounds, "smb_death.mp3", "Special Event SFX");
+        var music = Sound("Background Music", sounds, "01-main-theme-overworld.mp3", "Background Music");
         music.loop = music.playOnAwake = true;
+        music.gameObject.AddComponent<BackgroundMusic>();
         Set(hud, "scoreText", score); Set(hud, "finalScoreText", finalScore);
         Set(hud, "gamePlayUI", playUI); Set(hud, "gameOverUI", overUI);
-        Set(enemyManager, "gameManager", session); Set(enemyManager, "stompAudio", stomp);
-        UnityEventTools.AddPersistentListener(session.gameStart, hud.GameStart);
-        UnityEventTools.AddPersistentListener(session.scoreChange, hud.SetScore);
-        UnityEventTools.AddPersistentListener(session.gameOver, hud.GameOver);
-        UnityEventTools.AddPersistentListener(session.gameRestart, hud.GameStart);
-        UnityEventTools.AddPersistentListener(session.gameRestart, enemyManager.GameRestart);
-        UnityEventTools.AddPersistentListener(session.gameRestart, player.GameRestart);
-        UnityEventTools.AddPersistentListener(session.gameRestart, music.Stop);
-        UnityEventTools.AddPersistentListener(session.gameRestart, music.Play);
-        Set(player, "session", session); Set(player, "deathAudio", death);
+        Set(enemyManager, "stompAudio", stomp);
+        Set(player, "deathAudio", death);
         Set(player, "groundLayers", (1 << 3) | (1 << 7));
         player.GetComponent<PlayerInput>().defaultControlScheme = "Keyboard";
         player.speed = 45; player.maxSpeed = 6; player.upSpeed = 15; player.deathImpulse = 12;
@@ -123,21 +117,16 @@ public static class LabLevelBuilder
         end.SetParent(course); end.position = new Vector3(25, 0, 0);
         var camera = Object.FindFirstObjectByType<CameraController>();
         camera.player = player.transform; camera.endLimit = end; camera.leftBoundary = leftWall;
-        UnityEventTools.AddPersistentListener(session.gameRestart, camera.GameRestart);
         camera.transform.position = new Vector3(0, 1, -10);
         camera.GetComponent<Camera>().orthographicSize = 6;
         camera.GetComponent<Camera>().backgroundColor = new Color32(92, 148, 252, 255);
         Finish(20, course, session);
         Tile("Castle left", "castle_small_left", new Vector2(21.75f, -0.5f), scenery, 0);
         Tile("Castle right", "castle_small_right", new Vector2(24.25f, -0.5f), scenery, 0);
-        foreach (var block in course.GetComponentsInChildren<BlockBounce>(true))
-            UnityEventTools.AddPersistentListener(session.gameRestart, block.GameRestart);
-        foreach (var coin in course.GetComponentsInChildren<AnimationEventIntTool>(true))
-            UnityEventTools.AddPersistentListener(coin.useInt, session.IncreaseScore);
         foreach (var button in playUI.transform.parent.GetComponentsInChildren<Button>(true))
         {
             button.onClick = new Button.ButtonClickedEvent();
-            UnityEventTools.AddPersistentListener(button.onClick, session.GameRestart);
+            UnityEventTools.AddPersistentListener(button.onClick, button.gameObject.AddComponent<ButtonController>().ButtonClick);
         }
         LayoutUI(playUI, overUI, score, finalScore);
         var eventSystem = Object.FindFirstObjectByType<EventSystem>();
@@ -147,7 +136,11 @@ public static class LabLevelBuilder
             uiInput = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
             uiInput.AssignDefaultActions();
         }
-        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Scenes/SampleScene.unity", true) };
+        EditorBuildSettings.scenes = new[]
+        {
+            new EditorBuildSettingsScene("Assets/Scenes/World-1-1.unity", true),
+            new EditorBuildSettingsScene("Assets/Scenes/World-1-2.unity", true)
+        };
         foreach (var component in Object.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             if (component == null) continue;

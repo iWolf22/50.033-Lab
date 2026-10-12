@@ -16,7 +16,7 @@ The essential setup, movement/UI, animation/camera/Physics2D, Input System, obse
 
 `GameManager` exposes the tutorial's four UnityEvents. The saved scene binds them to `HUDManager`, `EnemyManager`, player, camera, blocks, finish trigger and music. Enemy observers subscribe in OnEnable and unsubscribe in OnDisable. Coin rewards use `AnimationEventIntTool` at completion of the existing coin animation. Restart restores objects in place, including inactive enemies and spent spring blocks. Prefab reward targets are bound to the scene's manager when the editor builder places instances.
 
-Optional mouse-position diagnostics and standalone event demonstrations are omitted. Children/Lab 4 scene transitions, persistent state and ScriptableObject architecture are left for the student.
+Optional mouse-position diagnostics and standalone event demonstrations are omitted. The Children C# Static Variable section is implemented in the scripts; interfaces, powerups and ScriptableObjects remain outside this change.
 
 ## Requirements and evidence
 
@@ -40,7 +40,15 @@ Optional mouse-position diagnostics and standalone event demonstrations are omit
 | Additional meaningful mixer effect | Enemies Lowpass: 1600 Hz, resonance 1; softens Goomba impact while coin/jump cues stay bright | Mixer asset has Enemies Lowpass at 1600 Hz / resonance 1; mixed audio captured in the review clips |
 | Nice semi-full level with fewer slopes | Course layout described above | Previews inspected; CourseCanBeCompletedWithKeyboardMovementAndJumps — passed without teleporting |
 
-## Verification state
+## Children: C# Static Variable
+
+Only `GameManager : Singleton<GameManager>` persists. Scene components subscribe/unsubscribe to its UnityEvents in OnEnable/OnDisable; rewards and restart buttons use `GameManager.instance`. Scene changes restore gameplay UI and publish the carried score. Scene audio stays outside the persistent manager.
+
+The short World-1-2 demo has flat ground, one Goomba, clouds, a hill, bushes and a decorative castle with no outgoing transition. Open `Assets/Scenes/World-1-2.unity` directly or enter the castle in World-1-1.
+
+**10 selected Unity PlayMode tests passed, 0 failed**: castle transition and score carryover, World-1-2 standalone scoring, World-1-2 restart including inactive Goomba/music, and seven movement/jump/stomp/coin/death regressions. Tests ran in `.unity-validation/` using the final script sources and the same demo scene installed in this project. The broader historical course tests were not rerun. [Results](Artifacts/static-playmode-results.xml), [demo preview](Artifacts/world-1-2-demo.png).
+
+## Historical verification state
 
 **13 Unity PlayMode tests passed, 0 failed**, using Unity 6000.3.24f1. The full course run uses keyboard input to cross the compact course and its three-block gap. An isolated project avoided the open-editor lock; the verified scene and prefabs were copied byte-for-byte back into this project.
 

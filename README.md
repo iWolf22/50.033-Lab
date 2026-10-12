@@ -2,7 +2,7 @@
 
 Unity **6000.3.24f1**, URP 2D, Input System.
 
-Open `Assets/Scenes/SampleScene.unity`. Move with **A/D** or **←/→**, jump with **Space**, and hold Space for a higher jump. Coins and stomped Goombas award points; touching enemy sides or falling into a pit ends the run. Restart uses Inspector events to restore coins, blocks, enemies, score, camera and input state in the same scene.
+Open `Assets/Scenes/World-1-1.unity`. Move with **A/D** or **←/→**, jump with **Space**, and hold Space for a higher jump. Coins and stomped Goombas award points; touching enemy sides or falling into a pit ends the run. Restart uses Inspector events to restore coins, blocks, enemies, score, camera and input state in the same scene.
 
 The course builder is `Tools → Lab → Rebuild Mario Course`. It saves the level and reusable prefabs in the editor. Rebuilding replaces the course layout, so save custom layouts separately first.
 
@@ -23,6 +23,6 @@ Gameplay stays in small components:
 
 See [CHECKOFF.md](CHECKOFF.md) for lab coverage and verification status. Automated gameplay checks are in `Assets/Tests/PlayMode` and run through Unity's Test Runner.
 
-This starter covers Newborns, Babies and Toddlers. Children/Lab 4 scene transitions, persistent state and ScriptableObject architecture are left for your lab work.
+The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `ButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. Interfaces, powerups and ScriptableObjects remain outside this scope.
 
 Historical demonstrations of the previous longer layout with game audio: [review page](Artifacts/review.html).

@@ -28,7 +28,7 @@ public class CourseTests
         previousBackground = InputSystem.settings.backgroundBehavior;
         InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
         InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
-        yield return SceneManager.LoadSceneAsync("SampleScene");
+        yield return SceneManager.LoadSceneAsync("World-1-1");
         player = Object.FindFirstObjectByType<PlayerMovement>();
         body = player.GetComponent<Rigidbody2D>();
         keyboard = InputSystem.AddDevice<Keyboard>();
@@ -43,6 +43,7 @@ public class CourseTests
         InputSystem.RemoveDevice(keyboard);
         InputSystem.settings.editorInputBehaviorInPlayMode = previousEditorInput;
         InputSystem.settings.backgroundBehavior = previousBackground;
+        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
         yield return null;
     }
 
@@ -213,7 +214,7 @@ public class CourseTests
         Assert.IsFalse(player.alive);
         Assert.AreEqual(0, Time.timeScale);
         Time.timeScale = 1;
-        yield return SceneManager.LoadSceneAsync("SampleScene");
+        yield return SceneManager.LoadSceneAsync("World-1-1");
         player = Object.FindFirstObjectByType<PlayerMovement>(); body = player.GetComponent<Rigidbody2D>();
         yield return null;
         Teleport(new Vector2(20, -2.4f), Vector2.zero);

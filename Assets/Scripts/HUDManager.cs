@@ -8,6 +8,23 @@ public class HUDManager : MonoBehaviour
     [SerializeField] GameObject gamePlayUI;
     [SerializeField] GameObject gameOverUI;
 
+    void OnEnable()
+    {
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+    }
+
+    void OnDisable()
+    {
+        if (GameManager.instance == null) return;
+        GameManager.instance.gameStart.RemoveListener(GameStart);
+        GameManager.instance.gameRestart.RemoveListener(GameStart);
+        GameManager.instance.gameOver.RemoveListener(GameOver);
+        GameManager.instance.scoreChange.RemoveListener(SetScore);
+    }
+
     public void GameStart()
     {
         gameOverUI.SetActive(false);

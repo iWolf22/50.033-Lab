@@ -831,6 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 668417354}
+  - component: {fileID: 8000000000001}
   - component: {fileID: 668417357}
   - component: {fileID: 668417356}
   - component: {fileID: 668417355}
@@ -904,9 +905,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 959242922}
-        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
-        m_MethodName: GameRestart
+      - m_Target: {fileID: 8000000000001}
+        m_TargetAssemblyTypeName: ButtonController, Mario.Gameplay
+        m_MethodName: ButtonClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1190,7 +1191,6 @@ MonoBehaviour:
   marioAudio: {fileID: 759450268}
   deathAudio: {fileID: 2146890857}
   marioDeath: {fileID: 8300000, guid: 67b693702769bb54296e09097af5d72e, type: 3}
-  session: {fileID: 959242922}
   groundLayers:
     serializedVersion: 2
     m_Bits: 136
@@ -1503,26 +1503,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1295806763}
     m_Modifications:
-    - target: {fileID: 3614174060504208002, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614174060504208002, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 959242922}
-    - target: {fileID: 3614174060504208002, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614174060504208002, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseScore
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614174060504208002, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Mario.Gameplay
-      objectReference: {fileID: 0}
     - target: {fileID: 4378508276533360144, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1577,17 +1557,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4378508276533360144, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
   m_PrefabInstance: {fileID: 828750905}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &828750907 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4983863342461161722, guid: 003a1c6f1f197a6448f62e5358cea78d, type: 3}
-  m_PrefabInstance: {fileID: 828750905}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62948c8b0a86b91488f204cfe1793b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Mario.Gameplay::BlockBounce
 --- !u!1 &857352772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ccb3e9db44dba8c4a68dee1cd0ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Mario.Gameplay::EnemyManager
-  gameManager: {fileID: 959242922}
   stompAudio: {fileID: 1366130590}
 --- !u!1 &955835831
 GameObject:
@@ -1940,184 +1908,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Mario.Gameplay::GameManager
   gameStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 14654175}
-        m_TargetAssemblyTypeName: HUDManager, Mario.Gameplay
-        m_MethodName: GameStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   gameRestart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 14654175}
-        m_TargetAssemblyTypeName: HUDManager, Mario.Gameplay
-        m_MethodName: GameStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 923076460}
-        m_TargetAssemblyTypeName: EnemyManager, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 759450264}
-        m_TargetAssemblyTypeName: PlayerMovement, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1427218788}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1427218788}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 519420033}
-        m_TargetAssemblyTypeName: CameraController, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelGoal, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 990399147}
-        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 828750907}
-        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1971708488}
-        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
-        m_MethodName: GameRestart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   scoreChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 14654175}
-        m_TargetAssemblyTypeName: HUDManager, Mario.Gameplay
-        m_MethodName: SetScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   gameOver:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 14654175}
-        m_TargetAssemblyTypeName: HUDManager, Mario.Gameplay
-        m_MethodName: GameOver
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &959242923
 Transform:
   m_ObjectHideFlags: 0
@@ -2130,11 +1930,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1960058177}
-  - {fileID: 1366130591}
-  - {fileID: 2146890858}
-  - {fileID: 1427218789}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &990399145
@@ -2189,26 +1985,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7297429568677790271, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7297429568677790271, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 959242922}
-    - target: {fileID: 7297429568677790271, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7297429568677790271, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseScore
-      objectReference: {fileID: 0}
-    - target: {fileID: 7297429568677790271, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Mario.Gameplay
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2219,17 +1995,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1416234393090968784, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
   m_PrefabInstance: {fileID: 990399145}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &990399147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2678337164205578939, guid: 99b436319b2b37c419881a6f59ad75fc, type: 3}
-  m_PrefabInstance: {fileID: 990399145}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62948c8b0a86b91488f204cfe1793b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Mario.Gameplay::BlockBounce
 --- !u!1 &995182961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2706,7 +2471,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 959242923}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1375482282
 GameObject:
@@ -2717,6 +2482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375482283}
+  - component: {fileID: 8000000000002}
   - component: {fileID: 1375482286}
   - component: {fileID: 1375482285}
   - component: {fileID: 1375482284}
@@ -2790,9 +2556,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 959242922}
-        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
-        m_MethodName: GameRestart
+      - m_Target: {fileID: 8000000000002}
+        m_TargetAssemblyTypeName: ButtonController, Mario.Gameplay
+        m_MethodName: ButtonClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2849,6 +2615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1427218789}
+  - component: {fileID: 8000000000003}
   - component: {fileID: 1427218788}
   m_Layer: 0
   m_Name: Background Music
@@ -2967,7 +2734,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 959242923}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479285959
 GameObject:
@@ -3267,7 +3034,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 50, y: 2}
+    newSize: {x: 55, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -3328,7 +3095,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 50, y: 2}
+  m_Size: {x: 55, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3798,7 +3565,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 959242923}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1960058178
 AudioSource:
@@ -3905,26 +3672,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1295806763}
     m_Modifications:
-    - target: {fileID: 623753076364358263, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 623753076364358263, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 959242922}
-    - target: {fileID: 623753076364358263, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 623753076364358263, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseScore
-      objectReference: {fileID: 0}
-    - target: {fileID: 623753076364358263, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Mario.Gameplay
-      objectReference: {fileID: 0}
     - target: {fileID: 4256391711610665546, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -3979,17 +3726,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4256391711610665546, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
   m_PrefabInstance: {fileID: 1971708486}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1971708488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1760107881224650073, guid: 14f232942e19bf74eba0267d5d84bb36, type: 3}
-  m_PrefabInstance: {fileID: 1971708486}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62948c8b0a86b91488f204cfe1793b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Mario.Gameplay::BlockBounce
 --- !u!1001 &2023644987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4274,8 +4010,44 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 959242923}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668417353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bbda31fbf14eb3898c9ce6e856a018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::ButtonController
+--- !u!114 &8000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375482282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bbda31fbf14eb3898c9ce6e856a018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::ButtonController
+--- !u!114 &8000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427218787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7632f51b0cdc48489d4b9b8c4d08d999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::BackgroundMusic
 --- !u!1001 &650157027502184786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4634,3 +4406,7 @@ SceneRoots:
   - {fileID: 1784433533}
   - {fileID: 1606688553}
   - {fileID: 959242923}
+  - {fileID: 1960058177}
+  - {fileID: 1366130591}
+  - {fileID: 2146890858}
+  - {fileID: 1427218789}
