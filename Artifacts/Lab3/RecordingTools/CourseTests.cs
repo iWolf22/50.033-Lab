@@ -40,7 +40,7 @@ public class CourseTests
         {
             recorder = new GameObject("Recording evidence").AddComponent<RecordingPump>();
             Object.DontDestroyOnLoad(recorder.gameObject);
-            recorder.recording = new CourseRecording("Artifacts/" + testName + ".mp4");
+            recorder.recording = new CourseRecording("Artifacts/Lab3/Videos/" + testName + ".mp4");
         }
     }
 
@@ -85,7 +85,8 @@ public class CourseTests
         RenderTexture.active = target;
         var image = new Texture2D(1280, 720, TextureFormat.RGB24, false);
         image.ReadPixels(new Rect(0, 0, 1280, 720), 0, 0); image.Apply();
-        System.IO.File.WriteAllBytes("Artifacts/" + name + ".png", image.EncodeToPNG());
+        System.IO.Directory.CreateDirectory("Artifacts/Lab3/Screenshots");
+        System.IO.File.WriteAllBytes("Artifacts/Lab3/Screenshots/" + name + ".png", image.EncodeToPNG());
         Object.Destroy(image); camera.targetTexture = null;
         RenderTexture.active = previousTarget; RenderTexture.ReleaseTemporary(target);
         canvas.renderMode = previousMode;
@@ -330,7 +331,7 @@ public class CourseTests
     [UnityTest]
     public IEnumerator CourseCanBeCompletedWithKeyboardMovementAndJumps()
     {
-        using var recording = new CourseRecording("Artifacts/course-run.mp4");
+        using var recording = new CourseRecording("Artifacts/Lab3/Videos/course-run.mp4");
         float deadline = Time.realtimeSinceStartup + 120;
         float[] jumpPoints = { 0, 6, 10.5f, 18.5f, 24, 31, 40.5f, 46.5f, 59.5f, 66, 69.5f, 78.7f, 85, 91.5f, 98 };
         int nextJump = 0;

@@ -67,7 +67,9 @@ public static class MixerEvidence
             Time.captureFramerate = 30;
             AudioRenderer.Start();
             image = new Texture2D(1460, 650, TextureFormat.RGBA32, false);
-            encoder = new MediaEncoder("Artifacts/audio-mixer.mp4",
+            Directory.CreateDirectory("Artifacts/Lab3/Videos");
+            Directory.CreateDirectory("Artifacts/Lab3/Screenshots");
+            encoder = new MediaEncoder("Artifacts/Lab3/Videos/audio-mixer.mp4",
                 new VideoTrackAttributes { width = 1460, height = 650, frameRate = new MediaRational(30) },
                 new AudioTrackAttributes { channelCount = 2, sampleRate = new MediaRational(AudioSettings.outputSampleRate), language = "" });
             next = EditorApplication.timeSinceStartup + 3;
@@ -90,7 +92,7 @@ public static class MixerEvidence
             var picture = new Texture2D(360, 650, TextureFormat.RGBA32, false);
             picture.SetPixels(InternalEditorUtility.ReadScreenPixel(inspector.position.position, 360, 650));
             picture.Apply();
-            File.WriteAllBytes("Artifacts/enemies-inspector.png", picture.EncodeToPNG());
+            File.WriteAllBytes("Artifacts/Lab3/Screenshots/enemies-inspector.png", picture.EncodeToPNG());
             UnityEngine.Object.DestroyImmediate(picture);
             capturedInspector = true;
         }
@@ -100,12 +102,12 @@ public static class MixerEvidence
         image.SetPixels(1100, 0, 360, 650, InternalEditorUtility.ReadScreenPixel(inspector.position.position, 360, 650));
         image.Apply();
         encoder.AddFrame(image);
-        if (frames == 33) File.WriteAllBytes("Artifacts/audio-mixer-playing.png", image.EncodeToPNG());
+        if (frames == 33) File.WriteAllBytes("Artifacts/Lab3/Screenshots/audio-mixer-playing.png", image.EncodeToPNG());
         using var audio = new NativeArray<float>(AudioRenderer.GetSampleCountForCaptureFrame() * 2, Allocator.Temp);
         AudioRenderer.Render(audio);
         if (audio.Length > 0) encoder.AddSamples(audio);
         if (++frames < 240) return;
-        File.WriteAllBytes("Artifacts/audio-mixer.png", image.EncodeToPNG());
+        File.WriteAllBytes("Artifacts/Lab3/Screenshots/audio-mixer.png", image.EncodeToPNG());
         EditorApplication.update -= Update;
         AudioRenderer.Stop(); encoder.Dispose(); Time.captureFramerate = 0;
         EditorApplication.ExitPlaymode();

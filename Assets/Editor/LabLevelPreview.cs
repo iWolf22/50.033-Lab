@@ -16,7 +16,7 @@ public static class LabLevelPreview
         var camera = Camera.main;
         var position = camera.transform.position;
         float size = camera.orthographicSize;
-        Directory.CreateDirectory("Artifacts");
+        Directory.CreateDirectory("Artifacts/Lab4/Previews");
         Render(camera, "warmup", position, size, 1280, 720);
         Render(camera, "start", position, size, 1280, 720);
         Render(camera, "middle", new Vector3(12, position.y, position.z), size, 1280, 720);
@@ -33,7 +33,7 @@ public static class LabLevelPreview
         over.SetActive(false); play.SetActive(true); canvas.renderMode = mode;
         camera.transform.position = position;
         camera.orthographicSize = size;
-        Debug.Log("Course previews exported to Artifacts.");
+        Debug.Log("Course previews exported to Artifacts/Lab4/Previews.");
     }
 
     static void Render(Camera camera, string name, Vector3 position, float size, int width, int height)
@@ -45,7 +45,7 @@ public static class LabLevelPreview
         RenderTexture.active = target;
         var texture = new Texture2D(width, height, TextureFormat.RGB24, false);
         texture.ReadPixels(new Rect(0, 0, width, height), 0, 0); texture.Apply();
-        File.WriteAllBytes("Artifacts/" + name + ".png", texture.EncodeToPNG());
+        File.WriteAllBytes("Artifacts/Lab4/Previews/" + name + ".png", texture.EncodeToPNG());
         Object.DestroyImmediate(texture);
         RenderTexture.active = previous; camera.targetTexture = null;
         RenderTexture.ReleaseTemporary(target);

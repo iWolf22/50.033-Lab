@@ -48,19 +48,19 @@ Only `GameManager : Singleton<GameManager>` persists. Scene components subscribe
 
 The short World-1-2 demo has flat ground, one Goomba, clouds, a hill, bushes and a decorative castle with no outgoing transition. Open `Assets/Scenes/World-1-2.unity` directly or enter the castle in World-1-1.
 
-**10 selected Unity PlayMode tests passed, 0 failed**: castle transition and score carryover, World-1-2 standalone scoring, World-1-2 restart including inactive Goomba/music, and seven movement/jump/stomp/coin/death regressions. Tests ran in `.unity-validation/` using the final script sources and the same demo scene installed in this project. The broader historical course tests were not rerun. [Results](Artifacts/static-playmode-results.xml), [demo preview](Artifacts/world-1-2-demo.png).
+**10 selected Unity PlayMode tests passed, 0 failed**: castle transition and score carryover, World-1-2 standalone scoring, World-1-2 restart including inactive Goomba/music, and seven movement/jump/stomp/coin/death regressions. Tests ran in `.unity-validation/` using the final script sources and the same demo scene installed in this project. The broader historical course tests were not rerun. [Results](Artifacts/Lab4/Verification/static-playmode-results.xml), [demo preview](Artifacts/Lab4/Previews/world-1-2-demo.png).
 
 `IInteractiveButton` defines `ButtonClick`; restart controllers retain their original script GUID and pause controllers switch between matching pause/play sprites. Both scenes place pause beside restart. Restart clears pause state and the icon; hidden pause controls cannot resume Game Over.
 
-**4 Unity PlayMode tests passed, 0 failed** after the button change: pause/resume and restart in both worlds, castle score carryover, World-1-2 restart/scoring and standalone World-1-2. [Results](Artifacts/buttons-playmode-results.xml). Icons adapt Colorosse’s [CC0 Sandbox Menu Icons](https://colorosse.com/assets/2d/ui/sandbox-menu-icons-16); SVG sources and provenance are in `Artifacts/AssetSources/ButtonIcons/`.
+**4 Unity PlayMode tests passed, 0 failed** after the button change: pause/resume and restart in both worlds, castle score carryover, World-1-2 restart/scoring and standalone World-1-2. [Results](Artifacts/Lab4/Verification/buttons-playmode-results.xml). Icons adapt Colorosse’s [CC0 Sandbox Menu Icons](https://colorosse.com/assets/2d/ui/sandbox-menu-icons-16); SVG sources and provenance are in `Artifacts/AssetSources/ButtonIcons/`.
 
 The remaining [C# Quick Tour](https://natalieagus.github.io/50033/docs/children/static/) uses `IPowerup` / `IPowerupApplicable`, `PowerupType`, abstract `BasePowerup`, and coin/mushroom/star implementations. The mushroom question box extends the existing spring prefab; question and brick controllers share `BlockBounce`. Coins keep the original scoring event. Mushrooms and stars share emergence, movement and wall reversal. Collection only logs `mushroom collected` / `star collected`; neither changes Mario, grants invincibility, scores or plays a collection sound. Restart cancels spawns and restores consumed powerups. OneUpMushroom remains an enum entry.
 
 Mushroom boxes sit at x = -3 in World-1-1 and x = -2 in World-1-2; star boxes sit at x = 2.5 and x = 0 respectively. Existing scene transforms and UI positions were preserved.
 
-**Before the log-only change, 11 Unity PlayMode tests passed, 0 failed**: mushroom spawning/collection/wall reversal, coin scoring, brick breaking and restart, restart during emergence, spring/top-hit behavior, repeated observer reset, pause/restart and scene persistence. Tested in `.unity-validation/` with matching final scripts, prefabs and scenes. [Results](Artifacts/powerups-playmode-results.xml).
+**Before the log-only change, 11 Unity PlayMode tests passed, 0 failed**: mushroom spawning/collection/wall reversal, coin scoring, brick breaking and restart, restart during emergence, spring/top-hit behavior, repeated observer reset, pause/restart and scene persistence. Tested in `.unity-validation/` with matching final scripts, prefabs and scenes. [Results](Artifacts/Lab4/Verification/powerups-playmode-results.xml).
 
-**12 Unity PlayMode tests passed, 0 failed** after the log-only change: mushroom/star collection logs once without changing Mario or score, star boxes in both worlds, shared physics, restart during spawning, coin/block behavior, pause and scene persistence. Final assets match the isolated validation copy. [Results](Artifacts/log-only-powerups-results.xml).
+**12 Unity PlayMode tests passed, 0 failed** after the log-only change: mushroom/star collection logs once without changing Mario or score, star boxes in both worlds, shared physics, restart during spawning, coin/block behavior, pause and scene persistence. Final assets match the isolated validation copy. [Results](Artifacts/Lab4/Verification/log-only-powerups-results.xml).
 
 ## Shared prefabs and hierarchy cleanup
 
@@ -68,19 +68,19 @@ Blocks now have a flat root with `Block visual` and the selected powerup. Mushro
 
 One Scene Audio prefab per scene contains all six AudioSources; player, enemies and blocks share them. Existing clip/mixer/volume/pitch/loop settings were checked before and after saving. Only GameManager persists. Mario's existing GameConstants assignment is preserved.
 
-**16 Unity PlayMode tests passed, 0 failed**: shared audio/hierarchy, input and jumps, coin/brick/spring behavior, mushrooms/stars, death/restart, pause and scene persistence. Unity also verified saved sprite placements, collider bounds, UI transforms, prefab links, missing scripts and camera/SO bindings against the original scenes. Final assets match the tested copy. [Results](Artifacts/prefab-cleanup-results.xml), [layout verification](Artifacts/prefab-cleanup-verification.txt).
+**16 Unity PlayMode tests passed, 0 failed**: shared audio/hierarchy, input and jumps, coin/brick/spring behavior, mushrooms/stars, death/restart, pause and scene persistence. Unity also verified saved sprite placements, collider bounds, UI transforms, prefab links, missing scripts and camera/SO bindings against the original scenes. Final assets match the tested copy. [Results](Artifacts/Lab4/Verification/prefab-cleanup-results.xml), [layout verification](Artifacts/Lab4/Verification/prefab-cleanup-verification.txt).
 
 ## Historical verification state
 
 **13 Unity PlayMode tests passed, 0 failed**, using Unity 6000.3.24f1. The full course run uses keyboard input to cross the compact course and its three-block gap. An isolated project avoided the open-editor lock; the verified scene and prefabs were copied byte-for-byte back into this project.
 
-Evidence: [test results](Artifacts/playmode-results.xml), [asset hashes](Artifacts/verification.json), [overview](Artifacts/overview.png), [gameplay HUD](Artifacts/gameplay-start.png), [course clear](Artifacts/gameplay-clear.png).
+Evidence: [test results](Artifacts/Lab3/Verification/playmode-results.xml), [asset hashes](Artifacts/Lab3/Verification/verification.json), [overview](Artifacts/Lab3/Screenshots/overview.png), [gameplay HUD](Artifacts/Lab3/Screenshots/gameplay-start.png), [course clear](Artifacts/Lab3/Screenshots/gameplay-clear.png).
 
 Ground and finish-step colliders use Auto Tiling. Ground, Enemies and Obstacles have named layers; irrelevant enemy/terrain/obstacle interactions are disabled. The mixer includes All Audio and SFX Only views. Gameplay has no runtime scene repair, name-based sprite searches, legacy input or jump-over scoring.
 
-Recordings from the previous longer layout are available in [the local review page](Artifacts/review.html): a continuous keyboard course run, individual behavior demonstrations, and a native AudioMixer/Inspector recording with live stomp audio. Captions explain the Enemies lowpass effect. The short behavior clips use test setup positions; the full course run does not teleport Mario. Those 12 recorded demonstrations passed before the course was shortened; they are historical evidence, not previews of the current layout. Audio tracks contain nonzero mixed output; this is a numeric audio check, not a human listening review.
+Recordings from the previous longer layout are available in [the local review page](Artifacts/Lab3/review.html): a continuous keyboard course run, individual behavior demonstrations, and a native AudioMixer/Inspector recording with live stomp audio. Captions explain the Enemies lowpass effect. The short behavior clips use test setup positions; the full course run does not teleport Mario. Those 12 recorded demonstrations passed before the course was shortened; they are historical evidence, not previews of the current layout. Audio tracks contain nonzero mixed output; this is a numeric audio check, not a human listening review.
 
-Recording helpers live outside Assets in Artifacts/RecordingTools and run only in the isolated validation copy. They add no recording code or objects to the shipped scene.
+Recording helpers live outside Assets in Artifacts/Lab3/RecordingTools and run only in the isolated validation copy. They add no recording code or objects to the shipped scene.
 
 ## Manual presentation checklist
 

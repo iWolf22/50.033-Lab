@@ -72,7 +72,8 @@ public class CourseTests
         RenderTexture.active = target;
         var image = new Texture2D(1280, 720, TextureFormat.RGB24, false);
         image.ReadPixels(new Rect(0, 0, 1280, 720), 0, 0); image.Apply();
-        System.IO.File.WriteAllBytes("Artifacts/" + name + ".png", image.EncodeToPNG());
+        System.IO.Directory.CreateDirectory("Artifacts/Lab4/Previews");
+        System.IO.File.WriteAllBytes("Artifacts/Lab4/Previews/" + name + ".png", image.EncodeToPNG());
         Object.Destroy(image); camera.targetTexture = null;
         RenderTexture.active = previousTarget; RenderTexture.ReleaseTemporary(target);
         canvas.renderMode = previousMode;

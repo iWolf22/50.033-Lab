@@ -20,7 +20,7 @@ public sealed class CourseRecording : IDisposable
     public CourseRecording(string path)
     {
         this.path = path;
-        Directory.CreateDirectory("Artifacts");
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
         Time.captureFramerate = 120;
         encoder = new MediaEncoder(path,
             new VideoTrackAttributes { frameRate = new MediaRational(120), width = 640, height = 360, includeAlpha = false },

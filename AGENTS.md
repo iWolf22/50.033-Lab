@@ -7,6 +7,7 @@
 - Complete authorized work without routine confirmations; preserve user layouts and Inspector settings. Use Git for recovery; do not create backup copies.
 - Keep block hierarchies flat: root → Block visual + the selected powerup. Group assets by purpose; reuse interactive prefabs across scenes (including Mario and Canvas). Decorative objects need not be prefabs. Keep sounds in one scene-local Scene Audio prefab.
 - Mushroom and star collection only log to the Console; do not add growth, invincibility, score or other effects unless requested.
+- Group artifacts by lab and purpose; keep showcase links working when moving files.
 - Respect code-only requests; explain the Inspector steps needed to hook up changes.
 - Add new preferences and reusable Unity development/testing/debugging insights here as they arise. Use short bullets, merge duplicates and remove stale guidance to save tokens.
 
@@ -51,8 +52,8 @@
 - Unity's test runner also creates persistent objects; persistence tests should count gameplay objects rather than every DontDestroyOnLoad root.
 - Gameplay tests live in `Assets/Tests/PlayMode`. Run Unity with `-batchmode -projectPath <copy> -runTests -testPlatform PlayMode -testResults <xml> -logFile <log>`; omit `-quit` for the test runner.
 - Editor utilities use `-batchmode -quit -projectPath <copy> -executeMethod <method> -logFile <log>`. Run `LabLevelPreview.Capture` in the copy because it manipulates the scene to export images.
-- Run checks appropriate to the change; documentation-only edits need no Unity run. Report actual results. Existing recordings in `Artifacts/` demonstrate an older layout.
-- Keep `Artifacts/RecordingTools` outside gameplay and temporary scripts inside the validation copy. Update hashes/results only after verifying final assets.
+- Run checks appropriate to the change; documentation-only edits need no Unity run. Report actual results. Existing recordings in `Artifacts/Lab3/` demonstrate an older layout.
+- Keep `Artifacts/Lab3/RecordingTools` outside gameplay and temporary scripts inside the validation copy. Update hashes/results only after verifying final assets.
 
 ## Git
 
