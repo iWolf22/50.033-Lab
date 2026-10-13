@@ -1,0 +1,17 @@
+using UnityEngine;
+
+public enum PowerupType { Coin, MagicMushroom, OneUpMushroom, StarMan }
+
+public interface IPowerup
+{
+    PowerupType powerupType { get; }
+    bool hasSpawned { get; }
+    void DestroyPowerup();
+    void SpawnPowerup();
+    void ApplyPowerup(MonoBehaviour target);
+}
+
+public interface IPowerupApplicable
+{
+    void RequestPowerupEffect(IPowerup powerup);
+}

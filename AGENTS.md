@@ -5,6 +5,7 @@
 - Keep replies, progress updates and questions concise and direct.
 - Make minimal, clean changes using Unity best practices; follow the requested tutorial section and skip temporary work that later sections remove.
 - Update authorized scenes without routine save confirmations; preserve user layouts and make backups before replacements.
+- Mushroom and star collection only log to the Console; do not add growth, invincibility, score or other effects unless requested.
 - Add new preferences and reusable Unity development/testing/debugging insights here as they arise. Use short bullets, merge duplicates and remove stale guidance to save tokens.
 
 ## Scope
@@ -16,9 +17,9 @@
 ## Runtime contracts
 
 - `GameManager` owns score and `gameStart`, `gameRestart`, `scoreChange`, `gameOver`. Inspect scene UnityEvent bindings to `HUDManager` and reset methods when behavior is disconnected.
-- Restart resets Mario/input/animation, camera, inactive enemies, spent blocks/coins, finish trigger, music and pause UI in place. Include new gameplay state in this reset.
+- Restart resets Mario/input/animation, camera, inactive enemies, spent blocks/coins, finish trigger, music, pause UI and powerups in place. Include new gameplay state in this reset.
 - `EnemyManager` observes the C# event `EnemyMovement.OnGoombaStomped`, subscribes/unsubscribes in OnEnable/OnDisable, awards one point and plays stomp audio. Retain inactive enemies for restart.
-- `BlockBounce` invokes `AnimationEventIntTool.useInt` after its coin-pop coroutine. Scene instances bind it to `GameManager.IncreaseScore`; rewards are single-use until restart.
+- `CoinPowerup` invokes `AnimationEventIntTool.useInt` after its pop coroutine; `BlockBounce` binds it to `GameManager.IncreaseScore`. Rewards are single-use until restart.
 - `ActionManager` bridges `PlayerInput` to UnityEvents. Preserve stopping/reversing and tap/held jump. Regenerate `MarioActions.cs` from `.inputactions` when changing actions.
 - Mario's animation clips call `PlayJumpSound`, `PlayDeathImpulse` and `GameOverScene`. Renaming these methods requires updating clip events. Runtime scripts belong to `Mario.Gameplay`; serialized event targets must reference the correct assembly.
 
@@ -44,6 +45,7 @@
 - Unity is **6000.3.24f1**, URP 2D. On this machine the Windows editor is under `C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe`.
 - If the main project is open, validate in ignored `.unity-validation/`. Refresh relevant assets/sources first; the copy may contain stale files or temporary tools.
 - Only GameManager persists; pair scene event subscriptions with unsubscriptions.
+- Keep consumed powerups and broken bricks available for in-place restart; cancel powerup coroutines and disable physics before restoring their spawn positions.
 - Unity's test runner also creates persistent objects; persistence tests should count gameplay objects rather than every DontDestroyOnLoad root.
 - Gameplay tests live in `Assets/Tests/PlayMode`. Run Unity with `-batchmode -projectPath <copy> -runTests -testPlatform PlayMode -testResults <xml> -logFile <log>`; omit `-quit` for the test runner.
 - Editor utilities use `-batchmode -quit -projectPath <copy> -executeMethod <method> -logFile <log>`. Run `LabLevelPreview.Capture` in the copy because it manipulates the scene to export images.

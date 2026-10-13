@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(BoxCollider2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 {
     public float speed = 45;
     public float maxSpeed = 6;
@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     ContactFilter2D groundFilter;
     readonly RaycastHit2D[] groundHits = new RaycastHit2D[4];
     Vector2 startPosition;
+    Vector3 startScale;
+    public bool IsSuperMario { get; private set; }
     int movement;
     bool jumpQueued;
     bool holdQueued;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         startPosition = body.position;
+        startScale = transform.localScale;
         visual = GetComponent<SpriteRenderer>();
         hitbox = GetComponent<Collider2D>();
         groundFilter = new ContactFilter2D { useLayerMask = true, layerMask = groundLayers };
@@ -49,6 +52,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance != null)
             GameManager.instance.gameRestart.RemoveListener(GameRestart);
+    }
+
+    public void RequestPowerupEffect(IPowerup powerup) => powerup.ApplyPowerup(this);
+
+    public void BecomeSuperMario()
+    {
+        if (IsSuperMario) return;
+        IsSuperMario = true;
+        float feet = hitbox.bounds.min.y;
+        transform.localScale = new Vector3(startScale.x, startScale.y * 2, startScale.z);
+        body.position += Vector2.up * (feet - hitbox.bounds.min.y);
     }
 
     public void Jump() => jumpQueued = alive;
@@ -122,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
     public void GameRestart()
     {
         alive = true;
+        IsSuperMario = false;
+        transform.localScale = startScale;
         movement = 0;
         jumpQueued = holdQueued = jumped = grounded = false;
         body.position = startPosition;

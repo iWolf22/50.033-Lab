@@ -1,4 +1,4 @@
-# Mario lab: Newborns → Toddlers
+# Mario lab: Newborns → Children
 
 Unity **6000.3.24f1**, URP 2D, Input System.
 
@@ -16,13 +16,14 @@ Gameplay stays in small components:
 - `HUDManager`: listens to those events to update scores and toggle the existing UI.
 - `EnemyManager`: subscribes to Goomba events, awards stomp points, plays stomp audio and resets enemies.
 - `EnemyMovement`: physics-timestep patrol and one-time stomp event.
-- `BlockBounce`: underside hits, blinking, coin pop and spent state.
+- `BlockBounce`: underside hits, blinking, shared bounce/reset behavior and spent state.
+- `BasePowerup`: shared powerup contract/reset; coin pop and shared mushroom/star emergence/movement live in its subclasses.
 - `AnimationEventIntTool`: forwards the completed coin animation's reward through an Inspector event.
 - `CameraController`: bounded follow in LateUpdate.
 - `LevelGoal`: finish trigger and clear sound.
 
 See [CHECKOFF.md](CHECKOFF.md) for lab coverage and verification status. Automated gameplay checks are in `Assets/Tests/PlayMode` and run through Unity's Test Runner.
 
-The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `RestartButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. `RestartButtonController` and `PauseButtonController` implement `IInteractiveButton`; the yellow pause button beside restart switches to play while paused. Powerups and ScriptableObjects remain outside this scope.
+The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `RestartButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. `RestartButtonController` and `PauseButtonController` implement `IInteractiveButton`; the yellow pause button beside restart switches to play while paused. The rest of the C# Quick Tour is implemented: `IPowerup`, `BasePowerup`, coin/mushroom/star subclasses and separate question/brick controllers. Hit the new spring mushroom box from below (x = -3 in World-1-1, x = -2 in World-1-2); Mushrooms and stars pop out, move with the same physics and print `mushroom collected` / `star collected` when touched. They do not change Mario or the score. Star boxes sit at x = 2.5 in World-1-1 and x = 0 in World-1-2. Restart restores the powerups. ScriptableObjects remain outside this scope.
 
 Historical demonstrations of the previous longer layout with game audio: [review page](Artifacts/review.html).

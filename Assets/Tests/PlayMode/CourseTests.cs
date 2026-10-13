@@ -245,17 +245,17 @@ public class CourseTests
         var block = Object.FindObjectsByType<BlockBounce>(FindObjectsSortMode.None)
             .First(b => b.GetComponent<SpringJoint2D>() != null);
         var springBody = block.GetComponent<Rigidbody2D>();
-        var coin = block.transform.Find("Coin").gameObject;
+        var powerup = (BasePowerup)block.Powerup;
         var start = springBody.position;
         Teleport(start + Vector2.up * 1.2f, Vector2.down * 5);
         yield return new WaitForSeconds(0.3f);
-        Assert.IsFalse(coin.activeSelf);
+        Assert.IsFalse(powerup.gameObject.activeSelf);
         Assert.That(springBody.position.y, Is.EqualTo(start.y).Within(0.03f));
         Teleport(start + Vector2.down * 2.2f, Vector2.zero);
         yield return new WaitForFixedUpdate();
         Teleport(start + Vector2.down * 1.1f, Vector2.up * 8);
         yield return new WaitForSeconds(0.15f);
-        Assert.IsTrue(coin.activeSelf);
+        Assert.IsTrue(powerup.gameObject.activeSelf);
         yield return new WaitForSeconds(0.6f);
         Assert.AreEqual(RigidbodyType2D.Static, springBody.bodyType);
     }
@@ -331,7 +331,7 @@ public class CourseTests
             Teleport((Vector2)block.transform.position + Vector2.down * 1.1f, Vector2.up * 8);
             yield return new WaitForSeconds(0.7f);
         }
-        Assert.AreEqual(3, manager.Score);
+        Assert.AreEqual(2 + (spring.Powerup.powerupType == PowerupType.Coin ? 1 : 0), manager.Score);
         Assert.AreEqual(RigidbodyType2D.Static, spring.GetComponent<Rigidbody2D>().bodyType);
         manager.GameOver();
         manager.GameRestart();
@@ -349,7 +349,8 @@ public class CourseTests
         Assert.AreEqual(RigidbodyType2D.Dynamic, spring.GetComponent<Rigidbody2D>().bodyType);
         foreach (var block in new[] { question, spring })
         {
-            Assert.IsFalse(block.transform.Find("Coin").gameObject.activeSelf);
+            Assert.IsFalse(((BasePowerup)block.Powerup).gameObject.activeSelf);
+            Assert.IsFalse(block.Powerup.hasSpawned);
             Assert.AreNotEqual("question-mark-solid", block.transform.Find("Block visual").GetComponent<SpriteRenderer>().sprite.name);
         }
         // Re-enabling the observer must not accumulate duplicate score subscriptions.

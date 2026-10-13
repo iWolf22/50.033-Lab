@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 7668563666773787067}
   - component: {fileID: 7759617328576376385}
   - component: {fileID: 623753076364358263}
+  - component: {fileID: 9100000000000000001}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -442,9 +443,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6639164499007402132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62948c8b0a86b91488f204cfe1793b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d4b676f177f4937b995b317c7398b2d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Mario.Gameplay::BlockBounce
+  m_EditorClassIdentifier: Mario.Gameplay::BrickPowerupController
   spawnCoin: 0
   isQuestionBlock: 0
   flashSprite: {fileID: 1421341756, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
@@ -457,3 +458,16 @@ MonoBehaviour:
   bumpSound: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
   springBody: {fileID: 0}
   coinReward: {fileID: 623753076364358263}
+  powerup: {fileID: 9100000000000000001}
+--- !u!114 &9100000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036190494567639524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6c6d0891a24d83aba9f0a1d9015fdd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Mario.Gameplay::CoinPowerup

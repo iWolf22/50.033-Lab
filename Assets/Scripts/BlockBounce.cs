@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class BlockBounce : MonoBehaviour
+public class BlockBounce : MonoBehaviour, IPowerupController
 {
     public bool spawnCoin;
     public bool isQuestionBlock;
@@ -14,12 +14,17 @@ public class BlockBounce : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip coinSound;
     [SerializeField] AudioClip bumpSound;
-    [SerializeField] Rigidbody2D springBody;
+    [SerializeField] protected Rigidbody2D springBody;
+    [SerializeField] BasePowerup powerup;
+    public IPowerup Powerup => powerup;
     [SerializeField] AnimationEventIntTool coinReward;
     Vector2 startPosition;
     Sprite initialSprite;
     bool busy;
-    bool spent;
+    protected bool spent;
+    protected virtual bool CanBreak(PlayerMovement player) => false;
+
+    public virtual void Disable() => spent = true;
 
     void OnEnable()
     {
@@ -53,13 +58,21 @@ public class BlockBounce : MonoBehaviour
             visual.sprite = Mathf.FloorToInt(Time.time * 4) % 2 == 0 ? initialSprite : flashSprite;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (busy || (isQuestionBlock && spent) ||
             !collision.gameObject.TryGetComponent<PlayerMovement>(out var player) || !player.alive) return;
         for (int i = 0; i < collision.contactCount; i++)
         {
             if (collision.GetContact(i).normal.y < 0.5f) continue;
+            if (CanBreak(player))
+            {
+                spent = true;
+                visual.enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
+                audioSource.PlayOneShot(bumpSound);
+                return;
+            }
             StartCoroutine(Bounce());
             break;
         }
@@ -70,6 +83,9 @@ public class BlockBounce : MonoBehaviour
         StopAllCoroutines();
         busy = spent = false;
         audioSource.Stop();
+        visual.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
+        if (powerup != null) powerup.ResetPowerup();
         coin.transform.localPosition = Vector3.zero;
         coin.gameObject.SetActive(false);
         visual.sprite = initialSprite;
@@ -103,18 +119,11 @@ public class BlockBounce : MonoBehaviour
         if (springBody != null) springBody.AddForce(Vector2.up * 4, ForceMode2D.Impulse);
         if (reward)
         {
-            coin.gameObject.SetActive(true);
-            for (float t = 0; t < 0.5f; t += Time.deltaTime)
-            {
-                coin.transform.localPosition = Vector3.up * (1.8f * Mathf.Sin(t * Mathf.PI / 0.5f));
-                yield return null;
-            }
-            coin.transform.localPosition = Vector3.zero;
-            coin.gameObject.SetActive(false);
-            coinReward.TriggerIntEvent();
+            powerup.SpawnPowerup();
+            yield return new WaitForSeconds(0.5f);
+            Disable();
         }
         else yield return new WaitForSeconds(0.35f);
-        if (springBody != null && isQuestionBlock) springBody.bodyType = RigidbodyType2D.Static;
         busy = false;
     }
 }

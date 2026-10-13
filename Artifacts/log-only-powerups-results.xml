@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-13 03:47:14Z" end-time="2026-10-13 03:47:43Z" duration="28.4489577">
+  <test-suite type="TestSuite" id="1029" name="My project" fullname="My project" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-13 03:47:14Z" end-time="2026-10-13 03:47:43Z" duration="28.448958" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1025" name="Mario.PlayModeTests.dll" fullname="D:/Folder Data Base/University-Of-Waterloo/3B/50.033/My project/.unity-validation/Library/ScriptAssemblies/Mario.PlayModeTests.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-13 03:47:14Z" end-time="2026-10-13 03:47:43Z" duration="28.438132" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30264" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="CourseTests" fullname="CourseTests" classname="CourseTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-13 03:47:14Z" end-time="2026-10-13 03:47:25Z" duration="10.246039" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1011" name="BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" fullname="CourseTests.BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" methodname="BrickVariantsBounceWithoutBreakingAndCoinIsSingleUse" classname="CourseTests" runstate="Runnable" seed="693525714" result="Passed" start-time="2026-10-13 03:47:14Z" end-time="2026-10-13 03:47:18Z" duration="3.920812" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="ManagerEventsRestoreSpentBlocksAndInactiveEnemiesWithoutReloading" fullname="CourseTests.ManagerEventsRestoreSpentBlocksAndInactiveEnemiesWithoutReloading" methodname="ManagerEventsRestoreSpentBlocksAndInactiveEnemiesWithoutReloading" classname="CourseTests" runstate="Runnable" seed="1089465969" result="Passed" start-time="2026-10-13 03:47:18Z" end-time="2026-10-13 03:47:21Z" duration="2.630271" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" fullname="CourseTests.QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" methodname="QuestionBlockRejectsTopHitAndDispensesOnlyOnceFromBelow" classname="CourseTests" runstate="Runnable" seed="1380017455" result="Passed" start-time="2026-10-13 03:47:21Z" end-time="2026-10-13 03:47:23Z" duration="1.913513" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="SpringQuestionBlockIsStableOnTopAndLocksAfterReward" fullname="CourseTests.SpringQuestionBlockIsStableOnTopAndLocksAfterReward" methodname="SpringQuestionBlockIsStableOnTopAndLocksAfterReward" classname="CourseTests" runstate="Runnable" seed="699943104" result="Passed" start-time="2026-10-13 03:47:23Z" end-time="2026-10-13 03:47:25Z" duration="1.762553" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1015" name="PowerupTests" fullname="PowerupTests" classname="PowerupTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-13 03:47:25Z" end-time="2026-10-13 03:47:36Z" duration="11.386288" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1017" name="CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" fullname="PowerupTests.CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" methodname="CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" classname="PowerupTests" runstate="Runnable" seed="1717811001" result="Passed" start-time="2026-10-13 03:47:25Z" end-time="2026-10-13 03:47:27Z" duration="2.698339" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="MushroomBoxSpawnsOnceCollectsAndRestarts" fullname="PowerupTests.MushroomBoxSpawnsOnceCollectsAndRestarts" methodname="MushroomBoxSpawnsOnceCollectsAndRestarts" classname="PowerupTests" runstate="Runnable" seed="1151619130" result="Passed" start-time="2026-10-13 03:47:27Z" end-time="2026-10-13 03:47:30Z" duration="2.228601" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+]]></output>
+        </test-case>
+        <test-case id="1019" name="MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" fullname="PowerupTests.MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" methodname="MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" classname="PowerupTests" runstate="Runnable" seed="757355750" result="Passed" start-time="2026-10-13 03:47:30Z" end-time="2026-10-13 03:47:32Z" duration="2.174153" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" fullname="PowerupTests.StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" methodname="StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" classname="PowerupTests" runstate="Runnable" seed="557363843" result="Passed" start-time="2026-10-13 03:47:32Z" end-time="2026-10-13 03:47:36Z" duration="4.283000" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[star collected
+star collected
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1020" name="ScenePersistenceTests" fullname="ScenePersistenceTests" classname="ScenePersistenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-13 03:47:36Z" end-time="2026-10-13 03:47:43Z" duration="6.802335" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1022" name="CastleTransitionPreservesOnlyManagerAndScore" fullname="ScenePersistenceTests.CastleTransitionPreservesOnlyManagerAndScore" methodname="CastleTransitionPreservesOnlyManagerAndScore" classname="ScenePersistenceTests" runstate="Runnable" seed="120945282" result="Passed" start-time="2026-10-13 03:47:36Z" end-time="2026-10-13 03:47:37Z" duration="1.141705" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="PauseResumeAndRestartWorkInBothWorlds" fullname="ScenePersistenceTests.PauseResumeAndRestartWorkInBothWorlds" methodname="PauseResumeAndRestartWorkInBothWorlds" classname="ScenePersistenceTests" runstate="Runnable" seed="904756093" result="Passed" start-time="2026-10-13 03:47:37Z" end-time="2026-10-13 03:47:40Z" duration="2.317564" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="SecondWorldStompAndRestartUsePersistentManager" fullname="ScenePersistenceTests.SecondWorldStompAndRestartUsePersistentManager" methodname="SecondWorldStompAndRestartUsePersistentManager" classname="ScenePersistenceTests" runstate="Runnable" seed="172520894" result="Passed" start-time="2026-10-13 03:47:40Z" end-time="2026-10-13 03:47:41Z" duration="1.830204" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1024" name="SecondWorldWorksStandalone" fullname="ScenePersistenceTests.SecondWorldWorksStandalone" methodname="SecondWorldWorksStandalone" classname="ScenePersistenceTests" runstate="Runnable" seed="1966552050" result="Passed" start-time="2026-10-13 03:47:41Z" end-time="2026-10-13 03:47:43Z" duration="1.510688" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/joshu/AppData/LocalLow/DefaultCompany/My project\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

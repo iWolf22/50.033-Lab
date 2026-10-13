@@ -365,6 +365,28 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: star
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1133
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5d0571dbcd8436e82d442eae4d31266
+      internalID: 1704909587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: coin
       rect:
         serializedVersion: 2
@@ -674,6 +696,7 @@ TextureImporter:
       hill-big: 603835519
       hill-small: 921219622
       mushroom: 1704909586
+      star: 1704909587
       pipe-mid: -1894366862
       pipe-top: -1817184023
       question-mark: 2022539852

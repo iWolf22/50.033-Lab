@@ -86,6 +86,8 @@ public static class LabLevelBuilder
         Place(coinBrick, new Vector2(-1, 0), obstacles);
         Place(question, new Vector2(0, 0), obstacles);
         Place(plain, new Vector2(1, 0), obstacles);
+        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/MushroomQuestionBlock.prefab"), new Vector2(-3, 0), obstacles);
+        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/StarQuestionBlock.prefab"), new Vector2(2.5f, 0), obstacles);
         Platform(15, 0, obstacles);
         SpringBlock(17, 0, obstacles);
         BouncyCloud(12.5f, -0.5f, obstacles);
@@ -290,10 +292,11 @@ public static class LabLevelBuilder
         coin.gameObject.SetActive(false);
         var rewardEvent = coin.gameObject.AddComponent<AnimationEventIntTool>();
         var audio = Sound("Block SFX", root.transform, "smb_coin.wav", "Obstacles SFX");
-        var block = root.AddComponent<BlockBounce>();
+        var block = question ? (BlockBounce)root.AddComponent<QuestionBoxPowerupController>() : root.AddComponent<BrickPowerupController>();
         block.spawnCoin = reward; block.isQuestionBlock = question;
         block.flashSprite = Sprite("question-mark-flash"); block.solidSprite = Sprite("question-mark-solid");
         Set(block, "coinReward", rewardEvent);
+        Set(block, "powerup", coin.gameObject.AddComponent<CoinPowerup>());
         Set(block, "visual", visual); Set(block, "coin", coin); Set(block, "bounceAnimator", animator);
         Set(block, "audioSource", audio); Set(block, "coinSound", audio.clip);
         Set(block, "bumpSound", AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sounds/smb_bump.wav"));

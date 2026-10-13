@@ -2,6 +2,8 @@
 
 Source guides:
 
+- [Children: C# Quick Tour](https://natalieagus.github.io/50033/docs/children/static/)
+
 - [Newborns: installation](https://natalieagus.github.io/50033/docs/newborns/installation/), [Mario](https://natalieagus.github.io/50033/docs/newborns/basics/), [UI](https://natalieagus.github.io/50033/docs/newborns/ui/), [checkoff](https://natalieagus.github.io/50033/docs/newborns/checkoff/)
 - [Babies: animation](https://natalieagus.github.io/50033/docs/babies/animation/), [camera](https://natalieagus.github.io/50033/docs/babies/camera/), [physics](https://natalieagus.github.io/50033/docs/babies/physics/), [checkoff](https://natalieagus.github.io/50033/docs/babies/checkoff/)
 - [Toddlers: input](https://natalieagus.github.io/50033/docs/toddlers/management/), [observer](https://natalieagus.github.io/50033/docs/toddlers/observer-pattern/), [audio](https://natalieagus.github.io/50033/docs/toddlers/audio-management/), [checkoff](https://natalieagus.github.io/50033/docs/toddlers/checkoff/)
@@ -16,7 +18,7 @@ The essential setup, movement/UI, animation/camera/Physics2D, Input System, obse
 
 `GameManager` exposes the tutorial's four UnityEvents. The saved scene binds them to `HUDManager`, `EnemyManager`, player, camera, blocks, finish trigger and music. Enemy observers subscribe in OnEnable and unsubscribe in OnDisable. Coin rewards use `AnimationEventIntTool` at completion of the existing coin animation. Restart restores objects in place, including inactive enemies and spent spring blocks. Prefab reward targets are bound to the scene's manager when the editor builder places instances.
 
-Optional mouse-position diagnostics and standalone event demonstrations are omitted. The Children C# Static Variable section is implemented in the scripts; interfaces, powerups and ScriptableObjects remain outside this change.
+Optional mouse-position diagnostics and standalone event demonstrations are omitted. The Children C# Quick Tour is implemented, including interactive buttons and powerups. ScriptableObjects remain outside this change.
 
 ## Requirements and evidence
 
@@ -40,7 +42,7 @@ Optional mouse-position diagnostics and standalone event demonstrations are omit
 | Additional meaningful mixer effect | Enemies Lowpass: 1600 Hz, resonance 1; softens Goomba impact while coin/jump cues stay bright | Mixer asset has Enemies Lowpass at 1600 Hz / resonance 1; mixed audio captured in the review clips |
 | Nice semi-full level with fewer slopes | Course layout described above | Previews inspected; CourseCanBeCompletedWithKeyboardMovementAndJumps — passed without teleporting |
 
-## Children: static instance and interactive buttons
+## Children: C# Quick Tour
 
 Only `GameManager : Singleton<GameManager>` persists. Scene components subscribe/unsubscribe to its UnityEvents in OnEnable/OnDisable; rewards and restart buttons use `GameManager.instance`. Scene changes restore gameplay UI and publish the carried score. Scene audio stays outside the persistent manager.
 
@@ -52,13 +54,21 @@ The short World-1-2 demo has flat ground, one Goomba, clouds, a hill, bushes and
 
 **4 Unity PlayMode tests passed, 0 failed** after the button change: pause/resume and restart in both worlds, castle score carryover, World-1-2 restart/scoring and standalone World-1-2. [Results](Artifacts/buttons-playmode-results.xml). Icons adapt Colorosse’s [CC0 Sandbox Menu Icons](https://colorosse.com/assets/2d/ui/sandbox-menu-icons-16); SVG sources and provenance are in `Artifacts/AssetSources/ButtonIcons/`.
 
+The remaining [C# Quick Tour](https://natalieagus.github.io/50033/docs/children/static/) uses `IPowerup` / `IPowerupApplicable`, `PowerupType`, abstract `BasePowerup`, and coin/mushroom/star implementations. The mushroom question box extends the existing spring prefab; question and brick controllers share `BlockBounce`. Coins keep the original scoring event. Mushrooms and stars share emergence, movement and wall reversal. Collection only logs `mushroom collected` / `star collected`; neither changes Mario, grants invincibility, scores or plays a collection sound. Restart cancels spawns and restores consumed powerups. OneUpMushroom remains an enum entry.
+
+Mushroom boxes sit at x = -3 in World-1-1 and x = -2 in World-1-2; star boxes sit at x = 2.5 and x = 0 respectively. Existing scene transforms and UI positions were preserved; backups precede the edits.
+
+**Before the log-only change, 11 Unity PlayMode tests passed, 0 failed**: mushroom spawning/collection/wall reversal, coin scoring, brick breaking and restart, restart during emergence, spring/top-hit behavior, repeated observer reset, pause/restart and scene persistence. Tested in `.unity-validation/` with matching final scripts, prefabs and scenes. [Results](Artifacts/powerups-playmode-results.xml).
+
+**12 Unity PlayMode tests passed, 0 failed** after the log-only change: mushroom/star collection logs once without changing Mario or score, star boxes in both worlds, shared physics, restart during spawning, coin/block behavior, pause and scene persistence. Final assets match the isolated validation copy. [Results](Artifacts/log-only-powerups-results.xml).
+
 ## Historical verification state
 
 **13 Unity PlayMode tests passed, 0 failed**, using Unity 6000.3.24f1. The full course run uses keyboard input to cross the compact course and its three-block gap. An isolated project avoided the open-editor lock; the verified scene and prefabs were copied byte-for-byte back into this project.
 
 Evidence: [test results](Artifacts/playmode-results.xml), [asset hashes](Artifacts/verification.json), [overview](Artifacts/overview.png), [gameplay HUD](Artifacts/gameplay-start.png), [course clear](Artifacts/gameplay-clear.png).
 
-Ground and finish-step colliders use Auto Tiling. Ground, Enemies and Obstacles have named layers; irrelevant enemy/terrain/obstacle interactions are disabled. The mixer includes All Audio and SFX Only views. Gameplay has no runtime scene repair, name-based sprite searches, legacy input, debug logging, or jump-over scoring.
+Ground and finish-step colliders use Auto Tiling. Ground, Enemies and Obstacles have named layers; irrelevant enemy/terrain/obstacle interactions are disabled. The mixer includes All Audio and SFX Only views. Gameplay has no runtime scene repair, name-based sprite searches, legacy input or jump-over scoring.
 
 Recordings from the previous longer layout are available in [the local review page](Artifacts/review.html): a continuous keyboard course run, individual behavior demonstrations, and a native AudioMixer/Inspector recording with live stomp audio. Captions explain the Enemies lowpass effect. The short behavior clips use test setup positions; the full course run does not teleport Mario. Those 12 recorded demonstrations passed before the course was shortened; they are historical evidence, not previews of the current layout. Audio tracks contain nonzero mixed output; this is a numeric audio check, not a human listening review.
 
