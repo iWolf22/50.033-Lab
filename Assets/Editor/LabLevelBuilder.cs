@@ -39,7 +39,7 @@ public static class LabLevelBuilder
         var playUI = Find("GamePlay");
         var overUI = finalScore.transform.parent.gameObject;
         foreach (var root in player.gameObject.scene.GetRootGameObjects())
-            if (new[] { "Scene", "Obstacles", "Enemies", "Sounds", "Course", "Game Session", "Game Manager" }.Contains(root.name))
+            if (new[] { "Scene", "Obstacles", "Enemies", "Sounds", "Course", "Game Session", "Game Manager", "Scene Audio" }.Contains(root.name))
                 Object.DestroyImmediate(root);
         GameObjectUtility.RemoveMonoBehavioursWithMissingScript(player.gameObject);
 
@@ -47,18 +47,17 @@ public static class LabLevelBuilder
         var terrain = Group("Terrain", course);
         var scenery = Group("Scenery", course);
         var obstacles = Group("Blocks and Pipes", course);
-        var enemies = Group("Enemies", course);
-        var session = new GameObject("Game Manager").AddComponent<GameManager>();
+        var enemies = ((GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemies/EnemyManager.prefab"), course)).transform;
+        var session = ((GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Core/GameManager.prefab"))).GetComponent<GameManager>();
         session.gameObject.tag = "Manager";
         var hud = playUI.transform.parent.GetComponent<HUDManager>();
         if (hud == null) hud = playUI.transform.parent.gameObject.AddComponent<HUDManager>();
-        var enemyManager = enemies.gameObject.AddComponent<EnemyManager>();
-        var sounds = Group("Scene Audio", course);
-        var stomp = Sound("Goomba Stomp", sounds, "smb_stomp.wav", "Enemies");
-        var death = Sound("Player Dies", sounds, "smb_death.mp3", "Special Event SFX");
-        var music = Sound("Background Music", sounds, "01-main-theme-overworld.mp3", "Background Music");
-        music.loop = music.playOnAwake = true;
-        music.gameObject.AddComponent<BackgroundMusic>();
+        var enemyManager = enemies.GetComponent<EnemyManager>();
+        var sounds = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Audio/SceneAudio.prefab"));
+        var sharedAudio = sounds.GetComponent<SceneAudio>();
+        var stomp = sharedAudio.goombaStomp;
+        var death = sharedAudio.playerDeath;
+        player.marioAudio = sharedAudio.playerJump;
         Set(hud, "scoreText", score); Set(hud, "finalScoreText", finalScore);
         Set(hud, "gamePlayUI", playUI); Set(hud, "gameOverUI", overUI);
         Set(enemyManager, "stompAudio", stomp);
@@ -85,8 +84,8 @@ public static class LabLevelBuilder
         Place(coinBrick, new Vector2(-1, 0), obstacles);
         Place(question, new Vector2(0, 0), obstacles);
         Place(plain, new Vector2(1, 0), obstacles);
-        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/MushroomQuestionBlock.prefab"), new Vector2(-3, 0), obstacles);
-        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/StarQuestionBlock.prefab"), new Vector2(2.5f, 0), obstacles);
+        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Blocks/MushroomQuestionBlock.prefab"), new Vector2(-3, 0), obstacles);
+        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Blocks/StarQuestionBlock.prefab"), new Vector2(2.5f, 0), obstacles);
         Platform(15, 0, obstacles);
         SpringBlock(17, 0, obstacles);
         BouncyCloud(12.5f, -0.5f, obstacles);
@@ -230,16 +229,6 @@ public static class LabLevelBuilder
         return visual;
     }
 
-    static AudioSource Sound(string name, Transform parent, string clip, string group)
-    {
-        var source = new GameObject(name).AddComponent<AudioSource>();
-        source.transform.SetParent(parent, false);
-        source.clip = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sounds/" + clip);
-        source.outputAudioMixerGroup = mixer.FindMatchingGroups(group).First(g => g.name == group);
-        source.playOnAwake = false;
-        return source;
-    }
-
     static void Set(Object target, string field, Object value)
     {
         var serialized = new SerializedObject(target);
@@ -287,19 +276,23 @@ public static class LabLevelBuilder
         var visual = Tile("Block visual", question ? "question-mark" : "brown-brick", Vector2.zero, root.transform, 2);
         var animator = visual.gameObject.AddComponent<Animator>();
         animator.runtimeAnimatorController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animation/Block.controller");
-        var coin = Tile("Coin", "coin", Vector2.zero, root.transform, 1);
-        coin.gameObject.SetActive(false);
-        var rewardEvent = coin.gameObject.AddComponent<AnimationEventIntTool>();
-        var audio = Sound("Block SFX", root.transform, "smb_coin.wav", "Obstacles SFX");
+        SpriteRenderer coin = null;
+        AnimationEventIntTool rewardEvent = null;
+        if (reward)
+        {
+            coin = Tile("Coin", "coin", Vector2.zero, root.transform, 1);
+            coin.gameObject.SetActive(false);
+            rewardEvent = coin.gameObject.AddComponent<AnimationEventIntTool>();
+        }
         var block = question ? (BlockBounce)root.AddComponent<QuestionBoxPowerupController>() : root.AddComponent<BrickPowerupController>();
         block.spawnCoin = reward; block.isQuestionBlock = question;
         block.flashSprite = Sprite("question-mark-flash"); block.solidSprite = Sprite("question-mark-solid");
         Set(block, "coinReward", rewardEvent);
-        Set(block, "powerup", coin.gameObject.AddComponent<CoinPowerup>());
+        Set(block, "powerup", coin != null ? coin.gameObject.AddComponent<CoinPowerup>() : null);
         Set(block, "visual", visual); Set(block, "coin", coin); Set(block, "bounceAnimator", animator);
-        Set(block, "audioSource", audio); Set(block, "coinSound", audio.clip);
+        Set(block, "coinSound", AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sounds/smb_coin.wav"));
         Set(block, "bumpSound", AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sounds/smb_bump.wav"));
-        var prefab = PrefabUtility.SaveAsPrefabAsset(root, "Assets/Prefabs/" + name + ".prefab");
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, "Assets/Prefabs/Blocks/" + (question ? "CoinQuestionBlock" : reward ? "CoinBrickBlock" : "BrickBlock") + ".prefab");
         Object.DestroyImmediate(root);
         return prefab;
     }
@@ -336,7 +329,7 @@ public static class LabLevelBuilder
             controller.AddMotion(clip);
         }
         root.AddComponent<Animator>().runtimeAnimatorController = controller;
-        var prefab = PrefabUtility.SaveAsPrefabAsset(root, "Assets/Prefabs/Goomba.prefab");
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, "Assets/Prefabs/Enemies/Goomba.prefab");
         Object.DestroyImmediate(root);
         return prefab;
     }
@@ -353,25 +346,7 @@ public static class LabLevelBuilder
 
     static void SpringBlock(float x, float y, Transform parent)
     {
-        var anchor = Group("Spring question block", parent);
-        anchor.position = new Vector3(x, y, 0);
-        anchor.gameObject.layer = 7;
-        var rails = anchor.gameObject.AddComponent<EdgeCollider2D>();
-        rails.points = new[] { new Vector2(-0.5f, -0.5f), new Vector2(-0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, -0.5f) };
-        var anchorBody = anchor.gameObject.AddComponent<Rigidbody2D>(); anchorBody.bodyType = RigidbodyType2D.Static;
-        var root = Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/question-mark-wrapper.prefab"), new Vector2(x, y), anchor);
-        var block = root.GetComponent<BlockBounce>();
-        var underside = root.GetComponent<BoxCollider2D>(); underside.size = new Vector2(1, 0.1f); underside.offset = new Vector2(0, -0.45f);
-        Object.DestroyImmediate(root.GetComponentInChildren<Animator>());
-        Set(block, "bounceAnimator", (Object)null);
-        var body = root.AddComponent<Rigidbody2D>(); body.gravityScale = 0;
-        body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        var spring = root.AddComponent<SpringJoint2D>();
-        spring.connectedBody = anchorBody; spring.autoConfigureConnectedAnchor = false;
-        spring.connectedAnchor = Vector2.up; spring.autoConfigureDistance = false; spring.distance = 1;
-        spring.frequency = 5; spring.dampingRatio = 0.8f;
-        Set(block, "springBody", body);
-        PrefabUtility.SaveAsPrefabAsset(anchor.gameObject, "Assets/Prefabs/SpringQuestionBlock.prefab");
+        Place(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Blocks/SpringQuestionBlock.prefab"), new Vector2(x, y), parent);
     }
 
     static void BouncyCloud(float x, float y, Transform parent)
@@ -384,7 +359,7 @@ public static class LabLevelBuilder
         cloud.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/lakitus-cloud.png");
         cloud.gameObject.layer = 7;
         var col = cloud.gameObject.AddComponent<BoxCollider2D>(); col.sharedMaterial = material;
-        PrefabUtility.SaveAsPrefabAsset(cloud.gameObject, "Assets/Prefabs/BouncyCloud.prefab");
+        PrefabUtility.SaveAsPrefabAsset(cloud.gameObject, "Assets/Prefabs/World/BouncyCloud.prefab");
     }
 
     static void Finish(float x, Transform parent, GameManager session)

@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     void Awake()
     {
+        marioAudio = SceneAudio.instance.playerJump;
+        deathAudio = SceneAudio.instance.playerDeath;
         speed = gameConstants.speed;
         maxSpeed = gameConstants.maxSpeed;
         upSpeed = gameConstants.upSpeed;

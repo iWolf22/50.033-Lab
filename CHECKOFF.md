@@ -56,11 +56,19 @@ The short World-1-2 demo has flat ground, one Goomba, clouds, a hill, bushes and
 
 The remaining [C# Quick Tour](https://natalieagus.github.io/50033/docs/children/static/) uses `IPowerup` / `IPowerupApplicable`, `PowerupType`, abstract `BasePowerup`, and coin/mushroom/star implementations. The mushroom question box extends the existing spring prefab; question and brick controllers share `BlockBounce`. Coins keep the original scoring event. Mushrooms and stars share emergence, movement and wall reversal. Collection only logs `mushroom collected` / `star collected`; neither changes Mario, grants invincibility, scores or plays a collection sound. Restart cancels spawns and restores consumed powerups. OneUpMushroom remains an enum entry.
 
-Mushroom boxes sit at x = -3 in World-1-1 and x = -2 in World-1-2; star boxes sit at x = 2.5 and x = 0 respectively. Existing scene transforms and UI positions were preserved; backups precede the edits.
+Mushroom boxes sit at x = -3 in World-1-1 and x = -2 in World-1-2; star boxes sit at x = 2.5 and x = 0 respectively. Existing scene transforms and UI positions were preserved.
 
 **Before the log-only change, 11 Unity PlayMode tests passed, 0 failed**: mushroom spawning/collection/wall reversal, coin scoring, brick breaking and restart, restart during emergence, spring/top-hit behavior, repeated observer reset, pause/restart and scene persistence. Tested in `.unity-validation/` with matching final scripts, prefabs and scenes. [Results](Artifacts/powerups-playmode-results.xml).
 
 **12 Unity PlayMode tests passed, 0 failed** after the log-only change: mushroom/star collection logs once without changing Mario or score, star boxes in both worlds, shared physics, restart during spawning, coin/block behavior, pause and scene persistence. Final assets match the isolated validation copy. [Results](Artifacts/log-only-powerups-results.xml).
+
+## Shared prefabs and hierarchy cleanup
+
+Blocks now have a flat root with `Block visual` and the selected powerup. Mushroom/star blocks no longer contain an unused coin or question wrapper. Their spring rails and moving underside remain intact. Prefabs are grouped by responsibility and reused in both worlds, including Mario, Canvas, EventSystem, GameManager, camera, ground, left boundary and the enemy manager. Scene-specific transforms/settings stay as overrides. New powerup blocks are under Course → Blocks and Pipes.
+
+One Scene Audio prefab per scene contains all six AudioSources; player, enemies and blocks share them. Existing clip/mixer/volume/pitch/loop settings were checked before and after saving. Only GameManager persists. Mario's existing GameConstants assignment is preserved.
+
+**16 Unity PlayMode tests passed, 0 failed**: shared audio/hierarchy, input and jumps, coin/brick/spring behavior, mushrooms/stars, death/restart, pause and scene persistence. Unity also verified saved sprite placements, collider bounds, UI transforms, prefab links, missing scripts and camera/SO bindings against the original scenes. Final assets match the tested copy. [Results](Artifacts/prefab-cleanup-results.xml), [layout verification](Artifacts/prefab-cleanup-verification.txt).
 
 ## Historical verification state
 

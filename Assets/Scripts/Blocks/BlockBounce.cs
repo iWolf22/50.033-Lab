@@ -29,21 +29,22 @@ public class BlockBounce : MonoBehaviour, IPowerupController
     void OnEnable()
     {
         GameManager.instance.gameRestart.AddListener(GameRestart);
-        coinReward.useInt.AddListener(GameManager.instance.IncreaseScore);
+        if (coinReward != null) coinReward.useInt.AddListener(GameManager.instance.IncreaseScore);
     }
 
     void OnDisable()
     {
         if (GameManager.instance == null) return;
         GameManager.instance.gameRestart.RemoveListener(GameRestart);
-        coinReward.useInt.RemoveListener(GameManager.instance.IncreaseScore);
+        if (coinReward != null) coinReward.useInt.RemoveListener(GameManager.instance.IncreaseScore);
     }
 
     void Awake()
     {
+        audioSource = SceneAudio.instance.blocks;
         startPosition = transform.position;
         initialSprite = visual.sprite;
-        coin.gameObject.SetActive(false);
+        if (coin != null) coin.gameObject.SetActive(false);
         if (bounceAnimator != null)
         {
             bounceAnimator.Play("Block Bounce", 0, 1);
@@ -86,8 +87,8 @@ public class BlockBounce : MonoBehaviour, IPowerupController
         visual.enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         if (powerup != null) powerup.ResetPowerup();
-        coin.transform.localPosition = Vector3.zero;
-        coin.gameObject.SetActive(false);
+        if (coin != null) coin.transform.localPosition = Vector3.zero;
+        if (coin != null) coin.gameObject.SetActive(false);
         visual.sprite = initialSprite;
         if (bounceAnimator != null)
         {

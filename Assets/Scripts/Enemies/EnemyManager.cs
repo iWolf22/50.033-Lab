@@ -5,7 +5,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] AudioSource stompAudio;
     EnemyMovement[] goombas;
 
-    void Awake() => goombas = GetComponentsInChildren<EnemyMovement>(true);
+    void Awake()
+    {
+        stompAudio = SceneAudio.instance.goombaStomp;
+        goombas = GetComponentsInChildren<EnemyMovement>(true);
+    }
 
     void OnEnable()
     {

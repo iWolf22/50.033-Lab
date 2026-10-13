@@ -33,6 +33,41 @@ public class ScenePersistenceTests
         .Single(text => text.name == "ScoreText");
 
     [UnityTest]
+    public IEnumerator SharedAudioAndFlatBlocksKeepBindingsInBothWorlds()
+    {
+        foreach (string world in new[] { "World-1-1", "World-1-2" })
+        {
+            yield return SceneManager.LoadSceneAsync(world);
+            yield return new WaitForSeconds(0.1f);
+            var audio = SceneAudio.instance;
+            Assert.IsNotNull(audio);
+            Assert.AreEqual(SceneManager.GetActiveScene(), audio.gameObject.scene);
+            var sources = Object.FindObjectsByType<AudioSource>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            Assert.AreEqual(6, sources.Length);
+            Assert.IsTrue(sources.All(source => source.transform.IsChildOf(audio.transform)));
+            Assert.AreEqual(6, sources.Select(source => (source.clip, source.outputAudioMixerGroup)).Distinct().Count());
+            var player = Object.FindFirstObjectByType<PlayerMovement>();
+            Assert.IsNull(player.GetComponent<AudioSource>());
+            Assert.AreSame(audio.playerJump, player.marioAudio);
+            Assert.AreSame(audio.playerDeath, player.deathAudio);
+            foreach (var block in Object.FindObjectsByType<BlockBounce>(FindObjectsSortMode.None))
+            {
+                var root = block.GetComponent<SpringJoint2D>() != null ? block.transform.parent : block.transform;
+                Assert.AreEqual(block.Powerup == null ? 1 : 2, root.childCount);
+                Assert.IsNull(root.Find("question-mark-wrapper"));
+                Assert.IsNull(root.GetComponentInChildren<AudioSource>(true));
+                Assert.AreEqual("Blocks and Pipes", root.parent.name);
+                if (block.Powerup is BasePowerup powerup) Assert.AreSame(root, powerup.transform.parent);
+            }
+            GameManager.instance.GameOver();
+            GameManager.instance.GameRestart();
+            yield return null;
+            Assert.AreEqual(1, Time.timeScale);
+            Assert.AreEqual(0, GameManager.instance.Score);
+        }
+    }
+
+    [UnityTest]
     public IEnumerator PauseResumeAndRestartWorkInBothWorlds()
     {
         foreach (string world in new[] { "World-1-1", "World-1-2" })

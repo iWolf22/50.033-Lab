@@ -273,9 +273,9 @@ public class CourseTests
             yield return new WaitForFixedUpdate();
             Teleport((Vector2)block.transform.position + Vector2.down * 1.1f, Vector2.up * 8);
             yield return new WaitForSeconds(0.15f);
-            Assert.AreEqual(reward, block.transform.Find("Coin").gameObject.activeSelf);
+            Assert.AreEqual(reward, block.transform.Find("Coin") != null && block.transform.Find("Coin").gameObject.activeSelf);
             Assert.Greater(block.transform.Find("Block visual").localPosition.y, 0.05f);
-            Assert.IsTrue(block.GetComponentInChildren<AudioSource>().isPlaying);
+            Assert.IsTrue(SceneAudio.instance.blocks.isPlaying);
             yield return new WaitForSeconds(0.55f);
             Assert.IsTrue(block.gameObject.activeSelf);
             Assert.That(block.transform.Find("Block visual").localPosition.y, Is.EqualTo(0).Within(0.01f));
@@ -283,7 +283,7 @@ public class CourseTests
             yield return new WaitForFixedUpdate();
             Teleport((Vector2)block.transform.position + Vector2.down * 1.1f, Vector2.up * 8);
             yield return new WaitForSeconds(0.15f);
-            Assert.IsFalse(block.transform.Find("Coin").gameObject.activeSelf);
+            Assert.IsTrue(block.transform.Find("Coin") == null || !block.transform.Find("Coin").gameObject.activeSelf);
         }
     }
 
@@ -351,7 +351,7 @@ public class CourseTests
         {
             Assert.IsFalse(((BasePowerup)block.Powerup).gameObject.activeSelf);
             Assert.IsFalse(block.Powerup.hasSpawned);
-            Assert.AreNotEqual("question-mark-solid", block.transform.Find("Block visual").GetComponent<SpriteRenderer>().sprite.name);
+            Assert.AreNotEqual("question-mark-solid", block.GetComponentInChildren<SpriteRenderer>().sprite.name);
         }
         // Re-enabling the observer must not accumulate duplicate score subscriptions.
         for (int i = 0; i < 2; i++) { enemyManager.enabled = false; enemyManager.enabled = true; }

@@ -4,8 +4,10 @@
 
 - Keep replies, progress updates and questions concise and direct.
 - Make minimal, clean changes using Unity best practices; follow the requested tutorial section and skip temporary work that later sections remove.
-- Update authorized scenes without routine save confirmations; preserve user layouts and make backups before replacements.
+- Complete authorized work without routine confirmations; preserve user layouts and Inspector settings. Use Git for recovery; do not create backup copies.
+- Keep block hierarchies flat: root → Block visual + the selected powerup. Group assets by purpose; reuse interactive prefabs across scenes (including Mario and Canvas). Decorative objects need not be prefabs. Keep sounds in one scene-local Scene Audio prefab.
 - Mushroom and star collection only log to the Console; do not add growth, invincibility, score or other effects unless requested.
+- Respect code-only requests; explain the Inspector steps needed to hook up changes.
 - Add new preferences and reusable Unity development/testing/debugging insights here as they arise. Use short bullets, merge duplicates and remove stale guidance to save tokens.
 
 ## Scope
@@ -27,11 +29,10 @@
 ## Protect the user's scene
 
 - `Assets/Scenes/World-1-1.unity` and `World-1-2.unity` are the working scenes. User edits to object positions, UI and Inspector settings take priority over the builder's layout.
-- Before replacing scenes or prefabs, make a dated backup of the current files.
 - Prefer targeted edits. Never copy a generated validation scene over the working scene merely to apply script changes.
 - `Tools → Lab → Rebuild Mario Course` / `LabLevelBuilder.Build` replaces the layout. Run it only when that replacement is explicitly requested.
 - Never close the user's Unity editor, kill its process or delete its lock files to run validation.
-- A generated-scene replacement previously lost user placements. Recovery copies contain baselines/older scenes; preserve them and verify their contents before claiming recovery.
+- Generated layouts can overwrite user placements; verify saved scene transforms and serialized bindings after hierarchy or prefab changes.
 
 ## Course and asset details
 
@@ -45,7 +46,7 @@
 - Inspect the working tree first and preserve unrelated edits.
 - Unity is **6000.3.24f1**, URP 2D. On this machine the Windows editor is under `C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe`.
 - If the main project is open, validate in ignored `.unity-validation/`. Refresh relevant assets/sources first; the copy may contain stale files or temporary tools.
-- Only GameManager persists; pair scene event subscriptions with unsubscriptions.
+- Only GameManager persists; pair scene event subscriptions with unsubscriptions. SceneAudio provides shared sources and is recreated with each scene.
 - Keep consumed powerups and broken bricks available for in-place restart; cancel powerup coroutines and disable physics before restoring their spawn positions.
 - Unity's test runner also creates persistent objects; persistence tests should count gameplay objects rather than every DontDestroyOnLoad root.
 - Gameplay tests live in `Assets/Tests/PlayMode`. Run Unity with `-batchmode -projectPath <copy> -runTests -testPlatform PlayMode -testResults <xml> -logFile <log>`; omit `-quit` for the test runner.

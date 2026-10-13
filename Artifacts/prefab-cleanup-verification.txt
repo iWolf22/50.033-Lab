@@ -1,0 +1,1 @@
+Both scenes: visuals, collider bounds, UI transforms and audio settings preserved; prefab links and scene references verified.

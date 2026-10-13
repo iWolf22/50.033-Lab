@@ -8,7 +8,7 @@ The course builder is `Tools → Lab → Rebuild Mario Course`. It saves the lev
 
 The compact course runs from Mario's spawn at x = -5 to the finish at x = 20, with one three-block gap and all lab obstacle types. It retains the original ending screen.
 
-Scripts under `Assets/Scripts/` are grouped into `Core`, `Player`, `Enemies`, `Blocks`, `Powerups`, `UI`, `World` and `Audio`. Editor tools stay in `Assets/Editor`, tests in `Assets/Tests/PlayMode`, and generated input code beside its input asset.
+Scripts under `Assets/Scripts/` are grouped into `Core`, `Player`, `Enemies`, `Blocks`, `Powerups`, `UI`, `World`, `Audio` and `ScriptableObjects`. Editor tools stay in `Assets/Editor`, tests in `Assets/Tests/PlayMode`, and generated input code beside its input asset.
 
 Gameplay stays in small components:
 
@@ -26,6 +26,8 @@ Gameplay stays in small components:
 
 See [CHECKOFF.md](CHECKOFF.md) for lab coverage and verification status. Automated gameplay checks are in `Assets/Tests/PlayMode` and run through Unity's Test Runner.
 
-The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `RestartButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. `RestartButtonController` and `PauseButtonController` implement `IInteractiveButton`; the yellow pause button beside restart switches to play while paused. The rest of the C# Quick Tour is implemented: `IPowerup`, `BasePowerup`, coin/mushroom/star subclasses and separate question/brick controllers. Hit the new spring mushroom box from below (x = -3 in World-1-1, x = -2 in World-1-2); Mushrooms and stars pop out, move with the same physics and print `mushroom collected` / `star collected` when touched. They do not change Mario or the score. Star boxes sit at x = 2.5 in World-1-1 and x = 0 in World-1-2. Restart restores the powerups. ScriptableObjects remain outside this scope.
+The first Children/C# Static Variable section is implemented: only `GameManager` persists, scene components subscribe to its UnityEvents, and restart buttons use `RestartButtonController`. Enter the castle in World-1-1 to load the short World-1-2 demo and keep your score. World-1-2 can also be opened directly. `RestartButtonController` and `PauseButtonController` implement `IInteractiveButton`; the yellow pause button beside restart switches to play while paused. The rest of the C# Quick Tour is implemented: `IPowerup`, `BasePowerup`, coin/mushroom/star subclasses and separate question/brick controllers. Hit the new spring mushroom box from below (x = -3 in World-1-1, x = -2 in World-1-2); Mushrooms and stars pop out, move with the same physics and print `mushroom collected` / `star collected` when touched. They do not change Mario or the score. Star boxes sit at x = 2.5 in World-1-1 and x = 0 in World-1-2. Restart restores the powerups. Mario's four movement settings come from the shared GameConstants ScriptableObject.
 
 Historical demonstrations of the previous longer layout with game audio: [review page](Artifacts/review.html).
+
+Interactive prefabs are grouped under `Assets/Prefabs/Blocks`, `Player`, `Enemies`, `UI`, `Audio`, `Core` and `World`. Both worlds reuse Mario, Canvas, EventSystem, GameManager, camera, terrain and Scene Audio prefabs. Scene-specific positions and settings remain overrides. Blocks have only `Block visual` and their selected coin/mushroom/star as children; plain bricks only have the visual. Spring physics live on the visual so the outer wrapper is unnecessary. All AudioSources live under one Scene Audio instance per world and retain their mixer routing.
