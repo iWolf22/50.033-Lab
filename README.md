@@ -8,6 +8,8 @@ The course builder is `Tools → Lab → Rebuild Mario Course`. It saves the lev
 
 The compact course runs from Mario's spawn at x = -5 to the finish at x = 20, with one three-block gap and all lab obstacle types. It retains the original ending screen.
 
+Scripts under `Assets/Scripts/` are grouped into `Core`, `Player`, `Enemies`, `Blocks`, `Powerups`, `UI`, `World` and `Audio`. Editor tools stay in `Assets/Editor`, tests in `Assets/Tests/PlayMode`, and generated input code beside its input asset.
+
 Gameplay stays in small components:
 
 - `ActionManager`: Input System callbacks → Inspector UnityEvents.

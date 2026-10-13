@@ -13,6 +13,7 @@
 - This is a 50.033 lab project. Keep changes minimal and understandable for the student.
 - Read `README.md` and `CHECKOFF.md` for architecture, tutorial links and verification. Coverage ends at Toddlers; implement Children/Lab 4 or later work only when requested.
 - Use existing components, Inspector references, UnityEvents and the Input System. Preserve `.meta` GUIDs and serialized bindings when renaming/refactoring.
+- Group runtime scripts by responsibility under `Assets/Scripts`; move each script with its `.meta` and keep the gameplay assembly definition at that root.
 
 ## Runtime contracts
 
