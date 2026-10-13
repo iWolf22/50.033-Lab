@@ -92,4 +92,6 @@ Show PlayerInput and its action asset, the dynamic MoveCheck UnityEvent binding,
 
 Main Menu and Loading are panels in the existing Canvas prefab, styled like Game Over and shown over World-1-1. Start shows a brief simulated loading overlay; Back to Menu cancels it. Home during play and Menu after death return to the World-1-1 menu. Returning home resets the course in place. The separate menu scenes and extra Canvas prefab were removed.
 
+`GameScore` is a ScriptableObject asset shared by both worlds. Its serialized high score survives stopping and restarting Play Mode in the Editor; current score remains in memory, carries into World-1-2, and resets on restart. The main menu displays the high score and has a reset button. Three navigation PlayMode tests passed, including high-score retention after manager recreation, cross-world score carryover, and the menu reset.
+
 The final run passed 21 of 24 PlayMode tests, including both new navigation tests, scene persistence, powerups and main course interactions. Three historical course tests use positions from the older layout and failed (cloud at x=12.5, full course route, finish at x=20). [Results](Artifacts/Lab4/Verification/overlay-navigation-results.xml), [main menu preview](Artifacts/Lab4/Previews/Overlay-MainMenu.png), [loading preview](Artifacts/Lab4/Previews/Overlay-Loading.png).

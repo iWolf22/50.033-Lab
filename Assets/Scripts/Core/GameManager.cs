@@ -5,18 +5,20 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-100)]
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] GameScore gameScore;
     public UnityEvent gameStart = new();
     public UnityEvent gameRestart = new();
     public UnityEvent<int> scoreChange = new();
     public UnityEvent gameOver = new();
-    public int Score { get; private set; }
+    public int Score => gameScore.CurrentScore;
+    public int HighScore => gameScore.HighScore;
     public bool HasStarted { get; private set; }
     bool finished;
 
     void Start()
     {
         Time.timeScale = 1;
-        SetScore(Score);
+        SetScore(0);
         gameStart.Invoke();
         SceneManager.activeSceneChanged += SceneSetup;
     }
@@ -42,7 +44,13 @@ public class GameManager : Singleton<GameManager>
 
     public void SetScore(int value)
     {
-        Score = value;
+        gameScore.SetScore(value);
+        scoreChange.Invoke(Score);
+    }
+
+    public void ResetHighScore()
+    {
+        gameScore.ResetHighScore();
         scoreChange.Invoke(Score);
     }
 

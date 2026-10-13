@@ -6,6 +6,7 @@ public class HUDManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI finalScoreText;
+    [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] GameObject gamePlayUI;
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject mainMenuUI;
@@ -68,6 +69,12 @@ public class HUDManager : MonoBehaviour
     public void SetScore(int score)
     {
         scoreText.text = finalScoreText.text = $"Score: {score}";
+        highScoreText.text = $"High Score: {GameManager.instance.HighScore}";
+    }
+
+    public void ResetHighScore()
+    {
+        GameManager.instance.ResetHighScore();
     }
 
     public void GameOver()

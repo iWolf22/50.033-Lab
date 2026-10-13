@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc662721c0049cd91c5222a4c545523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Mario.Gameplay::GameManager
+  gameScore: {fileID: 11400000, guid: 2ac8ac85eca345f39350fbb1ce92bfca, type: 2}
   gameStart:
     m_PersistentCalls:
       m_Calls: []

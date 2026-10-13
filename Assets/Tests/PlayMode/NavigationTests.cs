@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -85,5 +86,31 @@ public class NavigationTests
         Assert.AreEqual("World-1-1", SceneManager.GetActiveScene().name);
         Assert.IsTrue(Panel("MainMenu").activeInHierarchy);
         Assert.AreEqual(0, GameManager.instance.Score);
+    }
+
+    [UnityTest]
+    public IEnumerator HighScoreSurvivesManagerRecreationAndResetsFromMenu()
+    {
+        var manager = GameManager.instance;
+        manager.ResetHighScore();
+        manager.IncreaseScore(5);
+        Assert.AreEqual(5, manager.HighScore);
+
+        yield return SceneManager.LoadSceneAsync("World-1-2");
+        yield return null;
+        Assert.AreEqual(5, GameManager.instance.Score);
+        Assert.AreEqual("Score: 5", Panel("GamePlay").transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text);
+
+        Object.Destroy(manager.gameObject);
+        yield return null;
+        yield return SceneManager.LoadSceneAsync("World-1-1");
+        yield return null;
+        Assert.AreEqual(0, GameManager.instance.Score);
+        Assert.AreEqual(5, GameManager.instance.HighScore);
+        Assert.AreEqual("High Score: 5", Panel("MainMenu").transform.Find("HighScoreText").GetComponent<TextMeshProUGUI>().text);
+
+        Click("MainMenu", "ResetHighScoreButton");
+        Assert.AreEqual(0, GameManager.instance.HighScore);
+        Assert.AreEqual("High Score: 0", Panel("MainMenu").transform.Find("HighScoreText").GetComponent<TextMeshProUGUI>().text);
     }
 }

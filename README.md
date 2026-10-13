@@ -14,7 +14,7 @@ Gameplay stays in small components:
 
 - `ActionManager`: Input System callbacks → Inspector UnityEvents.
 - `PlayerMovement`: physics, facing, jumping, stomping and death animation callbacks.
-- `GameManager`: owns score and the start, restart, score-change and game-over UnityEvents.
+- `GameManager`: owns score and the start, restart, score-change and game-over UnityEvents. Its `GameScore` ScriptableObject keeps the high score between Editor Play sessions; the main menu displays and resets it.
 - `HUDManager`: listens to those events to update scores and toggle the existing UI.
 - `EnemyManager`: subscribes to Goomba events, awards stomp points, plays stomp audio and resets enemies.
 - `EnemyMovement`: physics-timestep patrol and one-time stomp event.
