@@ -8,6 +8,8 @@
 - Keep block hierarchies flat: root → Block visual + the selected powerup. Group assets by purpose; reuse interactive prefabs across scenes (including Mario and Canvas). Decorative objects need not be prefabs. Keep sounds in one scene-local Scene Audio prefab.
 - Mushroom and star collection only log to the Console; do not add growth, invincibility, score or other effects unless requested.
 - Group artifacts by lab and purpose; keep showcase links working when moving files.
+- Keep menus as simple panels in the existing Canvas, styled like Game Over over World-1-1. Include Home during play and Menu after death; loading is simulated.
+- Match menu icon pixel art and spacing; dim the scene behind active menus. Verify menu and gameplay layouts with screenshots.
 - Respect code-only requests; explain the Inspector steps needed to hook up changes.
 - Add new preferences and reusable Unity development/testing/debugging insights here as they arise. Use short bullets, merge duplicates and remove stale guidance to save tokens.
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ public class HUDManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI finalScoreText;
     [SerializeField] GameObject gamePlayUI;
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject mainMenuUI;
+    [SerializeField] GameObject loadingUI;
+    Coroutine loading;
 
     void OnEnable()
     {
@@ -27,8 +31,38 @@ public class HUDManager : MonoBehaviour
 
     public void GameStart()
     {
-        gameOverUI.SetActive(false);
-        gamePlayUI.SetActive(true);
+        SetPanels(GameManager.instance.HasStarted ? gamePlayUI : mainMenuUI);
+        Time.timeScale = GameManager.instance.HasStarted ? 1 : 0;
+        AudioListener.pause = !GameManager.instance.HasStarted;
+    }
+
+    void SetPanels(GameObject visible)
+    {
+        gamePlayUI.SetActive(visible == gamePlayUI);
+        gameOverUI.SetActive(visible == gameOverUI);
+        mainMenuUI.SetActive(visible == mainMenuUI);
+        loadingUI.SetActive(visible == loadingUI);
+    }
+
+    public void ShowLoading()
+    {
+        if (loading != null) return;
+        SetPanels(loadingUI);
+        loading = StartCoroutine(BeginGame());
+    }
+
+    IEnumerator BeginGame()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        loading = null;
+        GameManager.instance.GameRestart();
+    }
+
+    public void ReturnToMenu()
+    {
+        if (loading != null) StopCoroutine(loading);
+        loading = null;
+        GameManager.instance.ReturnToMenu();
     }
 
     public void SetScore(int score)
@@ -38,7 +72,6 @@ public class HUDManager : MonoBehaviour
 
     public void GameOver()
     {
-        gamePlayUI.SetActive(false);
-        gameOverUI.SetActive(true);
+        SetPanels(gameOverUI);
     }
 }

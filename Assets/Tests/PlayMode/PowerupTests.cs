@@ -14,6 +14,7 @@ public class PowerupTests
         if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-1");
+        GameManager.instance.GameRestart();
         yield return new WaitForSeconds(0.1f);
         foreach (var enemy in Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None))
             enemy.GetComponent<Collider2D>().enabled = false;

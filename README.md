@@ -2,7 +2,7 @@
 
 Unity **6000.3.24f1**, URP 2D, Input System.
 
-Open `Assets/Scenes/World-1-1.unity`. Move with **A/D** or **←/→**, jump with **Space**, and hold Space for a higher jump. Coins and stomped Goombas award points; touching enemy sides or falling into a pit ends the run. Restart uses Inspector events to restore coins, blocks, enemies, score, camera and input state in the same scene.
+Open `Assets/Scenes/World-1-1.unity`. Its Canvas shows a main menu over the level. Start briefly shows a loading overlay, then begins play; Back to Menu cancels loading. Home at the top right and Menu on the death screen return to the main menu. World-1-2 can still be opened directly. Move with **A/D** or **←/→**, jump with **Space**, and hold Space for a higher jump. Coins and stomped Goombas award points; touching enemy sides or falling into a pit ends the run. Restart uses Inspector events to restore coins, blocks, enemies, score, camera and input state in the same scene.
 
 The course builder is `Tools → Lab → Rebuild Mario Course`. It saves the level and reusable prefabs in the editor. Rebuilding replaces the course layout, so save custom layouts separately first.
 

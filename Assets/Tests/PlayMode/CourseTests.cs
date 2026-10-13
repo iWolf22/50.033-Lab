@@ -29,6 +29,7 @@ public class CourseTests
         InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
         InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
         yield return SceneManager.LoadSceneAsync("World-1-1");
+        GameManager.instance.GameRestart();
         player = Object.FindFirstObjectByType<PlayerMovement>();
         body = player.GetComponent<Rigidbody2D>();
         keyboard = InputSystem.AddDevice<Keyboard>();
@@ -216,6 +217,7 @@ public class CourseTests
         Assert.AreEqual(0, Time.timeScale);
         Time.timeScale = 1;
         yield return SceneManager.LoadSceneAsync("World-1-1");
+        GameManager.instance.GameRestart();
         player = Object.FindFirstObjectByType<PlayerMovement>(); body = player.GetComponent<Rigidbody2D>();
         yield return null;
         Teleport(new Vector2(20, -2.4f), Vector2.zero);

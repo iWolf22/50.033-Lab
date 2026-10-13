@@ -18,6 +18,7 @@ public class ScenePersistenceTests
         if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-1");
+        GameManager.instance.GameRestart();
         yield return new WaitForSeconds(0.1f);
     }
 
@@ -188,6 +189,7 @@ public class ScenePersistenceTests
         Object.Destroy(GameManager.instance.gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-2");
+        if (!GameManager.instance.HasStarted) GameManager.instance.GameRestart();
         yield return new WaitForSeconds(0.1f);
         Assert.IsNotNull(GameManager.instance);
         Assert.AreEqual(0, GameManager.instance.Score);

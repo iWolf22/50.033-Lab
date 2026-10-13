@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<int> scoreChange = new();
     public UnityEvent gameOver = new();
     public int Score { get; private set; }
+    public bool HasStarted { get; private set; }
     bool finished;
 
     void Start()
@@ -53,8 +54,19 @@ public class GameManager : Singleton<GameManager>
         gameOver.Invoke();
     }
 
+    public void ReturnToMenu()
+    {
+        GameRestart();
+        HasStarted = false;
+        if (SceneManager.GetActiveScene().name != "World-1-1")
+            SceneManager.LoadSceneAsync("World-1-1");
+        else
+            gameStart.Invoke();
+    }
+
     public void GameRestart()
     {
+        HasStarted = true;
         finished = false;
         Time.timeScale = 1;
         SetScore(0);

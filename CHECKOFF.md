@@ -87,3 +87,9 @@ Recording helpers live outside Assets in Artifacts/Lab3/RecordingTools and run o
 Record with sound: walk/reverse/stop; tap and held jump; climb a pipe; pass through and land on the one-way platform; bounce on the cloud; hit each block type from below, then land on the question block and hit it again; stomp a Goomba and show the flattened sprite and score; jump over another without score; demonstrate death, Game Over and restart; reach the finish.
 
 Show PlayerInput and its action asset, the dynamic MoveCheck UnityEvent binding, the stomp event subscriber, all audio routing groups, the Enemies Lowpass Inspector and the terminal-cue Send/Background Music Duck Volume settings. Explain that the lowpass makes a stomp sound like a dull impact. The Profiler walkthrough is optional practice, not a required checkoff item.
+
+## Children: Navigate Between Scenes
+
+Main Menu and Loading are panels in the existing Canvas prefab, styled like Game Over and shown over World-1-1. Start shows a brief simulated loading overlay; Back to Menu cancels it. Home during play and Menu after death return to the World-1-1 menu. Returning home resets the course in place. The separate menu scenes and extra Canvas prefab were removed.
+
+The final run passed 21 of 24 PlayMode tests, including both new navigation tests, scene persistence, powerups and main course interactions. Three historical course tests use positions from the older layout and failed (cloud at x=12.5, full course route, finish at x=20). [Results](Artifacts/Lab4/Verification/overlay-navigation-results.xml), [main menu preview](Artifacts/Lab4/Previews/Overlay-MainMenu.png), [loading preview](Artifacts/Lab4/Previews/Overlay-Loading.png).
