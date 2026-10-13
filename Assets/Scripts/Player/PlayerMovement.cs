@@ -3,10 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(BoxCollider2D))]
 public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 {
-    public float speed = 45;
-    public float maxSpeed = 6;
-    public float upSpeed = 15;
-    public float deathImpulse = 12;
+    [SerializeField] GameConstants gameConstants;
+    float speed;
+    public float maxSpeed { get; private set; }
+    float upSpeed;
+    float deathImpulse;
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioSource deathAudio;
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     void Awake()
     {
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        upSpeed = gameConstants.upSpeed;
+        deathImpulse = gameConstants.deathImpulse;
         body = GetComponent<Rigidbody2D>();
         startPosition = body.position;
         startScale = transform.localScale;

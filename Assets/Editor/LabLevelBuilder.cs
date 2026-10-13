@@ -65,7 +65,6 @@ public static class LabLevelBuilder
         Set(player, "deathAudio", death);
         Set(player, "groundLayers", (1 << 3) | (1 << 7));
         player.GetComponent<PlayerInput>().defaultControlScheme = "Keyboard";
-        player.speed = 45; player.maxSpeed = 6; player.upSpeed = 15; player.deathImpulse = 12;
         player.transform.position = new Vector3(-5, -2.45f, 0);
         var body = player.GetComponent<Rigidbody2D>();
         body.gravityScale = 3; body.interpolation = RigidbodyInterpolation2D.Interpolate;

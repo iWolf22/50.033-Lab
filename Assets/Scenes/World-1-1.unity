@@ -1183,10 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f550d2f9a8431c49a6615973b41e59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 45
-  maxSpeed: 6
-  upSpeed: 15
-  deathImpulse: 12
+  gameConstants: {fileID: 11400000, guid: a538c69af1f228a41b49bd50cb70a188, type: 2}
   marioAnimator: {fileID: 759450267}
   marioAudio: {fileID: 759450268}
   deathAudio: {fileID: 2146890857}
