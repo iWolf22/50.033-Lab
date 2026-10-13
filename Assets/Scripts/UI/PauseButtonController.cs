@@ -30,6 +30,7 @@ public class PauseButtonController : MonoBehaviour, IInteractiveButton
         if (!gameObject.activeInHierarchy) return;
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
+        AudioListener.pause = isPaused;
         image.sprite = isPaused ? playIcon : pauseIcon;
     }
 

@@ -85,6 +85,7 @@ public class ScenePersistenceTests
             Assert.IsInstanceOf<IInteractiveButton>(restart);
             button.onClick.Invoke();
             Assert.AreEqual(0, Time.timeScale);
+            Assert.IsTrue(AudioListener.pause);
             Assert.AreNotSame(pauseIcon, image.sprite);
             var enemy = Object.FindFirstObjectByType<EnemyMovement>();
             Vector3 position = enemy.transform.position;
@@ -92,6 +93,7 @@ public class ScenePersistenceTests
             Assert.AreEqual(position, enemy.transform.position);
             button.onClick.Invoke();
             Assert.AreEqual(1, Time.timeScale);
+            Assert.IsFalse(AudioListener.pause);
             Assert.AreSame(pauseIcon, image.sprite);
             yield return new WaitForSeconds(0.1f);
             Assert.AreNotEqual(position, enemy.transform.position);
@@ -99,6 +101,7 @@ public class ScenePersistenceTests
             button.onClick.Invoke();
             restart.GetComponent<Button>().onClick.Invoke();
             Assert.AreEqual(1, Time.timeScale);
+            Assert.IsFalse(AudioListener.pause);
             Assert.AreEqual(0, GameManager.instance.Score);
             Assert.AreSame(pauseIcon, image.sprite);
             button.onClick.Invoke();
