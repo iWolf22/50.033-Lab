@@ -24,7 +24,3 @@ Covers Weeks 1-5: Unity basics, animation, Input System + AudioMixer + Observer 
 ## Course
 
 SUTD 50.033 Game Development and Design, Fall 2026 exchange term. Lab docs: https://natalieagus.github.io/50033/docs/syllabus
-
-## Teens demo
-
-[Lab 5 recording and verification](Artifacts/Lab5/review.html). World-1-1 has mushroom, Fire Flower and star boxes. Move with A/D or arrows, jump with Space and fire with Z in Fire Mario form.
