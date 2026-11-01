@@ -6,6 +6,8 @@ public class NextScene : MonoBehaviour
     public string nextSceneName;
     bool loading;
 
+    public void GameRestart() => loading = false;
+
     private void Awake()
     {
         if (TryGetComponent<SpriteRenderer>(out var visual))

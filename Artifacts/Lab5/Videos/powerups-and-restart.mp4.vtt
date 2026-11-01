@@ -1,0 +1,47 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.000
+Teens checkoff : focused gameplay demonstrations
+
+00:00:01.000 --> 00:00:01.500
+Start game
+
+00:00:01.500 --> 00:00:03.833
+Mushroom: Small Mario to Big Mario
+
+00:00:03.833 --> 00:00:06.167
+Fire Flower: Big Mario to Fire Mario
+
+00:00:06.167 --> 00:00:07.567
+Z fires in Mario's facing direction; maximum 3 fireballs
+
+00:00:07.567 --> 00:00:10.567
+Fireballs disappear after 2.5 seconds
+
+00:00:10.567 --> 00:00:12.900
+Star: timed invincibility; Fire Mario form stays active
+
+00:00:12.900 --> 00:00:14.500
+Star contact defeats a Goomba and keeps Mario safe
+
+00:00:14.500 --> 00:00:21.833
+The star buff expires; Mario keeps the Fire form
+
+00:00:21.833 --> 00:00:24.367
+Enemy side hit: Fire to Small, with brief damage protection
+
+00:00:24.367 --> 00:00:26.033
+After protection expires, another side hit causes death
+
+00:00:26.033 --> 00:00:27.033
+Restart resets Mario, buffs, boxes, enemies, score and music
+
+00:00:27.033 --> 00:00:27.800
+A stomp earns a point before entering the next world
+
+00:00:27.800 --> 00:00:29.133
+World 1-2: score carries over through shared ScriptableObject data
+
+00:00:29.133 --> 00:00:30.300
+Restart also works independently in World 1-2
+

@@ -35,6 +35,15 @@
                     "interactions": "Hold(duration=0.15)",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "fire",
+                    "type": "Button",
+                    "id": "13056d0c-0f4d-4a9b-adab-7e51447a90c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -123,6 +132,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "jumphold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7cc79e2a-97df-473a-836a-b22dd32d3b61",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -6,6 +6,14 @@ public class GameScore : ScriptableObject
     [SerializeField] int highScore;
     [System.NonSerialized] int currentScore;
 
+    public bool HasStarted { get; set; }
+
+    void OnEnable()
+    {
+        currentScore = 0;
+        HasStarted = false;
+    }
+
     public int CurrentScore => currentScore;
     public int HighScore => highScore;
 

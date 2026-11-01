@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 09:39:55Z" end-time="2026-10-31 09:40:29Z" duration="34.4054659">
+  <test-suite type="TestSuite" id="1042" name="My project" fullname="My project" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-31 09:39:55Z" end-time="2026-10-31 09:40:29Z" duration="34.405466" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1038" name="Mario.PlayModeTests.dll" fullname="D:/Folder Data Base/University-Of-Waterloo/3B/50.033/My project/.unity-validation/Library/ScriptAssemblies/Mario.PlayModeTests.dll" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-31 09:39:55Z" end-time="2026-10-31 09:40:29Z" duration="34.392239" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="36372" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestFixture" id="1030" name="TeenRecordingTests" fullname="TeenRecordingTests" classname="TeenRecordingTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-31 09:39:55Z" end-time="2026-10-31 09:40:29Z" duration="34.389337" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1031" name="RecordPowerupsRestartAndSceneCarryover" fullname="TeenRecordingTests.RecordPowerupsRestartAndSceneCarryover" methodname="RecordPowerupsRestartAndSceneCarryover" classname="TeenRecordingTests" runstate="Runnable" seed="455256521" result="Passed" start-time="2026-10-31 09:39:55Z" end-time="2026-10-31 09:40:29Z" duration="34.367632" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+fire flower collected
+star collected
+Saving results to: C:/Users/joshu/AppData/LocalLow/DefaultCompany/My project\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

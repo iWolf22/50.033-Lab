@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278834a67eba4e8994bee48d9771fa37, type: 3}
+  m_Name: SmallMario
+  m_EditorClassIdentifier: Mario.Gameplay::State
+  setupActions:
+  - {fileID: 11400000, guid: e96c8d6887dc799418b63741c69b870e, type: 2}
+  actions: []
+  exitActions: []
+  attackActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: bde816889fc9eb04eb2fd6381f01a340, type: 2}
+    trueState: {fileID: 11400000, guid: ff0b8e2d691d8334684af37efb0689a7, type: 2}
+    falseState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}
+  - decision: {fileID: 11400000, guid: bcf3f9a200a381945a6f46371ffd10c2, type: 2}
+    trueState: {fileID: 11400000, guid: 9c04ffff5bc4e87449ea6e24b501ece7, type: 2}
+    falseState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}
+  - decision: {fileID: 11400000, guid: 76ed21dd1f260844f87130e42ec630cc, type: 2}
+    trueState: {fileID: 11400000, guid: f498d5b5284872e4f94aa243585d9c9d, type: 2}
+    falseState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}

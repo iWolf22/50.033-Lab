@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2848554000824259771}
   - component: {fileID: 6494282024172496282}
   - component: {fileID: 2677604589220977469}
+  - component: {fileID: 5741580650067878849}
   m_Layer: 7
   m_Name: Block visual
   m_TagString: Untagged
@@ -214,6 +215,34 @@ MonoBehaviour:
   springBody: {fileID: 8767278470781545613}
   powerup: {fileID: 8040808489787926072}
   coinReward: {fileID: 2591576779462800571}
+--- !u!114 &5741580650067878849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228421301903806301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2677604589220977469}
+        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4994807932424796032
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +351,19 @@ MonoBehaviour:
   parameter: 1
   useInt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: bb223343e4440074a865be40da63b19f, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8040808489787926072
 MonoBehaviour:
   m_ObjectHideFlags: 0

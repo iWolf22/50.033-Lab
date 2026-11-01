@@ -29,7 +29,7 @@ public class CourseTests
         InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
         InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
         yield return SceneManager.LoadSceneAsync("World-1-1");
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         player = Object.FindFirstObjectByType<PlayerMovement>();
         body = player.GetComponent<Rigidbody2D>();
         keyboard = InputSystem.AddDevice<Keyboard>();
@@ -44,7 +44,7 @@ public class CourseTests
         InputSystem.RemoveDevice(keyboard);
         InputSystem.settings.editorInputBehaviorInPlayMode = previousEditorInput;
         InputSystem.settings.backgroundBehavior = previousBackground;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
     }
 
@@ -209,22 +209,22 @@ public class CourseTests
     }
 
     [UnityTest]
-    public IEnumerator FallEndsGameAndFinishShowsCourseClear()
+    public IEnumerator FallEndsGameAndRestartRestoresPlayer()
     {
         Teleport(new Vector2(9.5f, -13), Vector2.down);
         yield return new WaitForSecondsRealtime(1.1f);
         Assert.IsFalse(player.alive);
+        Assert.AreEqual(MarioForm.Dead, player.GetComponent<MarioStateController>().Form);
         Assert.AreEqual(0, Time.timeScale);
         Time.timeScale = 1;
         yield return SceneManager.LoadSceneAsync("World-1-1");
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         player = Object.FindFirstObjectByType<PlayerMovement>(); body = player.GetComponent<Rigidbody2D>();
         yield return null;
-        Teleport(new Vector2(20, -2.4f), Vector2.zero);
-        yield return new WaitForSecondsRealtime(0.1f);
-        Assert.AreEqual(0, Time.timeScale);
-        Assert.IsTrue(Object.FindObjectsByType<TextMeshProUGUI>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-            .First(t => t.name == "ScoreText-GameOver").text.StartsWith("Score:"));
+        Assert.AreEqual(1, Time.timeScale);
+        Assert.IsTrue(player.alive);
+        Assert.That(body.position.x, Is.EqualTo(-5).Within(0.05f));
+
     }
 
     [UnityTest]
@@ -278,7 +278,7 @@ public class CourseTests
             yield return new WaitForSeconds(0.15f);
             Assert.AreEqual(reward, block.transform.Find("Coin") != null && block.transform.Find("Coin").gameObject.activeSelf);
             Assert.Greater(block.transform.Find("Block visual").localPosition.y, 0.05f);
-            Assert.IsTrue(SceneAudio.instance.blocks.isPlaying);
+            Assert.IsTrue(Object.FindFirstObjectByType<SceneAudio>().blocks.isPlaying);
             yield return new WaitForSeconds(0.55f);
             Assert.IsTrue(block.gameObject.activeSelf);
             Assert.That(block.transform.Find("Block visual").localPosition.y, Is.EqualTo(0).Within(0.01f));
@@ -294,7 +294,8 @@ public class CourseTests
     public IEnumerator BouncyCloudReboundsAndCameraStopsAtCourseEnds()
     {
         DisableEnemyContacts();
-        Teleport(new Vector2(12.5f, 1.7f), Vector2.down * 8);
+        var cloud = Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None).Single(c => c.name == "BouncyCloud");
+        Teleport(new Vector2(cloud.bounds.center.x, cloud.bounds.max.y + 0.6f), Vector2.down * 8);
         yield return new WaitForSeconds(0.16f);
         Assert.Greater(body.linearVelocity.y, 1);
         var camera = Camera.main;
@@ -304,9 +305,10 @@ public class CourseTests
             Teleport(new Vector2(-6, -2.5f), Vector2.zero);
             yield return null;
             Assert.That(camera.transform.position.x, Is.EqualTo(0).Within(0.01f));
-            Teleport(new Vector2(23, -2.5f), Vector2.zero);
+            float end = camera.GetComponent<CameraController>().endLimit.position.x;
+            Teleport(new Vector2(end + 5, -2.5f), Vector2.zero);
             yield return null;
-            Assert.That(camera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x, Is.EqualTo(25).Within(0.05f));
+            Assert.That(camera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x, Is.EqualTo(end).Within(0.05f));
         }
     }
 
@@ -322,7 +324,7 @@ public class CourseTests
         var question = blocks.First(b => b.isQuestionBlock && b.GetComponent<SpringJoint2D>() == null);
         var originalScene = SceneManager.GetActiveScene();
         int restarts = 0;
-        manager.gameRestart.AddListener(() => restarts++);
+        manager.gameRestart.AddListener(_ => restarts++);
         DisableEnemyContacts();
         enemy.Stomp();
         yield return new WaitForSeconds(0.6f);

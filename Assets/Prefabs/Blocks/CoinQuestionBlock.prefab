@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 4378508276533360144}
   - component: {fileID: 1048534483038325188}
   - component: {fileID: 4983863342461161722}
+  - component: {fileID: 5457054310997115508}
   m_Layer: 7
   m_Name: CoinQuestionBlock
   m_TagString: Untagged
@@ -220,6 +221,34 @@ MonoBehaviour:
   springBody: {fileID: 0}
   powerup: {fileID: 9100000000000000001}
   coinReward: {fileID: 3614174060504208002}
+--- !u!114 &5457054310997115508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603063877016592555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4983863342461161722}
+        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6092840506142003641
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +357,19 @@ MonoBehaviour:
   parameter: 1
   useInt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: bb223343e4440074a865be40da63b19f, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9100000000000000001
 MonoBehaviour:
   m_ObjectHideFlags: 0

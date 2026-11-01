@@ -2,5 +2,6 @@ using UnityEngine;
 
 public class RestartButtonController : MonoBehaviour, IInteractiveButton
 {
-    public void ButtonClick() => GameManager.instance.GameRestart();
+    [SerializeField] SimpleGameEvent restartRequested;
+    public void ButtonClick() => restartRequested.Raise();
 }

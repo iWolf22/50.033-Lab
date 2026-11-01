@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Mario.Gameplay::MagicMushroomPowerup
   moveSpeed: 3
+  collected: {fileID: 11400000, guid: 10efb076a90022d43a48e709df9a0a55, type: 2}
 --- !u!1 &4824831141588447102
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +302,7 @@ GameObject:
   - component: {fileID: 3585849501614455389}
   - component: {fileID: 3466718082778157480}
   - component: {fileID: 4538502238111843693}
+  - component: {fileID: 2727063450413441493}
   m_Layer: 7
   m_Name: Block visual
   m_TagString: Untagged
@@ -501,3 +503,31 @@ MonoBehaviour:
   springBody: {fileID: 8937854340701646037}
   powerup: {fileID: 1470592696538386891}
   coinReward: {fileID: 0}
+--- !u!114 &2727063450413441493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4824831141588447102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4538502238111843693}
+        m_TargetAssemblyTypeName: BlockBounce, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

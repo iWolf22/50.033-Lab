@@ -3,30 +3,28 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] AudioSource stompAudio;
+    [SerializeField] IntGameEvent scoreRequested;
     EnemyMovement[] goombas;
 
     void Awake()
     {
-        stompAudio = SceneAudio.instance.goombaStomp;
+        stompAudio = FindFirstObjectByType<SceneAudio>().goombaStomp;
         goombas = GetComponentsInChildren<EnemyMovement>(true);
     }
 
     void OnEnable()
     {
-        GameManager.instance.gameRestart.AddListener(GameRestart);
         foreach (var goomba in goombas) goomba.OnGoombaStomped += OnStomp;
     }
 
     void OnDisable()
     {
-        if (GameManager.instance != null)
-            GameManager.instance.gameRestart.RemoveListener(GameRestart);
         foreach (var goomba in goombas) goomba.OnGoombaStomped -= OnStomp;
     }
 
     void OnStomp()
     {
-        GameManager.instance.IncreaseScore(1);
+        scoreRequested.Raise(1);
         stompAudio.PlayOneShot(stompAudio.clip);
     }
 

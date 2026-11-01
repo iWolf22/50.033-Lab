@@ -1,0 +1,25 @@
+{
+  "changes": "Sprite slice rectangles only; sprite IDs, pivots, clips, gameplay code and projectile physics preserved.",
+  "assetHashes": {
+    "Assets/Sprites/mario.png.meta": "d1b10e565116941f1cae627adc1c0530736d4f0da0f188644c4414191049ed07",
+    "Assets/Sprites/misc-3.gif.meta": "dc3ef0da6e85d3855bf6ef4bd24331e7074c26c1edbc0e794fedbb0d976a501b"
+  },
+  "passedChecks": [
+    "FireMarioCyclesRunFramesAndFireballIsCentered",
+    "FireUsesKeyboardFacingCapLifetimeAndEnemyHit"
+  ],
+  "fireballRect": {
+    "x": 324,
+    "y": 299,
+    "width": 8,
+    "height": 8
+  },
+  "fireMarioSilhouettesMatchBigMario": [
+    "idle",
+    "run-1",
+    "run-2",
+    "run-3",
+    "skid",
+    "jump"
+  ]
+}

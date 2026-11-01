@@ -26,22 +26,9 @@ public class BlockBounce : MonoBehaviour, IPowerupController
 
     public virtual void Disable() => spent = true;
 
-    void OnEnable()
-    {
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-        if (coinReward != null) coinReward.useInt.AddListener(GameManager.instance.IncreaseScore);
-    }
-
-    void OnDisable()
-    {
-        if (GameManager.instance == null) return;
-        GameManager.instance.gameRestart.RemoveListener(GameRestart);
-        if (coinReward != null) coinReward.useInt.RemoveListener(GameManager.instance.IncreaseScore);
-    }
-
     void Awake()
     {
-        audioSource = SceneAudio.instance.blocks;
+        audioSource = FindFirstObjectByType<SceneAudio>().blocks;
         startPosition = transform.position;
         initialSprite = visual.sprite;
         if (coin != null) coin.gameObject.SetActive(false);

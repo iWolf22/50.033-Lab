@@ -298,6 +298,270 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: super-mario-idle
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e146c986ce1245ba9478145ee53b892a
+      internalID: -2000000000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: super-mario-run-1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9668d988272f464e9a134ed54eb53d66
+      internalID: -1999999640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: super-mario-run-2
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba67bd3d589461b9ebabea5ab202d2d
+      internalID: -1999999270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: super-mario-run-3
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2be8a340fd584ac58e705ff60271de7b
+      internalID: -1999998900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: super-mario-skid
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2800a7e85d854c919c18856d629253ca
+      internalID: -1999998530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: super-mario-jump
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 104
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed07451c6bd046a69984d6ad4e6f7576
+      internalID: -1999998170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-idle
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a88419e98503451dab4b1c90597ffdeb
+      internalID: -1999997810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-run-1
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7824f5a4c020446f84d16eb416e52a7e
+      internalID: -1999997460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-run-2
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a81092769249d48676625697922b9c
+      internalID: -1999997100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-run-3
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aaab9b0c48a4fca9e3829dba273f193
+      internalID: -1999996740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-skid
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c2f58f095e410cb58da3f57f790ea5
+      internalID: -1999996380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-mario-jump
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 34
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e217b0cfd1419fa8f7913ab06cc503
+      internalID: -1999996030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -320,6 +584,18 @@ TextureImporter:
       small-mario-run-2: -1582257590
       small-mario-run-3: 1614667501
       small-mario-skid: -1065360357
+      super-mario-idle: -2000000000
+      super-mario-run-1: -1999999640
+      super-mario-run-2: -1999999270
+      super-mario-run-3: -1999998900
+      super-mario-skid: -1999998530
+      super-mario-jump: -1999998170
+      fire-mario-idle: -1999997810
+      fire-mario-run-1: -1999997460
+      fire-mario-run-2: -1999997100
+      fire-mario-run-3: -1999996740
+      fire-mario-skid: -1999996380
+      fire-mario-jump: -1999996030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

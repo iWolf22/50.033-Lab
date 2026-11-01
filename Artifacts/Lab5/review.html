@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 5 — Teens checkoff</title>
+<style>
+body{margin:40px auto;padding:0 20px;max-width:1100px;background:#101722;color:#e7edf5;font:16px/1.6 system-ui,sans-serif}a{color:#88c8ff}h1,h2{line-height:1.2}video{width:100%;background:#000;border-radius:8px}section{margin:32px 0}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #354052}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.gallery img{width:100%;border-radius:6px}figure{margin:0}figcaption{color:#b9c5d5}.pass{color:#91e8a9}details{margin:16px 0}code{color:#c1dcff}
+</style>
+<h1>Unity for Teens checkoff</h1>
+<p class="pass">30 selected PlayMode checks passed. Big Mario, Fire Mario and timed Star Mario are implemented with ScriptableObject events and two pluggable FSMs.</p>
+<section>
+<h2>Checkoff recording</h2>
+<video controls preload="metadata" src="Videos/teens-checkoff.mp4" poster="Screenshots/big-mario.png"></video>
+<p>The recording combines the native Unity Inspector/Hierarchy demonstration with captioned gameplay and mixed game audio. Focused gameplay demonstrations use setup positions to show each behavior clearly.</p>
+<p><a href="Videos/teens-checkoff.mp4">Open recording</a> · <a href="Verification/playmode-results.xml">Test results</a> · <a href="Verification/requirements.md">Requirement audit</a></p>
+</section>
+<section>
+<h2>Implemented behavior</h2>
+<table>
+<tr><th>Feature</th><th>Evidence shown</th></tr>
+<tr><td>ScriptableObject architecture</td><td>Scene-local GameManager, event channel/listener components, score data carried between worlds.</td></tr>
+<tr><td>Form FSM</td><td>Small → Super → Fire; damage → protected Small → Small; another hit → Dead.</td></tr>
+<tr><td>Separate buff FSM</td><td>Star invincibility, changing colors and star music; expiry preserves Fire form.</td></tr>
+<tr><td>Fire attacks</td><td>Z input, facing, maximum three projectiles, 2.5-second lifetime and enemy hit.</td></tr>
+<tr><td>Restart</td><td>Restores Mario, buffs, projectiles, spent boxes/powerups, Goombas, score, camera, UI and music.</td></tr>
+<tr><td>Preserved level</td><td>One added flower box at x = -4; existing transforms, Inspector overrides and UI layout retained.</td></tr>
+</table>
+</section>
+<section>
+<h2>Current screenshots</h2>
+<div class="gallery">
+<figure><img src="Screenshots/big-mario.png" alt="Big Mario after mushroom collection"><figcaption>Mushroom growth</figcaption></figure>
+<figure><img src="Screenshots/fire-mario.png" alt="Fire Mario after flower collection"><figcaption>Fire Flower form</figcaption></figure>
+<figure><img src="Screenshots/star-mario.png" alt="Star buff active on Mario"><figcaption>Independent star buff</figcaption></figure>
+<figure><img src="Screenshots/game-over.png" alt="Original red Game Over panel"><figcaption>Death and original Game Over UI</figcaption></figure>
+<figure><img src="Screenshots/restart.png" alt="Restored boxes, enemies and small Mario"><figcaption>In-place restart</figcaption></figure>
+<figure><img src="Screenshots/world-1-2-score.png" alt="Second world with carried score"><figcaption>Score carried into World 1-2</figcaption></figure>
+</div>
+</section>
+<details><summary>Separate clips and verification details</summary>
+<p><a href="Videos/powerups-and-restart.mp4">Gameplay clip</a> · <a href="Videos/architecture-inspector.mp4">Native Inspector/Hierarchy clip</a> · <a href="Verification/asset-hashes.json">Tested asset hashes</a> · <a href="Verification/layout-preservation.json">Scene preservation</a> · <a href="Verification/prefab-layout-preservation.json">Prefab preservation</a></p>
+<p>The native capture temporarily disables Unity's optional URP rendering debugger, which otherwise creates its own engine helper under DontDestroyOnLoad. Gameplay has no singleton or persistent object regardless of that debugger setting.</p>
+<p>The historical full-course keyboard-route test targets an older layout and was excluded from the selected run. The current cloud/camera, fall/restart, castle transition, menus, powerups and gameplay regressions were tested directly.</p>
+<p>Recording tools stay outside gameplay in <code>Artifacts/Lab5/Tools</code> and run only in the isolated validation project.</p>
+</details>
+</html>

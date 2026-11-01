@@ -22,14 +22,14 @@ public class CoinPowerup : BasePowerup
             transform.localPosition = origin + Vector3.up * (1.8f * Mathf.Sin(t * Mathf.PI / 0.5f));
             yield return null;
         }
-        ApplyPowerup(GameManager.instance);
+        ApplyPowerup(this);
         transform.localPosition = origin;
         DestroyPowerup();
     }
 
     public override void ApplyPowerup(MonoBehaviour target)
     {
-        if (consumed || target is not GameManager) return;
+        if (consumed) return;
         consumed = true;
         GetComponent<AnimationEventIntTool>().TriggerIntEvent();
     }

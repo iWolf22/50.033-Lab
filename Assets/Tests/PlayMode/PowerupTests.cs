@@ -11,10 +11,10 @@ public class PowerupTests
     public IEnumerator LoadWorld()
     {
         Time.timeScale = 1;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-1");
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return new WaitForSeconds(0.1f);
         foreach (var enemy in Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None))
             enemy.GetComponent<Collider2D>().enabled = false;
@@ -24,7 +24,7 @@ public class PowerupTests
     public IEnumerator Cleanup()
     {
         Time.timeScale = 1;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
     }
 
@@ -59,13 +59,13 @@ public class PowerupTests
         LogAssert.Expect(LogType.Log, "mushroom collected");
         MovePlayer(mushroom.transform.position, Vector2.zero);
         yield return new WaitForSeconds(0.1f);
-        Assert.IsFalse(Find<PlayerMovement>().IsSuperMario);
+        Assert.IsTrue(Find<PlayerMovement>().IsSuperMario);
         Assert.AreEqual(playerScale, Find<PlayerMovement>().transform.localScale);
         Find<PlayerMovement>().RequestPowerupEffect(mushroom);
         LogAssert.NoUnexpectedReceived();
         Assert.IsFalse(mushroom.gameObject.activeSelf);
-        Assert.AreEqual(0, GameManager.instance.Score);
-        GameManager.instance.GameRestart();
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return null;
         Assert.IsFalse(Find<PlayerMovement>().IsSuperMario);
         Assert.IsFalse(mushroom.hasSpawned);
@@ -75,7 +75,7 @@ public class PowerupTests
         MovePlayer(block.transform.position + Vector3.down * 1.1f, Vector2.up * 10);
         yield return new WaitForSeconds(0.15f);
         Assert.IsTrue(mushroom.hasSpawned);
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return new WaitForSeconds(0.7f);
         Assert.IsFalse(mushroom.hasSpawned, "Restart during emergence cancels the spawn.");
         Assert.IsFalse(mushroom.GetComponent<Rigidbody2D>().simulated);
@@ -89,22 +89,22 @@ public class PowerupTests
         Assert.AreEqual(PowerupType.Coin, coin.powerupType);
         MovePlayer(brick.transform.position + Vector3.down * 1.1f, Vector2.up * 10);
         yield return new WaitForSeconds(0.7f);
-        Assert.AreEqual(1, GameManager.instance.Score);
+        Assert.AreEqual(1, Object.FindFirstObjectByType<GameManager>().Score);
         Assert.IsTrue(coin.hasSpawned);
         MovePlayer(brick.transform.position + Vector3.down * 1.1f, Vector2.up * 10);
         yield return new WaitForSeconds(0.7f);
-        Assert.AreEqual(1, GameManager.instance.Score);
+        Assert.AreEqual(1, Object.FindFirstObjectByType<GameManager>().Score);
         Find<PlayerMovement>().BecomeSuperMario();
         MovePlayer(brick.transform.position + Vector3.down * 1.7f, Vector2.up * 10);
         yield return new WaitForSeconds(0.2f);
         Assert.IsFalse(brick.GetComponent<BoxCollider2D>().enabled);
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return null;
         Assert.IsTrue(brick.GetComponent<BoxCollider2D>().enabled);
         Assert.IsFalse(coin.hasSpawned);
         MovePlayer(brick.transform.position + Vector3.down * 1.1f, Vector2.up * 10);
         yield return new WaitForSeconds(0.7f);
-        Assert.AreEqual(1, GameManager.instance.Score);
+        Assert.AreEqual(1, Object.FindFirstObjectByType<GameManager>().Score);
     }
 
     [UnityTest]
@@ -118,7 +118,7 @@ public class PowerupTests
             var block = star.transform.parent.GetComponentInChildren<QuestionBoxPowerupController>();
             var player = Find<PlayerMovement>();
             Vector3 scale = player.transform.localScale;
-            int score = GameManager.instance.Score;
+            int score = Object.FindFirstObjectByType<GameManager>().Score;
             Assert.AreEqual(PowerupType.StarMan, star.powerupType);
             Assert.AreEqual("star", star.GetComponent<SpriteRenderer>().sprite.name);
             Assert.IsFalse(star.hasSpawned);
@@ -133,16 +133,16 @@ public class PowerupTests
             Assert.IsFalse(star.gameObject.activeSelf);
             Assert.AreEqual(scale, player.transform.localScale);
             Assert.IsFalse(player.IsSuperMario);
-            Assert.AreEqual(score, GameManager.instance.Score);
+            Assert.AreEqual(score, Object.FindFirstObjectByType<GameManager>().Score);
             player.RequestPowerupEffect(star);
             LogAssert.NoUnexpectedReceived();
-            GameManager.instance.GameRestart();
+            Object.FindFirstObjectByType<GameManager>().GameRestart();
             Assert.IsFalse(star.hasSpawned);
             Assert.AreEqual(Vector3.zero, star.transform.localPosition);
             Assert.IsFalse(star.GetComponent<Rigidbody2D>().simulated);
             star.SpawnPowerup();
             yield return new WaitForSeconds(0.15f);
-            GameManager.instance.GameRestart();
+            Object.FindFirstObjectByType<GameManager>().GameRestart();
             yield return new WaitForSeconds(0.6f);
             Assert.IsFalse(star.hasSpawned);
             Assert.IsFalse(star.gameObject.activeSelf);
@@ -164,7 +164,7 @@ public class PowerupTests
         yield return new WaitForSeconds(0.25f);
         Assert.Less(mushroom.GetComponent<Rigidbody2D>().linearVelocity.x, 0);
         Object.Destroy(wall);
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         Assert.IsFalse(mushroom.hasSpawned);
         Assert.IsFalse(mushroom.gameObject.activeSelf);
     }

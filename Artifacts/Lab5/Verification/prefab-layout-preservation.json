@@ -1,0 +1,117 @@
+[
+  {
+    "prefab": "Assets/Prefabs/Audio/SceneAudio.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/BrickBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/CoinBrickBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/CoinQuestionBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/MushroomQuestionBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/SpringQuestionBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Blocks/StarQuestionBlock.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Core/GameManager.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Enemies/EnemyManager.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Enemies/Goomba.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/Player/Mario.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/UI/Canvas.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/UI/EventSystem.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/BouncyCloud.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Camera End.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Castle.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Finish pole.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Finish steps.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Ground.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/LeftBoundary.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/MainCamera.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/One-way platform.prefab",
+    "preserved": true,
+    "changes": []
+  },
+  {
+    "prefab": "Assets/Prefabs/World/Pipe.prefab",
+    "preserved": true,
+    "changes": []
+  }
+]

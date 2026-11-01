@@ -636,6 +636,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8891524350909248965, guid: cf72121e8fca0554d9bc07af521c1516, type: 3}
   m_PrefabInstance: {fileID: 922571984}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &815076013
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1295806763}
+    m_Modifications:
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473739989396393312, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+      propertyPath: m_Name
+      value: FireFlowerQuestionBlock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+--- !u!4 &815076014 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4756892544836531342, guid: 1c855fa75f4978747ae07e757a94c3fe, type: 3}
+  m_PrefabInstance: {fileID: 815076013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &826903107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1308,6 +1370,7 @@ Transform:
   - {fileID: 650157027502184787}
   - {fileID: 6174063901993733377}
   - {fileID: 6174063742417839361}
+  - {fileID: 815076014}
   m_Father: {fileID: 1606688553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1331881134
@@ -2566,8 +2629,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7335013613872136799, guid: d99b30816967a1642bd5d64466c98375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5439800156541337938}
   m_SourcePrefab: {fileID: 100100000, guid: d99b30816967a1642bd5d64466c98375, type: 3}
+--- !u!1 &5439800156541337936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7335013613872136799, guid: d99b30816967a1642bd5d64466c98375, type: 3}
+  m_PrefabInstance: {fileID: 5439800156541337935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5439800156541337937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1560801583025811147, guid: d99b30816967a1642bd5d64466c98375, type: 3}
+  m_PrefabInstance: {fileID: 5439800156541337935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439800156541337936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a707a9189d459f44bfed1d4f2277c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &5439800156541337938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439800156541337936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5439800156541337937}
+        m_TargetAssemblyTypeName: NextScene, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &6174063742417839361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6174054782954915072, guid: d3f2808ffebfac443b683237d00e308c, type: 3}

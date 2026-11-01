@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7612443766474752099}
   - component: {fileID: 5610272257311027543}
+  - component: {fileID: 9202681141239825255}
+  - component: {fileID: 2598244499556057813}
+  - component: {fileID: 9165118303455001715}
+  - component: {fileID: 1372806077295945476}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -45,15 +49,119 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Mario.Gameplay::GameManager
   gameScore: {fileID: 11400000, guid: 2ac8ac85eca345f39350fbb1ce92bfca, type: 2}
-  gameStart:
+  gameStart: {fileID: 11400000, guid: 75bf6c22d9a77ca40a1245d0de6fb89a, type: 2}
+  gameRestart: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  scoreChange: {fileID: 11400000, guid: f1b3ec32976184647b03d521dcc884b3, type: 2}
+  gameOver: {fileID: 11400000, guid: b73dfdc97fbbea8408a05bb47e9649fd, type: 2}
+--- !u!114 &9202681141239825255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421616412817830136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: a9f7b06ab8ef0a74a8ca15504dac245b, type: 2}
+  Response:
     m_PersistentCalls:
-      m_Calls: []
-  gameRestart:
+      m_Calls:
+      - m_Target: {fileID: 5610272257311027543}
+        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2598244499556057813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421616412817830136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 760995ca53cc90746b4b5ccf5ae811d3, type: 2}
+  Response:
     m_PersistentCalls:
-      m_Calls: []
-  scoreChange:
+      m_Calls:
+      - m_Target: {fileID: 5610272257311027543}
+        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9165118303455001715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421616412817830136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 158e77aef4a613d42b416633187ba549, type: 2}
+  Response:
     m_PersistentCalls:
-      m_Calls: []
-  gameOver:
+      m_Calls:
+      - m_Target: {fileID: 5610272257311027543}
+        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
+        m_MethodName: ReturnToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1372806077295945476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421616412817830136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a73bdcf9165480fa57e349b2e3e69d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::IntGameEventListener
+  Event: {fileID: 11400000, guid: bb223343e4440074a865be40da63b19f, type: 2}
+  Response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5610272257311027543}
+        m_TargetAssemblyTypeName: GameManager, Mario.Gameplay
+        m_MethodName: IncreaseScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

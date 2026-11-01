@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class MovingPowerup : BasePowerup
 {
     [SerializeField] float moveSpeed = 3;
+    [SerializeField] PowerupGameEvent collected;
     bool goRight;
     protected abstract string CollectionMessage { get; }
 
@@ -32,7 +33,7 @@ public abstract class MovingPowerup : BasePowerup
     protected void FixedUpdate()
     {
         if (hasSpawned && !consumed && rigidBody.simulated)
-            rigidBody.linearVelocity = new Vector2(goRight ? moveSpeed : -moveSpeed, rigidBody.linearVelocity.y);
+            rigidBody.linearVelocity = new Vector2(powerupType == PowerupType.FireFlower ? 0 : (goRight ? moveSpeed : -moveSpeed), rigidBody.linearVelocity.y);
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -57,5 +58,6 @@ public abstract class MovingPowerup : BasePowerup
         if (consumed || target is not PlayerMovement player || !player.alive) return;
         consumed = true;
         Debug.Log(CollectionMessage, this);
+        collected.Raise(this);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum PowerupType { Coin, MagicMushroom, OneUpMushroom, StarMan }
+public enum PowerupType { Coin, MagicMushroom, OneUpMushroom, StarMan, FireFlower, Damage = 99, Default = -1 }
 
 public interface IPowerup
 {

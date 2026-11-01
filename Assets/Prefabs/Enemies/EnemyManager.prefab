@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3889091103448645438}
   - component: {fileID: 664089864009343292}
+  - component: {fileID: 9121677273197773378}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -45,3 +46,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Mario.Gameplay::EnemyManager
   stompAudio: {fileID: 0}
+  scoreRequested: {fileID: 11400000, guid: bb223343e4440074a865be40da63b19f, type: 2}
+--- !u!114 &9121677273197773378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770767841476262269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 664089864009343292}
+        m_TargetAssemblyTypeName: EnemyManager, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "selectedChecksPassed": 30,
+  "selectedChecksFailed": 0,
+  "finalRecordingCheck": "Passed",
+  "checkedGameplayAssetFiles": 280,
+  "preservedScenes": 2,
+  "preservedPrefabLayouts": 23,
+  "recordingSeconds": 42.32,
+  "stereoAudio": true,
+  "decodeErrors": 0,
+  "noGameplaySingletons": true,
+  "legacyCourseRoute": "Historical fixture excluded; current checkoff interactions tested directly"
+}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278834a67eba4e8994bee48d9771fa37, type: 3}
+  m_Name: StarInvincible
+  m_EditorClassIdentifier: Mario.Gameplay::State
+  setupActions:
+  - {fileID: 11400000, guid: 1c43745373d99a34d9f21ec5ae3f4117, type: 2}
+  actions: []
+  exitActions:
+  - {fileID: 11400000, guid: 75195641f4539e9408019b886bba0d64, type: 2}
+  attackActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: d3c49a8baf654ec4aa41dc9df1d76aae, type: 2}
+    trueState: {fileID: 11400000, guid: 422c5c987a464ef439160ceb2f279e01, type: 2}
+    falseState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}

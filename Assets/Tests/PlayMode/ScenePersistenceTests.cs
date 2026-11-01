@@ -15,10 +15,10 @@ public class ScenePersistenceTests
     public IEnumerator LoadFirstWorld()
     {
         Time.timeScale = 1;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-1");
-        GameManager.instance.GameRestart();
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return new WaitForSeconds(0.1f);
     }
 
@@ -26,7 +26,7 @@ public class ScenePersistenceTests
     public IEnumerator Cleanup()
     {
         Time.timeScale = 1;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
     }
 
@@ -40,13 +40,13 @@ public class ScenePersistenceTests
         {
             yield return SceneManager.LoadSceneAsync(world);
             yield return new WaitForSeconds(0.1f);
-            var audio = SceneAudio.instance;
+            var audio = Object.FindFirstObjectByType<SceneAudio>();
             Assert.IsNotNull(audio);
             Assert.AreEqual(SceneManager.GetActiveScene(), audio.gameObject.scene);
             var sources = Object.FindObjectsByType<AudioSource>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-            Assert.AreEqual(6, sources.Length);
+            Assert.AreEqual(8, sources.Length);
             Assert.IsTrue(sources.All(source => source.transform.IsChildOf(audio.transform)));
-            Assert.AreEqual(6, sources.Select(source => (source.clip, source.outputAudioMixerGroup)).Distinct().Count());
+            Assert.AreEqual(8, sources.Select(source => (source.clip, source.outputAudioMixerGroup)).Distinct().Count());
             var player = Object.FindFirstObjectByType<PlayerMovement>();
             Assert.IsNull(player.GetComponent<AudioSource>());
             Assert.AreSame(audio.playerJump, player.marioAudio);
@@ -60,11 +60,11 @@ public class ScenePersistenceTests
                 Assert.AreEqual("Blocks and Pipes", root.parent.name);
                 if (block.Powerup is BasePowerup powerup) Assert.AreSame(root, powerup.transform.parent);
             }
-            GameManager.instance.GameOver();
-            GameManager.instance.GameRestart();
+            Object.FindFirstObjectByType<GameManager>().GameOver();
+            Object.FindFirstObjectByType<GameManager>().GameRestart();
             yield return null;
             Assert.AreEqual(1, Time.timeScale);
-            Assert.AreEqual(0, GameManager.instance.Score);
+            Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
         }
     }
 
@@ -97,26 +97,26 @@ public class ScenePersistenceTests
             Assert.AreSame(pauseIcon, image.sprite);
             yield return new WaitForSeconds(0.1f);
             Assert.AreNotEqual(position, enemy.transform.position);
-            GameManager.instance.IncreaseScore(2);
+            Object.FindFirstObjectByType<GameManager>().IncreaseScore(2);
             button.onClick.Invoke();
             restart.GetComponent<Button>().onClick.Invoke();
             Assert.AreEqual(1, Time.timeScale);
             Assert.IsFalse(AudioListener.pause);
-            Assert.AreEqual(0, GameManager.instance.Score);
+            Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
             Assert.AreSame(pauseIcon, image.sprite);
             button.onClick.Invoke();
             Assert.AreEqual(0, Time.timeScale);
             button.onClick.Invoke();
-            GameManager.instance.GameOver();
+            Object.FindFirstObjectByType<GameManager>().GameOver();
             button.onClick.Invoke();
             Assert.AreEqual(0, Time.timeScale, "Hidden pause button must not resume a finished game.");
         }
     }
 
     [UnityTest]
-    public IEnumerator CastleTransitionPreservesOnlyManagerAndScore()
+    public IEnumerator CastleTransitionRecreatesManagerAndPreservesScore()
     {
-        var manager = GameManager.instance;
+        var manager = Object.FindFirstObjectByType<GameManager>();
         var oldPlayer = Object.FindFirstObjectByType<PlayerMovement>();
         var oldHUD = Object.FindFirstObjectByType<HUDManager>();
         manager.IncreaseScore(3);
@@ -132,18 +132,16 @@ public class ScenePersistenceTests
             yield return null;
         yield return null;
         Assert.AreEqual("World-1-2", SceneManager.GetActiveScene().name);
-        Assert.AreSame(manager, GameManager.instance);
+        Assert.IsTrue(manager == null);
+        manager = Object.FindFirstObjectByType<GameManager>();
         Assert.IsTrue(oldPlayer == null);
         Assert.IsTrue(oldHUD == null);
         Assert.AreEqual(3, manager.Score);
         Assert.AreEqual("Score: 3", ScoreText().text);
         Assert.AreEqual(1, Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length);
         Assert.AreEqual(0, manager.transform.childCount);
-        Assert.AreEqual(1, manager.gameObject.scene.GetRootGameObjects().Count(root =>
-            root.GetComponentsInChildren<MonoBehaviour>(true).Any(component =>
-                component != null && component.GetType().Assembly == typeof(GameManager).Assembly)));
+        Assert.AreEqual(SceneManager.GetActiveScene(), manager.gameObject.scene);
         Assert.IsNull(Object.FindFirstObjectByType<NextScene>());
-        Assert.AreEqual(0, manager.gameRestart.GetPersistentEventCount());
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         Assert.AreEqual(SceneManager.GetActiveScene(), player.gameObject.scene);
         Assert.That(player.transform.position.x, Is.EqualTo(-5).Within(0.05f));
@@ -151,12 +149,13 @@ public class ScenePersistenceTests
     }
 
     [UnityTest]
-    public IEnumerator SecondWorldStompAndRestartUsePersistentManager()
+    public IEnumerator SecondWorldStompAndRestartUseSceneManager()
     {
-        var manager = GameManager.instance;
+        var manager = Object.FindFirstObjectByType<GameManager>();
         manager.IncreaseScore(4);
         yield return SceneManager.LoadSceneAsync("World-1-2");
         yield return new WaitForSeconds(0.1f);
+        manager = Object.FindFirstObjectByType<GameManager>();
         var enemyManager = Object.FindFirstObjectByType<EnemyManager>();
         for (int i = 0; i < 2; i++) { enemyManager.enabled = false; enemyManager.enabled = true; }
         var enemies = Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None);
@@ -189,20 +188,20 @@ public class ScenePersistenceTests
     [UnityTest]
     public IEnumerator SecondWorldWorksStandalone()
     {
-        Object.Destroy(GameManager.instance.gameObject);
+        Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-2");
-        if (!GameManager.instance.HasStarted) GameManager.instance.GameRestart();
+        if (!Object.FindFirstObjectByType<GameManager>().HasStarted) Object.FindFirstObjectByType<GameManager>().GameRestart();
         yield return new WaitForSeconds(0.1f);
-        Assert.IsNotNull(GameManager.instance);
-        Assert.AreEqual(0, GameManager.instance.Score);
+        Assert.IsNotNull(Object.FindFirstObjectByType<GameManager>());
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
         Assert.AreEqual("Score: 0", ScoreText().text);
         Assert.AreEqual(1, Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None).Length);
         var enemy = Object.FindFirstObjectByType<EnemyMovement>();
         enemy.Stomp();
-        Assert.AreEqual(1, GameManager.instance.Score);
-        GameManager.instance.GameRestart();
-        Assert.AreEqual(0, GameManager.instance.Score);
+        Assert.AreEqual(1, Object.FindFirstObjectByType<GameManager>().Score);
+        Object.FindFirstObjectByType<GameManager>().GameRestart();
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
         Assert.IsTrue(enemy.gameObject.activeSelf);
     }
 }

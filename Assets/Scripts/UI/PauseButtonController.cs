@@ -9,20 +9,10 @@ public class PauseButtonController : MonoBehaviour, IInteractiveButton
     Image image;
     bool isPaused;
 
-    void Awake() => image = GetComponent<Image>();
-
-    void OnEnable()
+    void Awake()
     {
-        GameManager.instance.gameStart.AddListener(ResetPause);
-        GameManager.instance.gameRestart.AddListener(ResetPause);
+        image = GetComponent<Image>();
         ResetPause();
-    }
-
-    void OnDisable()
-    {
-        if (GameManager.instance == null) return;
-        GameManager.instance.gameStart.RemoveListener(ResetPause);
-        GameManager.instance.gameRestart.RemoveListener(ResetPause);
     }
 
     public void ButtonClick()
@@ -34,7 +24,7 @@ public class PauseButtonController : MonoBehaviour, IInteractiveButton
         image.sprite = isPaused ? playIcon : pauseIcon;
     }
 
-    void ResetPause()
+    public void ResetPause()
     {
         isPaused = false;
         image.sprite = pauseIcon;

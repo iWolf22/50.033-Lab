@@ -4,6 +4,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 {
     [SerializeField] GameConstants gameConstants;
+    [SerializeField] BoolVariable facingRight;
+    MarioStateController state;
+    BuffStateController buff;
     float speed;
     public float maxSpeed { get; private set; }
     float upSpeed;
@@ -31,8 +34,10 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     void Awake()
     {
-        marioAudio = SceneAudio.instance.playerJump;
-        deathAudio = SceneAudio.instance.playerDeath;
+        state = GetComponent<MarioStateController>();
+        buff = GetComponent<BuffStateController>();
+        marioAudio = FindFirstObjectByType<SceneAudio>().playerJump;
+        deathAudio = FindFirstObjectByType<SceneAudio>().playerDeath;
         speed = gameConstants.speed;
         maxSpeed = gameConstants.maxSpeed;
         upSpeed = gameConstants.upSpeed;
@@ -41,6 +46,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         startPosition = body.position;
         startScale = transform.localScale;
         visual = GetComponent<SpriteRenderer>();
+        facingRight.Value = !visual.flipX;
         hitbox = GetComponent<Collider2D>();
         groundFilter = new ContactFilter2D { useLayerMask = true, layerMask = groundLayers };
     }
@@ -51,24 +57,20 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         if (!alive || value == 0) return;
         if (body.linearVelocity.x * value < -0.1f) marioAnimator.SetTrigger("onSkid");
         visual.flipX = value < 0;
-    }
-
-    void OnEnable() => GameManager.instance.gameRestart.AddListener(GameRestart);
-
-    void OnDisable()
-    {
-        if (GameManager.instance != null)
-            GameManager.instance.gameRestart.RemoveListener(GameRestart);
+        facingRight.Value = value > 0;
     }
 
     public void RequestPowerupEffect(IPowerup powerup) => powerup.ApplyPowerup(this);
 
-    public void BecomeSuperMario()
+    public void BecomeSuperMario() => SetSuperMario(true);
+    public void SetSuperMario(bool large)
     {
-        if (IsSuperMario) return;
-        IsSuperMario = true;
+        if (IsSuperMario == large) return;
+        IsSuperMario = large;
         float feet = hitbox.bounds.min.y;
-        transform.localScale = new Vector3(startScale.x, startScale.y * 2, startScale.z);
+        // Large sprites are two units tall; resize the collider without stretching the sprite.
+        ((BoxCollider2D)hitbox).size = new Vector2(0.8f, large ? 2 : 1);
+        Physics2D.SyncTransforms();
         body.position += Vector2.up * (feet - hitbox.bounds.min.y);
     }
 
@@ -98,7 +100,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         }
         body.linearVelocity = velocity;
         jumpQueued = holdQueued = false;
-        if (body.position.y < fallLimit) Die();
+        if (body.position.y < fallLimit) state.Kill();
     }
 
     void Update()
@@ -108,9 +110,12 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         marioAnimator.SetBool("onGround", grounded);
     }
 
+    void OnTriggerStay2D(Collider2D other) => OnTriggerEnter2D(other);
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!alive || !other.TryGetComponent<EnemyMovement>(out var enemy)) return;
+        if (buff.IsStarActive) { enemy.Stomp(); return; }
         float feet = hitbox.bounds.min.y;
         if (body.linearVelocity.y < 0 && feet >= other.bounds.max.y - 0.25f)
         {
@@ -118,10 +123,10 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
             body.linearVelocity = new Vector2(body.linearVelocity.x, upSpeed * 0.6f);
             grounded = false;
         }
-        else Die();
+        else state.TakeDamage();
     }
 
-    void Die()
+    public void Die()
     {
         alive = false;
         movement = 0;
@@ -139,11 +144,12 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         if (alive && body.linearVelocity.y > 0) marioAudio.PlayOneShot(marioAudio.clip);
     }
     void PlayDeathImpulse() => body.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
-    void GameOverScene() => GameManager.instance.GameOver();
+    [SerializeField] SimpleGameEvent gameOverRequested;
+    void GameOverScene() => gameOverRequested.Raise();
     public void GameRestart()
     {
         alive = true;
-        IsSuperMario = false;
+        SetSuperMario(false);
         transform.localScale = startScale;
         movement = 0;
         jumpQueued = holdQueued = jumped = grounded = false;
@@ -152,6 +158,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         body.linearVelocity = Vector2.zero;
         hitbox.enabled = true;
         visual.flipX = false;
+        facingRight.Value = true;
         marioAudio.Stop(); deathAudio.Stop();
         marioAnimator.Rebind(); marioAnimator.Update(0);
     }

@@ -16,6 +16,13 @@ GameObject:
   - component: {fileID: 7402197865244886165}
   - component: {fileID: 426607340821007378}
   - component: {fileID: 7581945911060229436}
+  - component: {fileID: 5072144772483834854}
+  - component: {fileID: 6747524491809713017}
+  - component: {fileID: 1726310558731307488}
+  - component: {fileID: 6660874035312453973}
+  - component: {fileID: 5698133731060360955}
+  - component: {fileID: 7477718119315168750}
+  - component: {fileID: 1853709266087833331}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -137,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   gameConstants: {fileID: 11400000, guid: a538c69af1f228a41b49bd50cb70a188, type: 2}
+  facingRight: {fileID: 11400000, guid: 5d294d905d56cb5458597b0922d5d546, type: 2}
   marioAnimator: {fileID: 7402197865244886165}
   marioAudio: {fileID: 0}
   deathAudio: {fileID: 0}
@@ -145,6 +153,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   fallLimit: -12
+  gameOverRequested: {fileID: 11400000, guid: 760995ca53cc90746b4b5ccf5ae811d3, type: 2}
 --- !u!61 &7206114442990885480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -286,6 +295,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 92af13fa-52fb-4c6c-86e1-63d5e2e76256
     m_ActionName: 'gameplay/jumphold[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7581945911060229436}
+        m_TargetAssemblyTypeName: ActionManager, Mario.Gameplay
+        m_MethodName: OnFireAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 13056d0c-0f4d-4a9b-adab-7e51447a90c8
+    m_ActionName: gameplay/fire
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: gameplay
@@ -303,6 +328,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91376eea1ba6fa4449f3c94b6569fa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionManager
+  fire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5072144772483834854}
+        m_TargetAssemblyTypeName: MarioStateController, Mario.Gameplay
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   jump:
     m_PersistentCalls:
       m_Calls:
@@ -343,6 +383,181 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5072144772483834854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e22d59504f49b49a80fb6c713fefae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::MarioStateController
+  startState: {fileID: 11400000, guid: dd7a0a142aaaac04481708beef5e930f, type: 2}
+  currentState: {fileID: 0}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}
+  deadState: {fileID: 11400000, guid: ff0b8e2d691d8334684af37efb0689a7, type: 2}
+  fireSound: {fileID: 8300000, guid: 7016dd03d29e64aa18bc6f1ae5bd8bec, type: 3}
+  facingRight: {fileID: 11400000, guid: 5d294d905d56cb5458597b0922d5d546, type: 2}
+--- !u!114 &6747524491809713017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba62a32cd894e018ba541cf48961666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::BuffStateController
+  startState: {fileID: 11400000, guid: 422c5c987a464ef439160ceb2f279e01, type: 2}
+  currentState: {fileID: 0}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 40e78a46c8831564398fb725220260cc, type: 2}
+--- !u!114 &1726310558731307488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1454230654232712243}
+        m_TargetAssemblyTypeName: PlayerMovement, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6660874035312453973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5072144772483834854}
+        m_TargetAssemblyTypeName: MarioStateController, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5698133731060360955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ffdfb780464ee4b8e789048a907439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: dead8eb0504b13a44a92cb20082729e9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6747524491809713017}
+        m_TargetAssemblyTypeName: StateController, Mario.Gameplay
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7477718119315168750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7336310056ba49329021593e52dceb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::PowerupGameEventListener
+  Event: {fileID: 11400000, guid: 10efb076a90022d43a48e709df9a0a55, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5072144772483834854}
+        m_TargetAssemblyTypeName: MarioStateController, Mario.Gameplay
+        m_MethodName: ReceivePowerup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1853709266087833331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632773214639725114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7336310056ba49329021593e52dceb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mario.Gameplay::PowerupGameEventListener
+  Event: {fileID: 11400000, guid: 10efb076a90022d43a48e709df9a0a55, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6747524491809713017}
+        m_TargetAssemblyTypeName: BuffStateController, Mario.Gameplay
+        m_MethodName: ReceivePowerup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

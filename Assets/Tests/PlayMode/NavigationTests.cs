@@ -15,7 +15,7 @@ public class NavigationTests
     {
         Time.timeScale = 1;
         AudioListener.pause = false;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
         yield return SceneManager.LoadSceneAsync("World-1-1");
         yield return null;
@@ -26,7 +26,7 @@ public class NavigationTests
     {
         Time.timeScale = 1;
         AudioListener.pause = false;
-        if (GameManager.instance != null) Object.Destroy(GameManager.instance.gameObject);
+        if (Object.FindFirstObjectByType<GameManager>() != null) Object.Destroy(Object.FindFirstObjectByType<GameManager>().gameObject);
         yield return null;
     }
 
@@ -56,7 +56,7 @@ public class NavigationTests
         Click("MainMenu", "StartButton");
         yield return new WaitForSecondsRealtime(1.6f);
         Assert.IsTrue(Panel("GamePlay").activeInHierarchy);
-        Assert.IsTrue(GameManager.instance.HasStarted);
+        Assert.IsTrue(Object.FindFirstObjectByType<GameManager>().HasStarted);
         Assert.AreEqual(1, Time.timeScale);
         Assert.IsFalse(AudioListener.pause);
         Click("GamePlay", "HomeButton");
@@ -70,7 +70,7 @@ public class NavigationTests
     {
         Click("MainMenu", "StartButton");
         yield return new WaitForSecondsRealtime(1.6f);
-        GameManager.instance.GameOver();
+        Object.FindFirstObjectByType<GameManager>().GameOver();
         Assert.IsTrue(Panel("GameOver").activeInHierarchy);
         Click("GameOver", "MainMenuButton");
         Assert.IsTrue(Panel("MainMenu").activeInHierarchy);
@@ -85,32 +85,31 @@ public class NavigationTests
         yield return null;
         Assert.AreEqual("World-1-1", SceneManager.GetActiveScene().name);
         Assert.IsTrue(Panel("MainMenu").activeInHierarchy);
-        Assert.AreEqual(0, GameManager.instance.Score);
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
     }
 
     [UnityTest]
     public IEnumerator HighScoreSurvivesManagerRecreationAndResetsFromMenu()
     {
-        var manager = GameManager.instance;
+        var manager = Object.FindFirstObjectByType<GameManager>();
         manager.ResetHighScore();
         manager.IncreaseScore(5);
         Assert.AreEqual(5, manager.HighScore);
 
         yield return SceneManager.LoadSceneAsync("World-1-2");
         yield return null;
-        Assert.AreEqual(5, GameManager.instance.Score);
+        Assert.AreEqual(5, Object.FindFirstObjectByType<GameManager>().Score);
         Assert.AreEqual("Score: 5", Panel("GamePlay").transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text);
 
-        Object.Destroy(manager.gameObject);
+        Object.FindFirstObjectByType<GameManager>().ReturnToMenu();
+        while (SceneManager.GetActiveScene().name != "World-1-1") yield return null;
         yield return null;
-        yield return SceneManager.LoadSceneAsync("World-1-1");
-        yield return null;
-        Assert.AreEqual(0, GameManager.instance.Score);
-        Assert.AreEqual(5, GameManager.instance.HighScore);
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().Score);
+        Assert.AreEqual(5, Object.FindFirstObjectByType<GameManager>().HighScore);
         Assert.AreEqual("High Score: 5", Panel("MainMenu").transform.Find("HighScoreText").GetComponent<TextMeshProUGUI>().text);
 
         Click("MainMenu", "ResetHighScoreButton");
-        Assert.AreEqual(0, GameManager.instance.HighScore);
+        Assert.AreEqual(0, Object.FindFirstObjectByType<GameManager>().HighScore);
         Assert.AreEqual("High Score: 0", Panel("MainMenu").transform.Find("HighScoreText").GetComponent<TextMeshProUGUI>().text);
     }
 }

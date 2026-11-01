@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 
 public class ActionManager : MonoBehaviour
 {
+    public UnityEvent fire = new();
+    public void OnFireAction(InputAction.CallbackContext context)
+    {
+        if (context.performed) fire.Invoke();
+    }
+
     public UnityEvent jump = new();
     public UnityEvent jumpHold = new();
     public UnityEvent<int> moveCheck = new();

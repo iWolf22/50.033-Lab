@@ -1,0 +1,25 @@
+{
+  "durationSeconds": 42.32,
+  "width": 1640,
+  "height": 924,
+  "fps": 30,
+  "audioSampleRate": 48000,
+  "audioChannels": 2,
+  "meanVolumeDb": -28.5,
+  "maxVolumeDb": -6.6,
+  "decoderErrors": "",
+  "files": {
+    "architecture-inspector.mp4": {
+      "bytes": 834579,
+      "sha256": "41cbbc8d3e486e7d080865183c4c8666db177c2b2347115c07aaa70249a87c5a"
+    },
+    "powerups-and-restart.mp4": {
+      "bytes": 1808094,
+      "sha256": "f1ef9faa9f41430228b5328110894f2e0cd777d837208eb5bb2626d98312d2eb"
+    },
+    "teens-checkoff.mp4": {
+      "bytes": 3955334,
+      "sha256": "83cb752e8b5d37cebc25f6f067ae5a4702120abc8ee53badeaa00d507ff930c8"
+    }
+  }
+}

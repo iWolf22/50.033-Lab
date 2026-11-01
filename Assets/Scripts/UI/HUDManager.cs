@@ -11,30 +11,16 @@ public class HUDManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject mainMenuUI;
     [SerializeField] GameObject loadingUI;
+    [SerializeField] GameScore gameScore;
+    [SerializeField] SimpleGameEvent restartRequested;
+    [SerializeField] SimpleGameEvent menuRequested;
     Coroutine loading;
-
-    void OnEnable()
-    {
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-    }
-
-    void OnDisable()
-    {
-        if (GameManager.instance == null) return;
-        GameManager.instance.gameStart.RemoveListener(GameStart);
-        GameManager.instance.gameRestart.RemoveListener(GameStart);
-        GameManager.instance.gameOver.RemoveListener(GameOver);
-        GameManager.instance.scoreChange.RemoveListener(SetScore);
-    }
 
     public void GameStart()
     {
-        SetPanels(GameManager.instance.HasStarted ? gamePlayUI : mainMenuUI);
-        Time.timeScale = GameManager.instance.HasStarted ? 1 : 0;
-        AudioListener.pause = !GameManager.instance.HasStarted;
+        SetPanels(gameScore.HasStarted ? gamePlayUI : mainMenuUI);
+        Time.timeScale = gameScore.HasStarted ? 1 : 0;
+        AudioListener.pause = !gameScore.HasStarted;
     }
 
     void SetPanels(GameObject visible)
@@ -56,25 +42,26 @@ public class HUDManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         loading = null;
-        GameManager.instance.GameRestart();
+        restartRequested.Raise();
     }
 
     public void ReturnToMenu()
     {
         if (loading != null) StopCoroutine(loading);
         loading = null;
-        GameManager.instance.ReturnToMenu();
+        menuRequested.Raise();
     }
 
     public void SetScore(int score)
     {
         scoreText.text = finalScoreText.text = $"Score: {score}";
-        highScoreText.text = $"High Score: {GameManager.instance.HighScore}";
+        highScoreText.text = $"High Score: {gameScore.HighScore}";
     }
 
     public void ResetHighScore()
     {
-        GameManager.instance.ResetHighScore();
+        gameScore.ResetHighScore();
+        SetScore(gameScore.CurrentScore);
     }
 
     public void GameOver()
