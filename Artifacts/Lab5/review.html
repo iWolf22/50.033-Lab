@@ -10,6 +10,7 @@ body{margin:40px auto;padding:0 20px;max-width:1100px;background:#101722;color:#
 <p class="pass">30 selected PlayMode checks passed. Big Mario, Fire Mario and timed Star Mario are implemented with ScriptableObject events and two pluggable FSMs.</p>
 <section>
 <h2>Checkoff recording</h2>
+<p>State flow was corrected on 1 November: Fire damage now produces Big Mario, and a flower grows Small Mario to Big first. <a href="Verification/state-flow-results.xml">11 updated powerup/FSM checks passed</a>. The recording below shows the earlier damage path.</p>
 <video controls preload="metadata" src="Videos/teens-checkoff.mp4" poster="Screenshots/big-mario.png"></video>
 <p>The recording combines the native Unity Inspector/Hierarchy demonstration with captioned gameplay and mixed game audio. Focused gameplay demonstrations use setup positions to show each behavior clearly.</p>
 <p><a href="Videos/teens-checkoff.mp4">Open recording</a> · <a href="Verification/playmode-results.xml">Test results</a> · <a href="Verification/requirements.md">Requirement audit</a></p>
@@ -19,7 +20,7 @@ body{margin:40px auto;padding:0 20px;max-width:1100px;background:#101722;color:#
 <table>
 <tr><th>Feature</th><th>Evidence shown</th></tr>
 <tr><td>ScriptableObject architecture</td><td>Scene-local GameManager, event channel/listener components, score data carried between worlds.</td></tr>
-<tr><td>Form FSM</td><td>Small → Super → Fire; damage → protected Small → Small; another hit → Dead.</td></tr>
+<tr><td>Form FSM</td><td>Small + mushroom/flower → Big; Big + flower → Fire. Damage: Fire → Big → protected Small → Small → Dead.</td></tr>
 <tr><td>Separate buff FSM</td><td>Star invincibility, changing colors and star music; expiry preserves Fire form.</td></tr>
 <tr><td>Fire attacks</td><td>Z input, facing, maximum three projectiles, 2.5-second lifetime and enemy hit.</td></tr>
 <tr><td>Restart</td><td>Restores Mario, buffs, projectiles, spent boxes/powerups, Goombas, score, camera, UI and music.</td></tr>
@@ -39,7 +40,7 @@ body{margin:40px auto;padding:0 20px;max-width:1100px;background:#101722;color:#
 </section>
 <details><summary>Separate clips and verification details</summary>
 <p><a href="Videos/powerups-and-restart.mp4">Gameplay clip</a> · <a href="Videos/architecture-inspector.mp4">Native Inspector/Hierarchy clip</a> · <a href="Verification/asset-hashes.json">Tested asset hashes</a> · <a href="Verification/layout-preservation.json">Scene preservation</a> · <a href="Verification/prefab-layout-preservation.json">Prefab preservation</a></p>
-<p>The native capture temporarily disables Unity's optional URP rendering debugger, which otherwise creates its own engine helper under DontDestroyOnLoad. Gameplay has no singleton or persistent object regardless of that debugger setting.</p>
+<p>RenderingDebugSetup now disables Unity's optional URP runtime debugger automatically for every scene. A normal Play session verified zero visible persistent roots in both worlds and working score carryover; see <a href="Verification/persistent-hierarchy-results.json">the hierarchy verification</a>.</p>
 <p>The historical full-course keyboard-route test targets an older layout and was excluded from the selected run. The current cloud/camera, fall/restart, castle transition, menus, powerups and gameplay regressions were tested directly.</p>
 <p>Recording tools stay outside gameplay in <code>Artifacts/Lab5/Tools</code> and run only in the isolated validation project.</p>
 </details>

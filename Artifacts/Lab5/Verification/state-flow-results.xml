@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Passed" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 04:02:01Z" end-time="2026-11-01 04:02:45Z" duration="43.3603736">
+  <test-suite type="TestSuite" id="1042" name="My project" fullname="My project" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-11-01 04:02:01Z" end-time="2026-11-01 04:02:45Z" duration="43.360374" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1038" name="Mario.PlayModeTests.dll" fullname="D:/Folder Data Base/University-Of-Waterloo/3B/50.033/My project/.unity-validation/Library/ScriptAssemblies/Mario.PlayModeTests.dll" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-11-01 04:02:01Z" end-time="2026-11-01 04:02:45Z" duration="43.349245" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32824" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestFixture" id="1019" name="PowerupTests" fullname="PowerupTests" classname="PowerupTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-01 04:02:01Z" end-time="2026-11-01 04:02:14Z" duration="12.208248" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1021" name="CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" fullname="PowerupTests.CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" methodname="CoinRefactorScoresOnceAndSpentBrickBreaksThenResets" classname="PowerupTests" runstate="Runnable" seed="2039403273" result="Passed" start-time="2026-11-01 04:02:01Z" end-time="2026-11-01 04:02:05Z" duration="3.485886" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1020" name="MushroomBoxSpawnsOnceCollectsAndRestarts" fullname="PowerupTests.MushroomBoxSpawnsOnceCollectsAndRestarts" methodname="MushroomBoxSpawnsOnceCollectsAndRestarts" classname="PowerupTests" runstate="Runnable" seed="1343762991" result="Passed" start-time="2026-11-01 04:02:05Z" end-time="2026-11-01 04:02:07Z" duration="2.379659" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+]]></output>
+        </test-case>
+        <test-case id="1023" name="MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" fullname="PowerupTests.MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" methodname="MushroomReversesAtWallAndSecondWorldHasIndependentPowerup" classname="PowerupTests" runstate="Runnable" seed="1198485184" result="Passed" start-time="2026-11-01 04:02:07Z" end-time="2026-11-01 04:02:09Z" duration="1.800739" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1022" name="StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" fullname="PowerupTests.StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" methodname="StarSpawnsMovesLogsOnceAndRestartsInBothWorlds" classname="PowerupTests" runstate="Runnable" seed="1294575113" result="Passed" start-time="2026-11-01 04:02:09Z" end-time="2026-11-01 04:02:14Z" duration="4.525518" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[star collected
+star collected
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1030" name="TeenTests" fullname="TeenTests" classname="TeenTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-01 04:02:14Z" end-time="2026-11-01 04:02:45Z" duration="31.136665" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1035" name="DamageShrinksProtectsExpiresAndThenKills" fullname="TeenTests.DamageShrinksProtectsExpiresAndThenKills" methodname="DamageShrinksProtectsExpiresAndThenKills" classname="TeenTests" runstate="Runnable" seed="820805088" result="Passed" start-time="2026-11-01 04:02:14Z" end-time="2026-11-01 04:02:19Z" duration="4.899646" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+]]></output>
+        </test-case>
+        <test-case id="1034" name="FireDamageDropsToBigOnceThenBigDamageProtectsSmall" fullname="TeenTests.FireDamageDropsToBigOnceThenBigDamageProtectsSmall" methodname="FireDamageDropsToBigOnceThenBigDamageProtectsSmall" classname="TeenTests" runstate="Runnable" seed="437823840" result="Passed" start-time="2026-11-01 04:02:19Z" end-time="2026-11-01 04:02:24Z" duration="5.102432" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1032" name="FireUsesKeyboardFacingCapLifetimeAndEnemyHit" fullname="TeenTests.FireUsesKeyboardFacingCapLifetimeAndEnemyHit" methodname="FireUsesKeyboardFacingCapLifetimeAndEnemyHit" classname="TeenTests" runstate="Runnable" seed="141369656" result="Passed" start-time="2026-11-01 04:02:24Z" end-time="2026-11-01 04:02:29Z" duration="4.831375" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+fire flower collected
+]]></output>
+        </test-case>
+        <test-case id="1033" name="PowerupsAdvanceOneFormAndNeverDowngrade" fullname="TeenTests.PowerupsAdvanceOneFormAndNeverDowngrade" methodname="PowerupsAdvanceOneFormAndNeverDowngrade" classname="TeenTests" runstate="Runnable" seed="841750572" result="Passed" start-time="2026-11-01 04:02:29Z" end-time="2026-11-01 04:02:30Z" duration="1.288312" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[fire flower collected
+]]></output>
+        </test-case>
+        <test-case id="1037" name="SceneChangeCarriesScoreWithNoPersistentGameplayObjectsOrStaleListeners" fullname="TeenTests.SceneChangeCarriesScoreWithNoPersistentGameplayObjectsOrStaleListeners" methodname="SceneChangeCarriesScoreWithNoPersistentGameplayObjectsOrStaleListeners" classname="TeenTests" runstate="Runnable" seed="1323089167" result="Passed" start-time="2026-11-01 04:02:30Z" end-time="2026-11-01 04:02:31Z" duration="1.265235" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1036" name="StarContactDefeatsEnemyWithoutDamageAndRestartRestoresEverything" fullname="TeenTests.StarContactDefeatsEnemyWithoutDamageAndRestartRestoresEverything" methodname="StarContactDefeatsEnemyWithoutDamageAndRestartRestoresEverything" classname="TeenTests" runstate="Runnable" seed="1494926904" result="Passed" start-time="2026-11-01 04:02:31Z" end-time="2026-11-01 04:02:34Z" duration="2.899934" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+fire flower collected
+star collected
+]]></output>
+        </test-case>
+        <test-case id="1031" name="ThreeBoxesProduceBigFireAndIndependentTimedStar" fullname="TeenTests.ThreeBoxesProduceBigFireAndIndependentTimedStar" methodname="ThreeBoxesProduceBigFireAndIndependentTimedStar" classname="TeenTests" runstate="Runnable" seed="1246440198" result="Passed" start-time="2026-11-01 04:02:34Z" end-time="2026-11-01 04:02:45Z" duration="10.845662" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[mushroom collected
+fire flower collected
+star collected
+Saving results to: C:/Users/joshu/AppData/LocalLow/DefaultCompany/My project\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

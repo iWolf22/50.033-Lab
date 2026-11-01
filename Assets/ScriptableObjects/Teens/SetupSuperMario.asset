@@ -15,3 +15,5 @@ MonoBehaviour:
   form: 1
   animatorController: {fileID: 22100000, guid: 0570433914ccf524297d691ae68e698c, type: 2}
   sound: {fileID: 8300000, guid: 26301d2e86e99420599e315297a825df, type: 3}
+  damageSound: {fileID: 8300000, guid: b520e6b32619c490a934225b9b162dc2, type: 3}
+  damageProtectionDuration: 2

@@ -27,4 +27,4 @@ SUTD 50.033 Game Development and Design, Fall 2026 exchange term. Lab docs: http
 
 ## Teens demo
 
-[Lab 5 recording and verification](Artifacts/Lab5/review.html). World-1-1 has mushroom, Fire Flower and star boxes. Move with A/D or arrows, jump with Space and fire with Z after collecting a flower.
+[Lab 5 recording and verification](Artifacts/Lab5/review.html). World-1-1 has mushroom, Fire Flower and star boxes. Move with A/D or arrows, jump with Space and fire with Z in Fire Mario form.

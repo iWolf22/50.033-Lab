@@ -4,11 +4,13 @@ using UnityEngine;
 public class MarioStateController : StateController
 {
     public MarioForm Form { get; private set; }
-    public bool IsProtected => Form == MarioForm.Hurt;
+    float damageProtectionUntil;
+    public bool IsProtected => Form == MarioForm.Hurt || Time.time < damageProtectionUntil;
+    public void ProtectFromDamage(float duration) => damageProtectionUntil = Time.time + duration;
     PlayerMovement player;
     SpriteRenderer visual;
     BuffStateController buff;
-    SceneAudio audio;
+    SceneAudio sceneAudio;
     [SerializeField] State deadState;
     [SerializeField] AudioClip fireSound;
     [SerializeField] BoolVariable facingRight;
@@ -18,7 +20,7 @@ public class MarioStateController : StateController
         player = GetComponent<PlayerMovement>();
         visual = GetComponent<SpriteRenderer>();
         buff = GetComponent<BuffStateController>();
-        audio = FindFirstObjectByType<SceneAudio>();
+        sceneAudio = FindFirstObjectByType<SceneAudio>();
     }
     public void ReceivePowerup(IPowerup powerup)
     {
@@ -45,7 +47,7 @@ public class MarioStateController : StateController
         visual.enabled = true;
         player.SetSuperMario(form == MarioForm.Super || form == MarioForm.Fire);
         if (animatorController != null) player.marioAnimator.runtimeAnimatorController = animatorController;
-        if (sound != null) audio.powerups.PlayOneShot(sound);
+        if (sound != null) sceneAudio.powerups.PlayOneShot(sound);
         if (form == MarioForm.Dead)
         {
             buff.GameRestart();
@@ -68,10 +70,11 @@ public class MarioStateController : StateController
         float direction = facingRight.Value ? 1 : -1;
         var shot = Instantiate(prefab, transform.position + new Vector3(direction * 0.7f, 0.25f), Quaternion.identity);
         shot.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(direction * 9, 4);
-        audio.powerups.PlayOneShot(fireSound);
+        sceneAudio.powerups.PlayOneShot(fireSound);
     }
     public override void GameRestart()
     {
+        damageProtectionUntil = 0;
         foreach (var shot in FindObjectsByType<FireballController>(FindObjectsSortMode.None)) shot.Clear();
         base.GameRestart();
     }

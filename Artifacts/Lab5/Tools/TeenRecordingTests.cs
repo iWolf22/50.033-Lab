@@ -106,7 +106,10 @@ public class TeenRecordingTests
             Assert.IsFalse(player.GetComponent<BuffStateController>().IsStarActive); Snapshot("star-expired");
             // Restore only the target enemy for the focused damage demonstration.
             target.GameRestart(); target.enabled = false;
-            Caption("Enemy side hit: Fire to Small, with brief damage protection"); Move(target.transform.position, Vector2.zero); yield return Frames(6);
+            Caption("Enemy side hit: Fire to Big, with brief damage protection"); Move(target.transform.position, Vector2.zero); yield return Frames(6);
+            Assert.AreEqual(MarioForm.Super, player.GetComponent<MarioStateController>().Form);
+            Move(new Vector2(-4, -2), Vector2.zero); yield return Frames(70); Snapshot("big-after-fire-damage");
+            Caption("Another side hit: Big to protected Small"); Move(target.transform.position, Vector2.zero); yield return Frames(6);
             Assert.AreEqual(MarioForm.Hurt, player.GetComponent<MarioStateController>().Form);
             Move(new Vector2(-4, -2), Vector2.zero); yield return Frames(70); Snapshot("small-after-damage");
             Caption("After protection expires, another side hit causes death"); Move(target.transform.position, Vector2.zero); yield return Frames(50);

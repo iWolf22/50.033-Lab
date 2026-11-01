@@ -1,4 +1,9 @@
 {
   "name": "Mario.Gameplay",
-  "references": ["Unity.InputSystem", "Unity.TextMeshPro", "Unity.ugui"]
+  "references": [
+    "Unity.InputSystem",
+    "Unity.TextMeshPro",
+    "Unity.ugui",
+    "Unity.RenderPipelines.Core.Runtime"
+  ]
 }

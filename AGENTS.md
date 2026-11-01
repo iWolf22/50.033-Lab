@@ -6,7 +6,7 @@
 - Make minimal, clean changes using Unity best practices; follow the requested tutorial section and skip temporary work that later sections remove.
 - Complete authorized work without routine confirmations; preserve user layouts and Inspector settings. Use Git for recovery; do not create backup copies.
 - Keep block hierarchies flat: root → Block visual + the selected powerup. Group assets by purpose; reuse interactive prefabs across scenes (including Mario and Canvas). Decorative objects need not be prefabs. Keep sounds in one scene-local Scene Audio prefab.
-- Teens uses only mushroom growth, Fire Flower/fireballs and a timed star buff; avoid extra powerups or scoring effects. Earlier log-only collection behavior is superseded.
+- Teens uses only mushroom growth, Fire Flower/fireballs and a timed star buff; avoid extra powerups or scoring effects. Earlier log-only collection behavior is superseded. Small + mushroom/flower → Big; Big + flower → Fire. Damage downgrades Fire → Big → protected Small → Small → Dead; keep two seconds of damage protection.
 - Group artifacts by lab and purpose; keep showcase links working when moving files.
 - Keep menus as simple panels in the existing Canvas, styled like Game Over over World-1-1. Include Home during play and Menu after death; loading is simulated.
 - Match menu icon pixel art and spacing; dim the scene behind active menus. Verify menu and gameplay layouts with screenshots.
@@ -50,6 +50,7 @@
 - Unity is **6000.3.24f1**, URP 2D. On this machine the Windows editor is under `C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe`.
 - If the main project is open, validate in ignored `.unity-validation/`. Refresh relevant assets/sources first; the copy may contain stale files or temporary tools.
 - No gameplay object persists or uses a singleton. Shared ScriptableObject data carries score/session state; event listeners register/unregister in OnEnable/OnDisable. SceneAudio is recreated with each scene.
+- `RenderingDebugSetup` disables URP's optional runtime debugger before scene load so its persistent debug helper does not appear in the Hierarchy.
 - Keep consumed powerups and broken bricks available for in-place restart; cancel powerup coroutines and disable physics before restoring their spawn positions.
 - Unity's test runner also creates persistent objects; persistence tests should count gameplay objects rather than every DontDestroyOnLoad root.
 - Input action GUID strings must use the canonical hyphenated format: PlayerInput resolves serialized ActionEvents by string ID. Regenerate the wrapper after changes.

@@ -187,9 +187,10 @@ public static class TeenSetup
         var protectionTimer = Asset<CountdownDecision>("DamageProtectionTimer"); protectionTimer.duration = 2;
         var starTimer = Asset<CountdownDecision>("StarTimer"); starTimer.duration = 8;
         Setup(small, MarioForm.Small, smallAnimator, null); Setup(super, MarioForm.Super, superAnimator, Clip("smb_powerup.wav"));
+        var bigDamageSetup = Asset<MarioFormAction>("SetupSuperMario"); bigDamageSetup.damageSound = Clip("smb_pipe_powerdown.wav"); bigDamageSetup.damageProtectionDuration = 2;
         Setup(fire, MarioForm.Fire, fireAnimator, Clip("smb_powerup.wav")); Setup(hurt, MarioForm.Hurt, smallAnimator, Clip("smb_pipe_powerdown.wav")); Setup(dead, MarioForm.Dead, smallAnimator, null);
-        small.transitions = new[] { To(damage, dead), To(mushroom, super), To(flower, fire) };
-        super.transitions = new[] { To(damage, hurt), To(flower, fire) }; fire.transitions = new[] { To(damage, hurt) }; hurt.transitions = new[] { To(protectionTimer, small) };
+        small.transitions = new[] { To(damage, dead), To(mushroom, super), To(flower, super) };
+        super.transitions = new[] { To(damage, hurt), To(flower, fire) }; fire.transitions = new[] { To(damage, super) }; hurt.transitions = new[] { To(protectionTimer, small) };
         normalBuff.transitions = new[] { To(star, starBuff) }; starBuff.transitions = new[] { To(starTimer, normalBuff) };
         var startStar = Asset<StarAction>("StartStar"); startStar.active = true;
         var endStar = Asset<StarAction>("EndStar"); endStar.active = false;

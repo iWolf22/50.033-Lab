@@ -87,6 +87,7 @@ public class TeenTests
     public IEnumerator FireUsesKeyboardFacingCapLifetimeAndEnemyHit()
     {
         mario.Fire(); Assert.AreEqual(0, Object.FindObjectsByType<FireballController>(FindObjectsSortMode.None).Length);
+        yield return Collect<MagicMushroomPowerup>("mushroom collected");
         yield return Collect<FireFlowerPowerup>("fire flower collected");
         Move(new Vector2(-6, -2.45f), Vector2.zero);
         player.MoveCheck(-1);
@@ -107,6 +108,70 @@ public class TeenTests
         Assert.IsFalse(enemy.GetComponent<Collider2D>().enabled); Assert.AreEqual(1, manager.Score);
     }
     [UnityTest]
+    public IEnumerator PowerupsAdvanceOneFormAndNeverDowngrade()
+    {
+        foreach (var powerup in new[] { PowerupType.MagicMushroom, PowerupType.FireFlower })
+        {
+            manager.GameRestart();
+            mario.SetPowerup(powerup);
+            Assert.AreEqual(MarioForm.Super, mario.Form, "Either powerup grows Small Mario to Big Mario.");
+            mario.SetPowerup(PowerupType.MagicMushroom);
+            Assert.AreEqual(MarioForm.Super, mario.Form);
+            mario.SetPowerup(PowerupType.FireFlower);
+            Assert.AreEqual(MarioForm.Fire, mario.Form);
+            foreach (var repeated in new[] { PowerupType.MagicMushroom, PowerupType.FireFlower })
+            {
+                mario.SetPowerup(repeated);
+                Assert.AreEqual(MarioForm.Fire, mario.Form);
+            }
+        }
+        manager.GameRestart();
+        // Confirm the small-flower transition through the actual collection event too.
+        yield return Collect<FireFlowerPowerup>("fire flower collected");
+        Assert.AreEqual(MarioForm.Super, mario.Form);
+        mario.Fire();
+        Assert.AreEqual(0, Object.FindObjectsByType<FireballController>(FindObjectsSortMode.None).Length);
+    }
+
+    [UnityTest]
+    public IEnumerator FireDamageDropsToBigOnceThenBigDamageProtectsSmall()
+    {
+        mario.SetPowerup(PowerupType.MagicMushroom);
+        mario.SetPowerup(PowerupType.FireFlower);
+        var enemy = Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None).First();
+        Move(enemy.transform.position, Vector2.zero);
+        yield return new WaitForSeconds(0.25f);
+        Assert.AreEqual(MarioForm.Super, mario.Form, "Repeated contact must remove only Fire form.");
+        Assert.IsTrue(player.IsSuperMario);
+        Assert.IsTrue(mario.IsProtected);
+        Assert.IsTrue(player.alive);
+        mario.Fire();
+        Assert.AreEqual(0, Object.FindObjectsByType<FireballController>(FindObjectsSortMode.None).Length);
+        mario.TakeDamage();
+        Assert.AreEqual(MarioForm.Super, mario.Form);
+        Move(new Vector2(-6, -2), Vector2.zero);
+        yield return new WaitForSeconds(2.1f);
+        Assert.IsFalse(mario.IsProtected);
+        Assert.IsTrue(player.GetComponent<SpriteRenderer>().enabled);
+        mario.TakeDamage();
+        Assert.AreEqual(MarioForm.Hurt, mario.Form);
+        Assert.IsFalse(player.IsSuperMario);
+        mario.TakeDamage();
+        Assert.AreEqual(MarioForm.Hurt, mario.Form);
+        yield return new WaitForSeconds(1);
+        Assert.AreEqual(MarioForm.Hurt, mario.Form);
+        yield return new WaitForSeconds(1.1f);
+        Assert.AreEqual(MarioForm.Small, mario.Form);
+        mario.TakeDamage();
+        Assert.AreEqual(MarioForm.Dead, mario.Form);
+        Assert.IsFalse(player.alive);
+        manager.GameRestart();
+        Assert.AreEqual(MarioForm.Small, mario.Form);
+        Assert.IsFalse(mario.IsProtected);
+        yield return null;
+    }
+
+    [UnityTest]
     public IEnumerator DamageShrinksProtectsExpiresAndThenKills()
     {
         yield return Collect<MagicMushroomPowerup>("mushroom collected");
@@ -123,6 +188,7 @@ public class TeenTests
     [UnityTest]
     public IEnumerator StarContactDefeatsEnemyWithoutDamageAndRestartRestoresEverything()
     {
+        yield return Collect<MagicMushroomPowerup>("mushroom collected");
         yield return Collect<FireFlowerPowerup>("fire flower collected");
         yield return Collect<StarPowerup>("star collected");
         mario.TakeDamage(); Assert.AreEqual(MarioForm.Fire, mario.Form);
